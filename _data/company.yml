@@ -6,7 +6,7 @@ mailchimp:
     enabled: true
     id: 88e0dbe42c
 # Jekyll social media site settings. Github, LinkedIn, Google+, Facebook and Youtube
-github_username: OP-TEE
+github_username: op-tee
 disqus:
     enabled: false
     shortname: 96boards
