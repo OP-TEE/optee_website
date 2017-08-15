@@ -1,0 +1,49 @@
+image: /assets/images/OP-TEE-Logo_white-vertical-OPTEE-colour.svg
+columns:
+    - title: OP-TEE Projects
+      url: /projects/
+      items:
+        - text: optee_os
+          url : https://github.com/OP-TEE/optee_os
+        - text: optee_client
+          url : https://github.com/OP-TEE/optee_client
+        - text: optee_test
+          url : https://github.com/OP-TEE/optee_test
+        - text: manifest
+          url : https://github.com/OP-TEE/manifest
+        - text: build
+          url : https://github.com/OP-TEE/build
+    - title:
+      url:
+      items:
+        - text: LSGW
+          url : https://www.op-tee.org/swg/
+        - text: Dependencies
+          url : https://www.op-tee.org/projects/dependencies/
+        - text: Roadmap
+          url : https://www.op-tee.org/roadmap/
+    - title: About
+      url: /about/
+      items:
+        - text: Committee
+          url : /committee/
+        - text: FAQ
+          url : /faq/
+        - text: Documentation
+          url : /documentation/
+    - title: Other Linaro Projects
+      url: https://www.linaro.org/work/
+      items:
+        - text: 96Boards
+          url : https://96boards.org/
+        - text: Developer Cloud
+          url : https://linaro.cloud/
+        - text: View all
+          url : https://www.linaro.org/work/
+companylinks:
+    - name: Legal
+      url: /legal/
+    - name: Contact
+      url: /contact/
+    - name: Press
+      url: /press/

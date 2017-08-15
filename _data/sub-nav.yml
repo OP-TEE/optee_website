@@ -1,0 +1,55 @@
+pages:
+  -
+    list:
+      -
+        title: "Overview"
+        url: /about/
+      -
+        title: "LSWG"
+        url: "/swg/"
+      -
+        title: "Committee"
+        url: "/committee/"
+      -
+        title: "Legal"
+        url: "/legal/"
+    urls: [/about/,/swg/,/committee/,/legal/]
+  -
+    list:
+      -
+        title: OP-TEE Projects
+        url: /projects/
+      -
+        title: OP-TEE Dependencies
+        url: /dependencies/
+      -
+        title: Roadmap
+        url: /roadmap/
+    urls: [/projects/, /dependencies/, /roadmap/]
+  -
+    list:
+      -
+        title: Documentation
+        url: /documentation/
+      -
+        title: License Agreement
+        url: /agreement/
+    urls: [/documentation/, /agreement/]
+  -
+    list:
+      -
+        title: FAQ
+        url: /faq/
+      -
+        title: Github Usage
+        url: /usage/
+    urls: [/faq/, /usage/]
+  -
+    list:
+      -
+        title: FAQ
+        url: /faq/
+      -
+        title: Github Usage
+        url: /usage/
+    urls: [/faq/, /usage/]

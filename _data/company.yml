@@ -1,0 +1,14 @@
+favicon: /assets/images/favion.png
+search-label: OP-TEE
+name: OP-TEE
+slogan: Open Portable Trusted Execution Environment
+mailchimp:
+    enabled: true
+    id: 88e0dbe42c
+# Jekyll social media site settings. Github, LinkedIn, Google+, Facebook and Youtube
+github_username: OP-TEE
+disqus:
+    enabled: false
+    shortname: 96boards
+homepage_image: /assets/images/background-image.jpg
+breadcrumb-image: /assets/images/background-image.jpg
