@@ -59,4 +59,4 @@ Add the bootloader to the 'boot' partition
 # cp <repo directory>/u-boot/u-boot_HS.img u-boot.img
 ```
 
-[README.md]: ../build/
+[README.md]: ../../build/

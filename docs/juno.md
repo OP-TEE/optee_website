@@ -141,4 +141,4 @@ NOR5LOAD: 00000000               ;Image Load Address
 NOR5ENTRY: 00000000              ;Image Entry Point
 ```
 
-[README.md]: ../build/
+[README.md]: ../../build/
