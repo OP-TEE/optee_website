@@ -410,15 +410,15 @@ using [Travis for OP-TEE].
 [OP-TEE Documentation]: https://github.com/OP-TEE/optee_os/tree/master/documentation
 [OP-TEE Enhancements]: https://github.com/OP-TEE/optee_os/labels/enhancement
 [OP-TEE Issues]: https://github.com/OP-TEE/optee_os/issues
-[OP-TEE pre-requisties]: ../build#71-prerequisites
+[OP-TEE pre-requisties]: ../build/#71-prerequisites
 [OP-TEE Pull Requests]: https://github.com/OP-TEE/optee_os/pulls
-[OP-TEE repo setups]: ../build#6-manifests
+[OP-TEE repo setups]: ../build/#6-manifests
 [OTrP]: https://tools.ietf.org/html/draft-pei-opentrustprotocol-01
 [Platforms Supported]: https://github.com/OP-TEE/optee_os#3-platforms-supported
 [porting_guidelines.md]: https://github.com/OP-TEE/optee_os/blob/master/documentation/porting_guidelines.md
-[qemu.md]: docs/qemu/
+[qemu.md]: https://github.com/OP-TEE/build/blob/master/docs/qemu.md
 [Raspberry Pi3 port]: https://github.com/OP-TEE/optee_os/commit/66d9cacf37e6bd4b0d86e7b32e4e5edefe8decfd
-[Run xtest]: ../build#79-run-xtest
+[Run xtest]: ../build/#79-run-xtest
 [Security Advisories]: https://www.op-tee.org/security-advisories/
 [sign.py]: https://github.com/OP-TEE/optee_os/blob/master/scripts/sign.py
 [TAs in xtest]: https://github.com/OP-TEE/optee_test/tree/master/ta

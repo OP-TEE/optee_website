@@ -109,4 +109,4 @@ directly from the Linux kernel git in combination with the local [checkpatch
 script].
 
 [build]: https://github.com/OP-TEE/build
-[checkpatch script]: scripts/checkpatch.sh
+[checkpatch script]: https://github.com/OP-TEE/optee_os/blob/master/scripts/checkpatch.sh
