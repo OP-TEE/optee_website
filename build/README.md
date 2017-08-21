@@ -264,16 +264,16 @@ Please have a look at out [FAQ] file for a list of questions commonly asked.
 
 [ccache]: https://ccache.samba.org
 [docs]: docs
-[FAQ]: faq.md
-[fvp.md]: ./docs/fvp.md
+[FAQ]: ../faq/
+[fvp.md]: ../docs/fvp/
 [git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
-[juno.md]: ./docs/juno.md
-[hikey.md]: ./docs/hikey.md
+[juno.md]: ../docs/juno/
+[hikey.md]: ../docs/hikey/
 [manifest/README.md]: https://github.com/OP-TEE/manifest/blob/master/README.md
-[mtk8173.md]: ./docs/mtk8173.md
+[mtk8173.md]: ../docs/mtk8173/
 [MAINTAINERS.md]: https://github.com/OP-TEE/optee_os/blob/master/MAINTAINERS.md
 [OP-TEE/README.md]: https://github.com/OP-TEE/optee_os/blob/master/README.md
-[qemu.md]: ./docs/qemu.md
+[qemu.md]: ../docs/qemu/
 [repo]: https://source.android.com/source/downloading.html
-[rpi3.md]: ./docs/rpi3.md
-[ti.md]: ./docs/ti.md
+[rpi3.md]: ../docs/rpi3/
+[ti.md]: ../docs/ti/
