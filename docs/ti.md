@@ -2,14 +2,9 @@
 layout: default
 title: OP-TEE on Texas Instruments SoCs
 permalink: /docs/ti/
-description: |-
-	The instructions here will tell how to run OP-TEE on Texas Instruments
-	devices. Secure TI devices require a boot image that is authenticated by ROM
-	code to function. Without this, even JTAG remains locked. In order to create
-	a valid boot image for a secure device from TI, the initial public software
-	image must be signed and combined with various headers, certificates, and
-	other binary images.
+description: The instructions here will tell how to run OPTEE on Texas Instruments devices.
 ---
+
 # OP-TEE on Texas Instruments SoCs
 
 # Contents
@@ -64,4 +59,4 @@ Add the bootloader to the 'boot' partition
 # cp <repo directory>/u-boot/u-boot_HS.img u-boot.img
 ```
 
-[README.md]: ../README.md
+[README.md]: ../build/

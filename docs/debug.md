@@ -2,9 +2,7 @@
 layout: default
 title: Debug
 permalink: /docs/debug/
-description: |-
-	In this document we would like to describe how to debug OP-TEE. Depending on the
-	platform you are using you will have a couple of different options.
+description: In this document we would like to describe how to debug OPTEE. Depending on the platform you are using you will have a couple of different options.
 ---
 # Debugging OP-TEE
 
@@ -303,5 +301,5 @@ $ echo 0 > options/graph-time
    breakpoints before booting up the system.
 
 [Affinic Debugger]: http://www.affinic.com/?page_id=109
-[README.md]: ../README.md
-[QEMU ARMv7-A]: qemu.md#3-qemu-console
+[README.md]: ../build/
+[QEMU ARMv7-A]: ../docs/qemu/#3-qemu-console

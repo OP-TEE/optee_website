@@ -63,4 +63,4 @@ After booting QEMU VM, eth0 will automatically receive IP address via DHCP
 so `ping` utility won't work.
 
 [bios]: https://github.com/linaro-swg/bios_qemu_tz_arm
-[README.md]: ../README.md
+[README.md]: ../build/

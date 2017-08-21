@@ -48,6 +48,6 @@ described when you run the target:
 $ make recovery
 ```
 
-[README.md]: ../README.md
+[README.md]: ../build/
 [hikey960.mk]: https://github.com/OP-TEE/build/blob/master/hikey960.mk
 [96Boards UART Adapter Board]: http://www.96boards.org/product/uarts
