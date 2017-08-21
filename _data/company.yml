@@ -12,11 +12,12 @@ github_username: op-tee
 
 # Google Anayltics Settings.
 google:
-    analytics: UA-16756069-20
     tag_manager: GTM-TDJ7LGH
+
 
 disqus:
     enabled: false
-    shortname: 96boards
+    shortname: op-tee
+
 homepage_image: /assets/images/background-image.jpg
 breadcrumb-image: /assets/images/background-image.jpg
