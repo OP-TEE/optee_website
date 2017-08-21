@@ -263,7 +263,7 @@ don't have to think about anything.
 Please have a look at out [FAQ] file for a list of questions commonly asked.
 
 [ccache]: https://ccache.samba.org
-[docs]: docs
+[docs]: ../docs
 [FAQ]: ../faq/
 [fvp.md]: ../docs/fvp/
 [git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules

@@ -87,7 +87,7 @@ it.
 That would be running it on QEMU on a local PC. To do that you would need to:
 - Install the [OP-TEE pre-requisties], see section 7.1.
 - Configure repo as described in [OP-TEE repo setups], see section 6.
-- Build QEMU, see [qemu.md](docs/qemu/).
+- Build QEMU, see [qemu.md](../docs/qemu/).
 - [Run xtest], see section 7.9.
 
 By summarizing the above, you would need to:
