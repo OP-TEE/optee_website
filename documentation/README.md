@@ -24,7 +24,7 @@ ARM&reg; TrustZone&reg; technology. This component meets the GlobalPlatform
 TEE System Architecture specification. It also provides the TEE Internal core API
 v1.1 as defined by the GlobalPlatform TEE Standard for the development of
 Trusted Applications. For a general overview of OP-TEE and to find out how to
-contribute, please see the [Notice.md](Notice.md) file.
+contribute, please see the [Notice](../notice/) file.
 
 The Trusted OS is accessible from the Rich OS (Linux) using the
 [GlobalPlatform TEE Client API Specification v1.0](http://www.globalplatform.org/specificationsdevice.asp),
@@ -48,13 +48,13 @@ for a chip the where the Trusted OS runs. Note that there is also a
 composite form which makes it possible to append `PLATFORM_FLAVOR` directly,
 by adding a dash in-between the names. The composite form is shown below
 for the different boards. For more specific details about build flags etc,
-please read the file [build_system.md](documentation/build_system.md). Some
+please read the [build_system](../build_system/) file. Some
 platforms have different sub-maintainers, please refer to the file
-[MAINTAINERS.md](MAINTAINERS.md) for contact details for various platforms.
+[Maintainers](../maintainers/) for contact details for various platforms.
 
 
+<div class="responsive-table" markdown="1">
 
-{:.table-responsive}
 |Platform | Composite PLATFORM flag | Publicly available?
 |----------|-------------------------|---------------------|
 | [Allwinner A80 Board](http://linux-sunxi.org/A80)|`PLATFORM=sunxi`| No |
@@ -79,6 +79,7 @@ platforms have different sub-maintainers, please refer to the file
 | [Xilinx Zynq UltraScale+ MPSOC](http://www.xilinx.com/products/silicon-devices/soc/zynq-ultrascale-mpsoc.html)|`PLATFORM=zynqmp-zcu102`| Yes |
 | [Spreadtrum SC9860](http://www.spreadtrum.com/en/SC9860GV.html)|`PLATFORM=sprd-sc9860`| No |
 
+</div>
 ---
 ## 4. Get and build OP-TEE software
 Please see [build] for instructions how to run OP-TEE on various devices.

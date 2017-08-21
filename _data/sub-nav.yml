@@ -34,7 +34,10 @@ pages:
       -
         title: License Agreement
         url: /agreement/
-    urls: [/documentation/, /agreement/]
+      -
+        title: Notice
+        url: /notice/
+    urls: [/documentation/, /agreement/, /notice/]
   -
     list:
       -

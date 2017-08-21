@@ -87,7 +87,7 @@ it.
 That would be running it on QEMU on a local PC. To do that you would need to:
 - Install the [OP-TEE pre-requisties], see section 7.1.
 - Configure repo as described in [OP-TEE repo setups], see section 6.
-- Build QEMU, see [qemu.md].
+- Build QEMU, see [qemu.md](docs/qemu/).
 - [Run xtest], see section 7.9.
 
 By summarizing the above, you would need to:
@@ -381,63 +381,63 @@ using [Travis for OP-TEE].
 - TZPC: TrustZone Protection Controller
 
 
-[Applus Laboratories]: http://www.appluslaboratories.com
-[build.git]: https://github.com/OP-TEE/build
-[CHANGELOG.md]: https://github.com/OP-TEE/optee_os/blob/master/CHANGELOG.md
-[Crypto Abstraction Layer]: https://github.com/OP-TEE/optee_os/blob/master/documentation/crypto.md
-[default_ta.pem]: https://github.com/OP-TEE/optee_os/blob/master/keys/default_ta.pem
-[Freescale ls1021a port]: https://github.com/OP-TEE/optee_os/commit/85278139a8f914dddb36808861c86a472ecb0271
-[Generic TEE driver patches]: https://patchwork.kernel.org/project/linux-arm-kernel/list/?submitter=129291
-[GlobalPlatform specifications]: http://www.globalplatform.org/specificationsdevice.asp
-[Hello World Trusted Application]: https://github.com/linaro-swg/hello_world
-[HiKey]: http://www.96boards.org/product/hikey
-[HiKey port]: https://github.com/OP-TEE/optee_os/commit/d70e78c49fc9c63b2d37c596b7ad3cbd38f8e574
-[Juno port]: https://github.com/OP-TEE/optee_os/commit/90e7497e0480892e2c262cec64e6c47242d4db7f
-[Lazy Context Switching]: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.prd29-genc-009492c/ch05s03s01.html
-[LCU14-302 How To Port OP-TEE To Another Platform]: http://www.slideshare.net/linaroorg/lcu14-302-how-to-port-optee-to-another-platform
-[LCU14-302 YouTube clip]: http://www.youtube.com/watch?v=QgaGJow7hws
-[LCU14-103 How to create and run Trusted Applications on OP-TEE]: http://www.slideshare.net/linaroorg/lcu14103-how-to-create-and-run-trusted-applications-on-optee
-[LCU14-103 YouTube clip]: http://www.youtube.com/watch?v=6fmwhqrOmpc
-[LDTS]: https://support.linaro.org
-[linaro-swg]: https://github.com/linaro-swg
-[LICENSE]: https://github.com/OP-TEE/optee_os/blob/master/LICENSE
-[linux-next]: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/tee?id=refs/tags/next-20170403
-[Notice.md]: https://github.com/OP-TEE/optee_os/blob/master/Notice.md
-[optee_os]: https://github.com/OP-TEE/optee_os
-[optee_test]: https://github.com/OP-TEE/optee_test
-[OP-TEE]: https://github.com/OP-TEE
-[OP-TEE Bugs]: https://github.com/OP-TEE/optee_os/labels/bug
-[OP-TEE Documentation]: https://github.com/OP-TEE/optee_os/tree/master/documentation
-[OP-TEE Enhancements]: https://github.com/OP-TEE/optee_os/labels/enhancement
-[OP-TEE Issues]: https://github.com/OP-TEE/optee_os/issues
-[OP-TEE pre-requisties]: README.md#71-prerequisites
-[OP-TEE Pull Requests]: https://github.com/OP-TEE/optee_os/pulls
-[OP-TEE repo setups]: README.md#6-manifests
-[OTrP]: https://tools.ietf.org/html/draft-pei-opentrustprotocol-01
-[Platforms Supported]: https://github.com/OP-TEE/optee_os#3-platforms-supported
-[porting_guidelines.md]: https://github.com/OP-TEE/optee_os/blob/master/documentation/porting_guidelines.md
-[qemu.md]: docs/qemu.md
-[Raspberry Pi3 port]: https://github.com/OP-TEE/optee_os/commit/66d9cacf37e6bd4b0d86e7b32e4e5edefe8decfd
-[Run xtest]: README.md#79-run-xtest
-[Security Advisories]: https://www.op-tee.org/security-advisories/
-[sign.py]: https://github.com/OP-TEE/optee_os/blob/master/scripts/sign.py
-[TAs in xtest]: https://github.com/OP-TEE/optee_test/tree/master/ta
-[TEE Initial Configuration Compliance Test Suite v1.x]: https://www.globalplatform.org/storecontent.asp?show=testsuites
-[TI DRA7xx port]: https://github.com/OP-TEE/optee_os/commit/9b5060cd92a19b4d114a1ce8a338b18424974037
-[Travis for OP-TEE]: https://travis-ci.org/OP-TEE/optee_os/builds
-[Travis OP-TEE build]: https://travis-ci.org/OP-TEE/build
-[ZynqMP port]: https://github.com/OP-TEE/optee_os/commit/dc57f5a0e8f3b502fc958bc64a5ec0b0f46ef11a
+[Applus Laboratories](http://www.appluslaboratories.com)
+[build.git](https://github.com/OP-TEE/build)
+[CHANGELOG.md](https://github.com/OP-TEE/optee_os/blob/master/CHANGELOG.md)
+[Crypto Abstraction Layer](https://github.com/OP-TEE/optee_os/blob/master/documentation/crypto.md)
+[default_ta.pem](https://github.com/OP-TEE/optee_os/blob/master/keys/default_ta.pem)
+[Freescale ls1021a port](https://github.com/OP-TEE/optee_os/commit/85278139a8f914dddb36808861c86a472ecb0271)
+[Generic TEE driver patches](https://patchwork.kernel.org/project/linux-arm-kernel/list/?submitter=129291)
+[GlobalPlatform specifications](http://www.globalplatform.org/specificationsdevice.asp)
+[Hello World Trusted Application](https://github.com/linaro-swg/hello_world)
+[HiKey](http://www.96boards.org/product/hikey)
+[HiKey port](https://github.com/OP-TEE/optee_os/commit/d70e78c49fc9c63b2d37c596b7ad3cbd38f8e574)
+[Juno port](https://github.com/OP-TEE/optee_os/commit/90e7497e0480892e2c262cec64e6c47242d4db7f)
+[Lazy Context Switching](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.prd29-genc-009492c/ch05s03s01.html)
+[LCU14-302 How To Port OP-TEE To Another Platform](http://www.slideshare.net/linaroorg/lcu14-302-how-to-port-optee-to-another-platform)
+[LCU14-302 YouTube clip](http://www.youtube.com/watch?v=QgaGJow7hws)
+[LCU14-103 How to create and run Trusted Applications on OP-TEE](http://www.slideshare.net/linaroorg/lcu14103-how-to-create-and-run-trusted-applications-on-optee)
+[LCU14-103 YouTube clip](http://www.youtube.com/watch?v=6fmwhqrOmpc)
+[LDTS](https://support.linaro.org)
+[linaro-swg](https://github.com/linaro-swg)
+[LICENSE](https://github.com/OP-TEE/optee_os/blob/master/LICENSE)
+[linux-next](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/tee?id=refs/tags/next-20170403)
+[Notice.md](https://github.com/OP-TEE/optee_os/blob/master/Notice.md)
+[optee_os](https://github.com/OP-TEE/optee_os)
+[optee_test](https://github.com/OP-TEE/optee_test)
+[OP-TEE](https://github.com/OP-TEE)
+[OP-TEE Bugs](https://github.com/OP-TEE/optee_os/labels/bug)
+[OP-TEE Documentation](https://github.com/OP-TEE/optee_os/tree/master/documentation)
+[OP-TEE Enhancements](https://github.com/OP-TEE/optee_os/labels/enhancement)
+[OP-TEE Issues](https://github.com/OP-TEE/optee_os/issues)
+[OP-TEE pre-requisties](../build#71-prerequisites)
+[OP-TEE Pull Requests](https://github.com/OP-TEE/optee_os/pulls)
+[OP-TEE repo setups](../build#6-manifests)
+[OTrP](https://tools.ietf.org/html/draft-pei-opentrustprotocol-01)
+[Platforms Supported](https://github.com/OP-TEE/optee_os#3-platforms-supported)
+[porting_guidelines.md](https://github.com/OP-TEE/optee_os/blob/master/documentation/porting_guidelines.md)
+[qemu.md](docs/qemu/)
+[Raspberry Pi3 port](https://github.com/OP-TEE/optee_os/commit/66d9cacf37e6bd4b0d86e7b32e4e5edefe8decfd)
+[Run xtest](../build#79-run-xtest)
+[Security Advisories](https://www.op-tee.org/security-advisories/)
+[sign.py](https://github.com/OP-TEE/optee_os/blob/master/scripts/sign.py)
+[TAs in xtest](https://github.com/OP-TEE/optee_test/tree/master/ta)
+[TEE Initial Configuration Compliance Test Suite v1.x](https://www.globalplatform.org/storecontent.asp?show=testsuites)
+[TI DRA7xx port](https://github.com/OP-TEE/optee_os/commit/9b5060cd92a19b4d114a1ce8a338b18424974037)
+[Travis for OP-TEE](https://travis-ci.org/OP-TEE/optee_os/builds)
+[Travis OP-TEE build](https://travis-ci.org/OP-TEE/build)
+[ZynqMP port](https://github.com/OP-TEE/optee_os/commit/dc57f5a0e8f3b502fc958bc64a5ec0b0f46ef11a)
 
-[Issue#280]: https://github.com/OP-TEE/optee_os/issues/280
-[Issue#601]: https://github.com/OP-TEE/optee_os/issues/601
-[Issue#846]: https://github.com/OP-TEE/optee_os/issues/846
-[Issue#901]: https://github.com/OP-TEE/optee_os/issues/901
-[Issue#953]: https://github.com/OP-TEE/optee_os/issues/953
-[Issue#967]: https://github.com/OP-TEE/optee_os/issues/967
-[Issue#1003]: https://github.com/OP-TEE/optee_os/issues/1003
-[Issue#1036]: https://github.com/OP-TEE/optee_os/issues/1036
-[Issue#1085]: https://github.com/OP-TEE/optee_os/issues/1085
-[Issue#1132]: https://github.com/OP-TEE/optee_os/issues/1132
-[Issue#1183]: https://github.com/OP-TEE/optee_os/issues/1183
-[Issue#1194]: https://github.com/OP-TEE/optee_os/issues/1194
-[Issue#1195]: https://github.com/OP-TEE/optee_os/issues/1195
+[Issue#280](https://github.com/OP-TEE/optee_os/issues/280)
+[Issue#601](https://github.com/OP-TEE/optee_os/issues/601)
+[Issue#846](https://github.com/OP-TEE/optee_os/issues/846)
+[Issue#901](https://github.com/OP-TEE/optee_os/issues/901)
+[Issue#953](https://github.com/OP-TEE/optee_os/issues/953)
+[Issue#967](https://github.com/OP-TEE/optee_os/issues/967)
+[Issue#1003](https://github.com/OP-TEE/optee_os/issues/1003)
+[Issue#1036](https://github.com/OP-TEE/optee_os/issues/1036)
+[Issue#1085](https://github.com/OP-TEE/optee_os/issues/1085)
+[Issue#1132](https://github.com/OP-TEE/optee_os/issues/1132)
+[Issue#1183](https://github.com/OP-TEE/optee_os/issues/1183)
+[Issue#1194](https://github.com/OP-TEE/optee_os/issues/1194)
+[Issue#1195](https://github.com/OP-TEE/optee_os/issues/1195)
