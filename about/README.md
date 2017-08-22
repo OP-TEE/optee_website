@@ -1,7 +1,9 @@
 ---
 layout: default
-title: About
+title: About Open Source Trusted Execution Environment
 permalink: /about/
+description: |-
+  OP-TEE is an open source project which contains a full implementation to make up a complete Trusted Execution Environment. 
 ---
 # About OP-TEE
 
