@@ -17,11 +17,11 @@ columns:
       url:
       items:
         - text: LSGW
-          url : https://www.op-tee.org/swg/
+          url : /swg/
         - text: Dependencies
-          url : https://www.op-tee.org/projects/dependencies/
+          url : /dependencies/
         - text: Roadmap
-          url : https://www.op-tee.org/roadmap/
+          url : /roadmap/
     - title: About
       url: /about/
       items:
