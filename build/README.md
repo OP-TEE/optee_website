@@ -124,7 +124,7 @@ information.
 <td>Yes</td>
 </tr>
 <tr>
-<td><a href="https://www.96boards.org/products/hikey">HiKey Board (HiSilicon Kirin 620)</a></td>
+<td><a href="https://www.96boards.org/product/hikey">HiKey Board (HiSilicon Kirin 620)</a></td>
 <td><code>PLATFORM=hikey</code></td>
 <td>Yes</td>
 </tr>
