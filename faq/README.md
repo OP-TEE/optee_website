@@ -415,7 +415,7 @@ using [Travis for OP-TEE].
 [LDTS]: https://support.linaro.org
 [linaro-swg]: https://github.com/linaro-swg
 [LICENSE]: https://github.com/OP-TEE/optee_os/blob/master/LICENSE
-[linux-next]: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/tee?id=refs/tags/next-20170403
+[linux-next]: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/tee
 [Notice.md]: https://github.com/OP-TEE/optee_os/blob/master/Notice.md
 [optee_examples]: https://github.com/linaro-swg/optee_examples
 [optee_os]: https://github.com/OP-TEE/optee_os
