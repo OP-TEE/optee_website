@@ -58,7 +58,7 @@ The flash in the board may need to be updated for the flashing above to
 work.  If the flashing fails or if ARM-TF refuses to boot due to wrong
 version of the SCP binary the flash needs to be updated. To update the
 flash please follow the instructions at [Using Linaro's deliverable on
-Juno](https://community.arm.com/docs/DOC-10804) selecting one of the zips
+Juno](https://community.arm.com/dev-platforms/b/documents/posts/using-linaros-deliverables-on-juno) selecting one of the zips
 under "4.1 Prebuilt configurations" flashing it as described under "5.
 Running the software".
 
