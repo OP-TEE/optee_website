@@ -11,6 +11,6 @@ permalink: "/roadmap/"
 
 <div role="tabpanel" class="tab-pane fade active in" id="github-usage" markdown="1">
 
-[Roadmap](https://linaro.co/jira-roadmap-lp-oss)
+[Roadmap]()
 
 </div>
