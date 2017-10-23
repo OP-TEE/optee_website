@@ -2,6 +2,8 @@
 layout: home-shape
 permalink: /
 title: Home
+js-vendor: home
+css-pack: home
 ---
 <div class="text-center" markdown="1">
 # Welcome to OP-TEE

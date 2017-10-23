@@ -1,7 +1,7 @@
 search: true
 brand:
     text: OP-TEE
-    image: /assets/images/OP-TEE-Logo_white-standard-OPTEE-colour.svg
+    image: OP-TEE-Logo_white-standard-OPTEE-colour.svg
     url: /
 pages:
     - title: About

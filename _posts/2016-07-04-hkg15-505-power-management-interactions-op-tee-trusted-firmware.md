@@ -3,7 +3,7 @@ layout: post
 title:  "HKG15-505: Power Management Interactions with OP-TEE and Trusted Firmware"
 date:   2016-07-04 12:00:00
 categories: Blog
-image: /images/posts/hkg15-505-power-management-interactions-op-tee-trusted-firmware-image.jpeg
+featured_image: hkg15-505-power-management-interactions-op-tee-trusted-firmware-image.jpeg
 
 
 ---
