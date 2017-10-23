@@ -1,4 +1,4 @@
-favicon: /assets/images/favion.png
+favicon: favicon.png
 search-label: OP-TEE
 
 name: OP-TEE
@@ -21,3 +21,5 @@ disqus:
 
 homepage_image: /assets/images/background-image.jpg
 breadcrumb-image: /assets/images/background-image.jpg
+
+placeholder: placeholder.jpeg

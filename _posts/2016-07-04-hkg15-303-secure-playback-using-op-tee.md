@@ -3,7 +3,7 @@ layout: post
 title:  "HKG15-303: Secure Playback Using OP-TEE"
 date:   2016-07-04 12:00:00
 categories: Blog
-image: /images/posts/hkg15-303-secure-playback-using-op-tee-image.jpeg
+featured_image: hkg15-303-secure-playback-using-op-tee-image.jpeg
 
 
 ---

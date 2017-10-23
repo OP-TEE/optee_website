@@ -11,10 +11,12 @@ pagination:
             <a href="{{post.url}}">
                 <img class="img-responsive blog-img lazyload"
                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                {% if post.image %}
-                data-src="/assets{{post.image}}"
+                {% if post.thumbnail_image %}
+                    data-src="{% asset_path '{{post.thumbnail_image}}' %}"
+                {% elsif post.featured_image %}
+                    data-src="{% asset_path '{{post.featured_image}}'%}"
                 {% else %}
-                data-src="{% if site.data.company.placeholder %}{{site.data.company.placeholder}}{% else %}/assets/images/placeholder.png{% endif %}"
+                    data-src="{% asset_path '{{site.data.company.placeholder}}' %}"
                 {% endif %}
                  alt="{{post.title}}" />
             </a>
