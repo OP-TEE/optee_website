@@ -7,6 +7,10 @@ $navbar-base-text-color: #fff;
 $home-page-title-text: #fff;
 $home-page-main-title-color: #fff;
 
+div.featured_blog_post .col-md-9.col-sm-9.col-xs-9 {
+    top: -5px;
+}
+
 /*  -------- Shape Divider ------- */
 #mk-shape-divider-4 .shape__container {
   margin-bottom: 0px;
