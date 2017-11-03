@@ -26,12 +26,13 @@ Frequently Asked Questions
 - The GlobalPlatform extension, [TEE Initial Configuration Compliance Test Suite v1.x],
   can be purchased separately.
 
-### Why isn’t the kernel driver in the vanilla kernel at kernel.org?
-Since the beginning of 2015 we have been trying to get our driver mainlined.
-This seems to be more challenging than we initially could foresee, but as of now
-it has reached [linux-next]. (A list of all patches submitted could be found at
-the [Generic TEE driver patches] patchwork page.)
-
+### Where is the Linux kernel TEE driver?
+You can find both the generic TEE framework (including the OP-TEE) driver
+included in the official Linux kernel project since v4.12. Having that said,
+we "buffer up" pending patches on a our [Linux kernel OP-TEE] (branch: optee).
+I.e., that is where we keep new features being developed for OP-TEE. In the long
+run we aim to completely stop using our own branch and just send all patches to
+the official Linux kernel tree directly. But as of now we cannot do that.
 
 
 # 2. Building
@@ -415,7 +416,7 @@ using [Travis for OP-TEE].
 [LDTS]: https://support.linaro.org
 [linaro-swg]: https://github.com/linaro-swg
 [LICENSE]: https://github.com/OP-TEE/optee_os/blob/master/LICENSE
-[linux-next]: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/tee
+[Linux kernel OP-TEE]: https://github.com/linaro-swg/linux
 [Notice.md]: https://github.com/OP-TEE/optee_os/blob/master/Notice.md
 [optee_examples]: https://github.com/linaro-swg/optee_examples
 [optee_os]: https://github.com/OP-TEE/optee_os
