@@ -322,7 +322,9 @@ kernel. For more information, please see [Issue#1036], [Issue#1183].
 look for Trusted Applications.
 
 ### What is a Psuedo TA and how do I write one?
-A Psuedo TA is a Trusted Application that runs in TEE kernel / core context.
+A Psuedo TA is OP-TEE firmware service offered through the generic API used to
+invoke Trusted Applications. Pseudo TA interface and services all runs in TEE
+kernel / core context.
 I.e., it will have access to the same functions, memory and hardware etc as the
 TEE core itself. If we're talking ARMv8-A it is running in S-EL1.
 
