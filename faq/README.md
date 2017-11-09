@@ -347,6 +347,13 @@ If the user will use the current implementation he **MUST** replace the
 [default_ta.pem] with a new key. [default_ta.pem] should only be seen as a test
 key!
 
+One can also build a Trusted Application and embed its raw binary content into
+the OP-TEE firmware binary. At runtime, if invoked, the Trusted Application will
+be loaded from the OP-TEE firmware image instead of being fetched from the
+normal world and authenticated in the secure world. The feature is
+enabled from OP-TEE configuration directive CFG_EARLY_TA, described in the
+[OP-TEE OS generic configuration script].
+
 ### Is multi-core TA supported?
 Yes, you can have two or more TAs running simultaneously. Please see also
 [Issue#1194].
@@ -429,6 +436,7 @@ using [Travis for OP-TEE].
 [OP-TEE pre-requisties]: ../build/#71-prerequisites
 [OP-TEE Pull Requests]: https://github.com/OP-TEE/optee_os/pulls
 [OP-TEE repo setups]: ../build/#6-manifests
+[OP-TEE OS generic configuration script]: https://github.com/OP-TEE/optee_os/blob/master/mk/config.mk
 [OTrP]: https://tools.ietf.org/html/draft-pei-opentrustprotocol-01
 [Platforms Supported]: https://github.com/OP-TEE/optee_os#3-platforms-supported
 [porting_guidelines.md]: https://github.com/OP-TEE/optee_os/blob/master/documentation/porting_guidelines.md
