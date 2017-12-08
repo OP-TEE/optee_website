@@ -1,12 +1,13 @@
 ---
-layout: default
 title: Committee
-permalink: /committee/
+permalink: "/committee/"
+layout: default
 committee_images:
-  - member1.jpg
-  - member2.jpg
-  - member3.jpg
+- member1.jpg
+- member2.jpg
+- member3.jpg
 ---
+
 ## Committee
 
 **Roles**

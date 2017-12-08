@@ -1,12 +1,12 @@
 ---
+title: 'HKG15-303: Secure Playback Using OP-TEE'
+date: 2016-07-04 12:00:00 Z
+categories:
+- Blog
 layout: post
-title:  "HKG15-303: Secure Playback Using OP-TEE"
-date:   2016-07-04 12:00:00
-categories: Blog
 featured_image: hkg15-303-secure-playback-using-op-tee-image.jpeg
-
-
 ---
+
 Give high level overview of the components involved in a DRM/Secure. Playback use case. Presentation discusses about how Client device obtains License Keys using W3C-EME implementation of any particular DRM like Widevine, how content is decrypted, decoded and rendered and how the buffers are allocated, secured and shared among various elements in the secure playback chain.
 
 {% include media.html media_url="https://www.youtube.com/embed/WJS5ygNGaO8" %}

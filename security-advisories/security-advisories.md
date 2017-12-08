@@ -1,15 +1,16 @@
 ---
-layout: default
 title: Security Advisories.
-permalink: /security-advisories/
+permalink: "/security-advisories/"
+layout: default
 description: |-
-    At this page we will list of all known security vulnerabilities found on OP-TEE.
-    Likewise you will find when it was fixed and who reported the issue.
+  At this page we will list of all known security vulnerabilities found on OP-TEE.
+  Likewise you will find when it was fixed and who reported the issue.
 
-    If you have found a security issue in OP-TEE, please send us an email (see
-    About) and then someone from the team will contact you for further discussion.
-    The initial email doesn't have to contain any details.
+  If you have found a security issue in OP-TEE, please send us an email (see
+  About) and then someone from the team will contact you for further discussion.
+  The initial email doesn't have to contain any details.
 ---
+
 At this page we will list of all known security vulnerabilities found on OP-TEE.
 Likewise you will find when it was fixed and who reported the issue.
 

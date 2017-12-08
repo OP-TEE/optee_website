@@ -1,10 +1,10 @@
 ---
-layout: default
 title: OP-TEE on HiKey960
-permalink: /docs/hikey960/
-description: |-
-    The instructions here will tell how to run OP-TEE on HiKey960.
+permalink: "/docs/hikey960/"
+layout: default
+description: The instructions here will tell how to run OP-TEE on HiKey960.
 ---
+
 # OP-TEE on HiKey960
 
 # Contents

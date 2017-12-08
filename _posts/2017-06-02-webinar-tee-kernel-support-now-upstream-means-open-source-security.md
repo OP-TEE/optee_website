@@ -1,10 +1,12 @@
 ---
+title: FREE Webinar &#58 TEE kernel support is now upstream &#58 What this means for
+  Open Source Security
+date: 2017-06-02 12:00:00 Z
+categories:
+- Blog
 layout: post
-title:  FREE Webinar &#58 TEE kernel support is now upstream &#58 What this means for Open Source Security
-date:  2017-06-02 12:00:00
-categories: Blog
 future: true
-image: /images/optee-bg.jpg
+image: "/images/optee-bg.jpg"
 ---
 
 —-  
