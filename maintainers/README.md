@@ -1,10 +1,12 @@
 ---
-layout: default
 title: Maintainers
-permalink: /maintainers/
-description: |-
-    Linaro as such maintains OP-TEE, but for individual devices which might not be available to Linaro and/or in public in general we have assigned sub-maintainers for these platforms.
+permalink: "/maintainers/"
+layout: default
+description: Linaro as such maintains OP-TEE, but for individual devices which might
+  not be available to Linaro and/or in public in general we have assigned sub-maintainers
+  for these platforms.
 ---
+
 # Maintainers in the OP-TEE project
 
 Linaro as such maintains OP-TEE, but for individual devices which might not be available to Linaro and/or in public in general we have assigned sub-maintainers for these platforms.

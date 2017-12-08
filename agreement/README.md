@@ -1,11 +1,12 @@
 ---
-layout: default
 title: Agreement
-permalink: /agreement/
+permalink: "/agreement/"
+layout: default
 description: |-
-    Contributions to OP-TEE are managed by the OP-TEE gatekeepers, whose contact email address is op-tee@linaro.org.
-    Anyone can contribute to OP-TEE as long as they understand that a Signed-off-by tag will be required in the patch.
+  Contributions to OP-TEE are managed by the OP-TEE gatekeepers, whose contact email address is op-tee@linaro.org.
+  Anyone can contribute to OP-TEE as long as they understand that a Signed-off-by tag will be required in the patch.
 ---
+
 # Contributor License Agreement
 
 Contributions to OP-TEE are managed by the OP-TEE gatekeepers, whose contact email address is op-tee@linaro.org.

@@ -1,9 +1,11 @@
 ---
-title:  "Security Session Highlights from SFO17"
-date:   2017-10-23 12:00:00
-categories: Blog
+title: Security Session Highlights from SFO17
+date: 2017-10-23 12:00:00 Z
+categories:
+- Blog
 featured_image: sfo17-banner.jpg
 ---
+
 Here are a couple of security highlights from last month's Linaro Connect SFO17.
 
 **SFO17-309 - Secure Storage Updates**

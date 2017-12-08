@@ -1,8 +1,9 @@
 ---
-layout: default
 title: FAQ
-permalink: /faq/
+permalink: "/faq/"
+layout: default
 ---
+
 Frequently Asked Questions
 ===========================
 1.  [Source code](#1-source-code)

@@ -1,11 +1,10 @@
 ---
+title: Power management in Linux together with secure firmware – BUD17-510
+date: 2017-03-17 12:00:00 Z
+categories:
+- Blog
 layout: post
-title:  "Power management in Linux together with secure firmware – BUD17-510"
-date:   2017-03-17 12:00:00
-categories: Blog
-
 featured_image: power-management-linux-together-secure-firmware-bud17-510-image.jpeg
-
 ---
 
 {% include media.html media_url="https://www.youtube.com/embed/MNvTBGNQRDY" %}

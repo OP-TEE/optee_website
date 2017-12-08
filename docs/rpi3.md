@@ -1,14 +1,15 @@
 ---
-layout: default
 title: OP-TEE on Raspberry Pi 3
-permalink: /docs/rpi3/
+permalink: "/docs/rpi3/"
+layout: default
 description: |-
-    Sequitur Labs did the initial port which besides the actual OP-TEE port also
-    patched U-boot, ARM Trusted Firmware and Linux kernel. Sequitur Labs also pulled
-    together patches for OpenOCD to be able to debug the solution using cheap JTAG
-    debuggers. For more information about the work, please see the [press
-    release] from June 8 2016.
+  Sequitur Labs did the initial port which besides the actual OP-TEE port also
+  patched U-boot, ARM Trusted Firmware and Linux kernel. Sequitur Labs also pulled
+  together patches for OpenOCD to be able to debug the solution using cheap JTAG
+  debuggers. For more information about the work, please see the [press
+  release] from June 8 2016.
 ---
+
 # OP-TEE on Raspberry Pi 3
 [Sequitur Labs] did the initial port which besides the actual OP-TEE port also
 patched U-boot, ARM Trusted Firmware and Linux kernel. Sequitur Labs also pulled

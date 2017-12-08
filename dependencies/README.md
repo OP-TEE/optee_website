@@ -1,8 +1,9 @@
 ---
-layout: default
 title: Dependencies
-permalink: /dependencies/
+permalink: "/dependencies/"
+layout: default
 ---
+
 # Linaro Security Working Group
 
 The Linaro Security Working Group (SWG) was created to help ensure an optimised

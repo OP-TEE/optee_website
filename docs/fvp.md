@@ -1,10 +1,10 @@
 ---
-layout: default
 title: Foundation Models / FVP
-permalink: /docs/fvp/
-description: |-
-    The instructions here will tell how to run OP-TEE using Foundation Models.
+permalink: "/docs/fvp/"
+layout: default
+description: The instructions here will tell how to run OP-TEE using Foundation Models.
 ---
+
 # OP-TEE on Foundation Models / FVP
 
 # Contents

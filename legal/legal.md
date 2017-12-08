@@ -1,8 +1,9 @@
 ---
-layout: default
 title: Legal
-permalink: /legal/
+permalink: "/legal/"
+layout: default
 ---
+
 <br>
 <div class="tabbed-area"><!-- Nav tabs -->
 <ul class="nav nav-pills tabbed-nav" id="tab-row" role="tablist">
