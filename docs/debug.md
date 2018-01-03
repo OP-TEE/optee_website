@@ -1,9 +1,11 @@
 ---
-layout: default
 title: Debug
-permalink: /docs/debug/
-description: In this document we would like to describe how to debug OPTEE. Depending on the platform you are using you will have a couple of different options.
+permalink: "/docs/debug/"
+layout: default
+description: In this document we would like to describe how to debug OPTEE. Depending
+  on the platform you are using you will have a couple of different options.
 ---
+
 # Debugging OP-TEE
 
 1. [QEMU](#1-qemu)

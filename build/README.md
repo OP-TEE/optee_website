@@ -1,15 +1,16 @@
 ---
-layout: default
 title: Build
-permalink: /build/
+permalink: "/build/"
+layout: default
 description: |-
-    Why this particular git? Well, as it turns out it's totally possible to put
-    together everything on your own. You can build all the individual components,
-    os, client, xtest, Linux kernel, ARM-TF, TianoCore, QEMU, BusyBox etc and put
-    all the binaries at correct locations and write your own command lines,
-    Makefiles, shell-scripts etc that will work nicely on the devices you are
-    interested in.
+  Why this particular git? Well, as it turns out it's totally possible to put
+  together everything on your own. You can build all the individual components,
+  os, client, xtest, Linux kernel, ARM-TF, TianoCore, QEMU, BusyBox etc and put
+  all the binaries at correct locations and write your own command lines,
+  Makefiles, shell-scripts etc that will work nicely on the devices you are
+  interested in.
 ---
+
 # OP-TEE build.git
 
 <!-- Entire row is copy/pasted from Travis build status URL generation -->

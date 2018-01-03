@@ -1,12 +1,13 @@
 ---
-layout: default
 title: OP-TEE on HiKey
-permalink: /docs/hikey/
+permalink: "/docs/hikey/"
+layout: default
 description: |-
-    The instructions here will tell how to run OP-TEE on HiKey. We have two variants
-    that we support. One is the regular build as described in the [README.md] file.
-    The other is a Debian based build.
+  The instructions here will tell how to run OP-TEE on HiKey. We have two variants
+  that we support. One is the regular build as described in the [README.md] file.
+  The other is a Debian based build.
 ---
+
 # OP-TEE on HiKey
 
 # Contents

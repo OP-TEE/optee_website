@@ -1,8 +1,9 @@
 ---
-layout: default
 title: FAQ
-permalink: /faq/
+permalink: "/faq/"
+layout: default
 ---
+
 Frequently Asked Questions
 ===========================
 1.  [Source code](#1-source-code)
@@ -303,13 +304,12 @@ kernel. For more information, please see [Issue#1036], [Issue#1183].
 
 # 8. Trusted Applications
 ### How do I write a Trusted Application (TA)?
-- Start by reading the [LCU14-103 How to create and run Trusted Applications on
-  OP-TEE] deck and have a look at the [LCU14-103 YouTube clip] that that
-  complements the deck. Word of warning, the deck is more than three years old,
-  so maybe not everything said there is valid as of today.
-- Since that talk, the [Hello World Trusted Application] has been officially
-  included in the [OP-TEE repo setups]. I.e., do not refer to the URL in the deck
-  any longer since it is obsolete.
+- Have a look at the [optee_examples] repository. It provides guideline on
+  basics for a Trusted Application implementation
+  ([TA basics info from optee_examples]) and show some examples of
+  use of the GlobalPlatform TEE APIs, on client side and on Trusted Application
+  side (setup a session, handle commands, generate a random UUID, run AES
+  encrption and more).
 - If you want to see more advanced uses cases of Trusted Applications, then we
   encourage that you have a look at the [TAs in xtest].
 
@@ -322,7 +322,9 @@ kernel. For more information, please see [Issue#1036], [Issue#1183].
 look for Trusted Applications.
 
 ### What is a Psuedo TA and how do I write one?
-A Psuedo TA is a Trusted Application that runs in TEE kernel / core context.
+A Psuedo TA is OP-TEE firmware service offered through the generic API used to
+invoke Trusted Applications. Pseudo TA interface and services all runs in TEE
+kernel / core context.
 I.e., it will have access to the same functions, memory and hardware etc as the
 TEE core itself. If we're talking ARMv8-A it is running in S-EL1.
 
@@ -346,6 +348,13 @@ them is [OTrP].
 If the user will use the current implementation he **MUST** replace the
 [default_ta.pem] with a new key. [default_ta.pem] should only be seen as a test
 key!
+
+One can also build a Trusted Application and embed its raw binary content into
+the OP-TEE firmware binary. At runtime, if invoked, the Trusted Application will
+be loaded from the OP-TEE firmware image instead of being fetched from the
+normal world and authenticated in the secure world. The feature is
+enabled from OP-TEE configuration directive CFG_EARLY_TA, described in the
+[OP-TEE OS generic configuration script].
 
 ### Is multi-core TA supported?
 Yes, you can have two or more TAs running simultaneously. Please see also
@@ -429,6 +438,7 @@ using [Travis for OP-TEE].
 [OP-TEE pre-requisties]: ../build/#71-prerequisites
 [OP-TEE Pull Requests]: https://github.com/OP-TEE/optee_os/pulls
 [OP-TEE repo setups]: ../build/#6-manifests
+[OP-TEE OS generic configuration script]: https://github.com/OP-TEE/optee_os/blob/master/mk/config.mk
 [OTrP]: https://tools.ietf.org/html/draft-pei-opentrustprotocol-01
 [Platforms Supported]: https://github.com/OP-TEE/optee_os#3-platforms-supported
 [porting_guidelines.md]: https://github.com/OP-TEE/optee_os/blob/master/documentation/porting_guidelines.md
@@ -438,6 +448,7 @@ using [Travis for OP-TEE].
 [sample_hellojni.html]: https://developer.android.com/ndk/samples/sample_hellojni.html
 [Security Advisories]: https://www.op-tee.org/security-advisories/
 [sign.py]: https://github.com/OP-TEE/optee_os/blob/master/scripts/sign.py
+[TA basics info from optee_examples]: https://github.com/linaro-swg/optee_examples/docs/TA_basics.md
 [TAs in xtest]: https://github.com/OP-TEE/optee_test/tree/master/ta
 [TEE Initial Configuration Compliance Test Suite v1.x]: https://www.globalplatform.org/storecontent.asp?show=testsuites
 [TI DRA7xx port]: https://github.com/OP-TEE/optee_os/commit/9b5060cd92a19b4d114a1ce8a338b18424974037

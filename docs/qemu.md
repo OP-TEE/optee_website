@@ -1,13 +1,14 @@
 ---
-layout: default
 title: OP-TEE on QEMU
-permalink: /docs/qemu/
+permalink: "/docs/qemu/"
+layout: default
 description: |-
-    The instructions here will tell how to run OP-TEE using QEMU. We have two
-    working configurations one for ARMv7-A and one for ARMv8-A. The major difference
-    between the two is the boot procedure. In the ARMv7-A case it's using a bios,
-    but on ARMv8-A it uses ARM-TF etc instead.
+  The instructions here will tell how to run OP-TEE using QEMU. We have two
+  working configurations one for ARMv7-A and one for ARMv8-A. The major difference
+  between the two is the boot procedure. In the ARMv7-A case it's using a bios,
+  but on ARMv8-A it uses ARM-TF etc instead.
 ---
+
 # OP-TEE on QEMU
 
 # Contents

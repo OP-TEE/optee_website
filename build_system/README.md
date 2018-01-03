@@ -1,13 +1,14 @@
 ---
-layout: default
 title: Build System
-permalink: /build_system/
+permalink: "/build_system/"
+layout: default
 description: |-
-    The OP-TEE build system is based on GNU make. It consists of a main `Makefile`
-    in the root of the project together with sub.mk files in all source
-    directories. In addition, some supporting files are used to recursively process
-    all sub.mk files and generate the build rules.
+  The OP-TEE build system is based on GNU make. It consists of a main `Makefile`
+  in the root of the project together with sub.mk files in all source
+  directories. In addition, some supporting files are used to recursively process
+  all sub.mk files and generate the build rules.
 ---
+
 # Build system
 
 The OP-TEE build system is based on GNU make. It consists of a main `Makefile`

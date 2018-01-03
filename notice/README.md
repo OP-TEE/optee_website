@@ -1,10 +1,13 @@
 ---
-layout: default
 title: Notice
-permalink: /notice/
-description: |-
-    OP-TEE is designed primarily to rely on the ARM TrustZone(R) technology as the underlying hardware isolation mechanism. However, it has been structured to be compatible with any isolation technology suitable for the TEE concept and goals, such as running as a virtual machine or on a dedicated CPU.
+permalink: "/notice/"
+layout: default
+description: OP-TEE is designed primarily to rely on the ARM TrustZone(R) technology
+  as the underlying hardware isolation mechanism. However, it has been structured
+  to be compatible with any isolation technology suitable for the TEE concept and
+  goals, such as running as a virtual machine or on a dedicated CPU.
 ---
+
 # OP-TEE
 
 This is the repository of OP-TEE (Open Portable Trusted Execution Environment), the open-source TEE maintained by Linaro, with initial contributions from STMicroelectronics, Ericsson and Linaro Limited.

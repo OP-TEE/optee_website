@@ -1,10 +1,10 @@
 ---
-layout: default
 title: OP-TEE on Juno
-permalink: /docs/juno/
-description: |-
-    The instructions here will tell how to run OP-TEE on the Juno board.
+permalink: "/docs/juno/"
+layout: default
+description: The instructions here will tell how to run OP-TEE on the Juno board.
 ---
+
 # OP-TEE on Juno
 
 # Contents

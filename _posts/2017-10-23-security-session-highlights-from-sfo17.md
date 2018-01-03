@@ -1,9 +1,11 @@
 ---
-title:  "Security Session Highlights from SFO17"
-date:   2017-10-23 12:00:00
-categories: Blog
+title: Security Session Highlights from SFO17
+date: 2017-10-23 12:00:00 Z
+categories:
+- Blog
 featured_image: sfo17-banner.jpg
 ---
+
 Here are a couple of security highlights from last month's Linaro Connect SFO17.
 
 **SFO17-309 - Secure Storage Updates**
@@ -17,3 +19,5 @@ Speakers: Jens Wiklander, Jerome Forissier
 "This presentation describes how this goal can be achieved on ARM systems from the very first firmware executed at power-on up to the Operating System execution by combining ARM Trusted Firmware with EDK2, two reference open-source implementations of the ARM Trusted Board Boot Requirement and UEFI Secure Boot specifications respectively." [video/slides](http://connect.linaro.org/resource/sfo17/sfo17-201/)
 
 Speaker: Matteo Carlini
+
+Event: Linaro Connect SFO17

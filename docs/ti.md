@@ -1,8 +1,9 @@
 ---
-layout: default
 title: OP-TEE on Texas Instruments SoCs
-permalink: /docs/ti/
-description: The instructions here will tell how to run OPTEE on Texas Instruments devices.
+permalink: "/docs/ti/"
+layout: default
+description: The instructions here will tell how to run OPTEE on Texas Instruments
+  devices.
 ---
 
 # OP-TEE on Texas Instruments SoCs

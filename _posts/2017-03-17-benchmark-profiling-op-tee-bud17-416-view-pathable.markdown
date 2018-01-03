@@ -1,8 +1,9 @@
 ---
+title: Benchmark and profiling in OP-TEE – BUD17-416 View on Pathable
+date: 2017-03-17 12:00:00 Z
+categories:
+- Blog
 layout: post
-title:  "Benchmark and profiling in OP-TEE – BUD17-416 View on Pathable"
-date:   2017-03-17 12:00:00
-categories: Blog
 featured_image: benchmark-profiling-op-tee-bud17-416-view-pathable-image.jpeg
 ---
 
