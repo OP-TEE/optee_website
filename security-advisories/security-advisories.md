@@ -18,6 +18,79 @@ If you have found a security issue in OP-TEE, please send us an email (see
 About) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
 
+# January 2018
+## Meltdown and Spectre
+In collaboration a group of different people (see "Reported by") have found out
+that it is possible to circumvent security countermeasures and privilege
+escalation by using speculative execution, caches, out-of-order execution in a
+specific way. All details about the attacks has been thoroughly described in
+the whitepapers that can found in the [Meltdown and Spectre] page. So we will
+not cover the details here, instead we will highlight how it could affect
+OP-TEE and what the current status is about the mitigations.
+
+Note that since there are some patches still in progress, we will update this
+page when things have changed.
+
+### Variant 1: bounds check bypass (CVE-2017-5753)
+
+#### Possible attack
+Could be that an attacker finds a gadget that can be used as a trampoline to
+get access kernel memory from a Trusted Application for example. Since user
+data provided to Trusted Applications most often comes from non-secure side it
+is important to check the code where we are using non-secure parameters as well
+as when doing syscalls from Trusted Applications. 
+
+#### Current status:
+Still under investigation, we have received GCC patches from Arm that can help us finding vulnerable areas.
+
+| Reported by  | CVE ID | OP-TEE ID | Affected versions |
+| ------------ |:------:| :-------: | ----------------- |
+| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5753](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5753) | OP-TEE-2018-0001 | All versions prior to `OP-TEE 3.0.0` (not yet released) |
+
+### Variant 2: branch target injection (CVE-2017-5715)
+
+#### Possible attack
+In theory it would be possible for a program in non-secure world to train the
+branch predictor to trick the secure monitor to speculatively read secure
+memory. The mitigation here is to invalidate the branch predictor when going from
+non-secure to the secure environment.
+
+#### Current status:
+For `Armv8-A` builds we are typically running OP-TEE with Arm Trusted Firmware,
+for those there are patches currently being reviewed here:
+* https://github.com/ARM-software/arm-trusted-firmware/pull/1214
+
+For builds where we are not using Arm TF (typically `Armv7-A` builds) we have
+implemented mitigations that are being reviewed here:
+* https://github.com/OP-TEE/optee_os/pull/2047 (merged)
+
+For SVC calls i.e., when going to S-EL0/S-EL1 (same on Armv7-A), we have
+patches being reviewed here:
+* https://github.com/OP-TEE/optee_os/pull/2055
+
+| Reported by  | CVE ID | OP-TEE ID | Affected versions |
+| ------------ |:------:| :-------: | ----------------- |
+| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5715](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5715) | OP-TEE-2018-0002 | All versions prior to `OP-TEE 3.0.0` (not yet released) |
+
+### Variant 3: rogue data cache load (CVE-2017-5754)
+
+#### Possible attack
+Just as in Linux kernel it could be possible to do the same type of attack from
+a Trusted Application as being described in the [Meltdown whitepaper]. I.e.,
+under some conditions the CPU would read and execute instructions speculatively
+before the CPU handles the illegal access (traps).
+
+#### Current status:
+Our patches are being reviewed here:
+* https://github.com/OP-TEE/optee_os/pull/2048
+
+The mitigation ideas are the same as with [KPTI], i.e, we keep the amount of
+kernel memory being mapped to a minimum when running in usermode
+
+| Reported by  | CVE ID | OP-TEE ID | Affected versions |
+| ------------ |:------:| :-------: | ----------------- |
+| [Google Project Zero], [Cyberus Technology], [Graz University of Technology] | [CVE-2017-5754](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5754) | OP-TEE-2018-0003 | All versions prior to `OP-TEE 3.0.0` (not yet released) |
+
 # December 2016
 ## RSA key leakage in modular exponentiation
 #### Description
@@ -116,8 +189,20 @@ patch.
 | [Intel Security Advanced Threat Research] | [CVE-2016-6129](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6129) | OP-TEE-2016-0001 | All versions prior to OP-TEE v2.2.0 (fixed in OP-TEE v2.2.0) |
 
 [Applus+ Laboratories]: http://www.appluslaboratories.com
+[Cyberus Technology]: https://www.cyberus-technology.de
+[Data61]: https://www.data61.csiro.au
+[Google Project Zero]: https://googleprojectzero.blogspot.com
+[Graz University of Technology]: https://www.iaik.tugraz.at
 [Intel Security Advanced Threat Research]: http://www.intelsecurity.com/advanced-threat-research
+[KPTI]: https://lwn.net/Articles/741878
 [LibTomCrypt]: http://www.libtom.org/LibTomCrypt
+[Meltdown and Spectre]: https://spectreattack.com
+[Meltdown whitepaper]: https://meltdownattack.com/meltdown.pdf
 [optee_os]: https://github.com/OP-TEE/optee_os
 [optee_test]: https://github.com/OP-TEE/optee_test
 [OP-TEE]: https://github.com/OP-TEE
+[Rambus]: https://www.rambus.com
+[University of Adelaide]: https://www.adelaide.edu.au
+[University of Maryland]: https://www.umd.edu
+[University of Pennsylvania]: https://www.upenn.edu
+
