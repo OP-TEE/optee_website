@@ -118,7 +118,7 @@ implemented in:
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
-| [Applus+ Laboratories] | N/A | OP-TEE-2016-0003 | All versions prior to OP-TEE 2.5.0 |
+| [Applus+ Laboratories] | [CVE-2017-1000413](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000413) | OP-TEE-2016-0003 | All versions prior to OP-TEE 2.5.0 |
 
 
 ## Bellcore attack
@@ -158,7 +158,7 @@ The fix can be found in OP-TEE starting from v2.5.0.
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
-| [Applus+ Laboratories] | N/A | OP-TEE-2016-0002 | All versions prior to OP-TEE 2.5.0 |
+| [Applus+ Laboratories] | [CVE-2017-1000412](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000412) | OP-TEE-2017-0002 | All versions prior to OP-TEE 2.5.0 |
 
 
 # June 2016
