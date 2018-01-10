@@ -27,10 +27,15 @@ css-pack: contact
               CB22 7GG<br>
           </address>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8">        
         <div class="cognito">
             <script src="https://services.cognitoforms.com/s/KvRQmIn2dku6k6gGP711jw"></script>
-            <script>Cognito.load("forms", { id: "2" });</script>
+            <script>
+            Cognito.load("forms", { id: "2", entry: {
+                "PageUrl": "{{site.url}}{{page.url}}" ,
+                "RedirectUrl" : "{{site.url}}/thank-you/?ref={{page.url}}"
+            }});
+            </script>
         </div>
       </div>
       </div>
