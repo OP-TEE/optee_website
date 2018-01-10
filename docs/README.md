@@ -4,6 +4,7 @@ permalink: "/docs/"
 layout: default
 description: OP-TEE documentation
 ---
+
 # OP-TEE Docs
 
 * [Debugging OP-TEE](/docs/debug/)
