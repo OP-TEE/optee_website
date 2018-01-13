@@ -34,14 +34,16 @@ page when things have changed.
 ### Variant 1: bounds check bypass (CVE-2017-5753)
 
 #### Possible attack
-Could be that an attacker finds a gadget that can be used as a trampoline to
-get access kernel memory from a Trusted Application for example. Since user
-data provided to Trusted Applications most often comes from non-secure side it
-is important to check the code where we are using non-secure parameters as well
-as when doing syscalls from Trusted Applications. 
+Since user data provided to Trusted Applications most often comes from
+non-secure side, it is important to check the code where we are using those
+non-secure parameters. The same type of checks are necessary when doing
+syscalls from Trusted Applications. In principle, this means that non-secure
+side eventually could access secure memory when untrusted value is passed to
+secure side.
 
 #### Current status:
-Still under investigation, we have received GCC patches from Arm that can help us finding vulnerable areas.
+Still under investigation, we have received GCC patches from Arm that can help
+us finding vulnerable areas.
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
@@ -52,21 +54,28 @@ Still under investigation, we have received GCC patches from Arm that can help u
 #### Possible attack
 In theory it would be possible for a program in non-secure world to train the
 branch predictor to trick the secure monitor to speculatively read secure
-memory. The mitigation here is to invalidate the branch predictor when going from
-non-secure to the secure environment.
+memory and as a consequence of that leak information to the cache that can be
+observed by a less privileged process. To exploit this an attacker needs to
+find a gadget that can be used as a trampoline to get access kernel memory
+(from a Trusted Application for example).
+
+The mitigation here is to invalidate the branch predictor when:
+* Going from non-secure to the secure environment.
+* When doing syscall from S-EL0 to S-EL1.
 
 #### Current status:
 For `Armv8-A` builds we are typically running OP-TEE with Arm Trusted Firmware,
-for those there are patches currently being reviewed here:
-* https://github.com/ARM-software/arm-trusted-firmware/pull/1214
+patches can be found here:
+* https://github.com/ARM-software/arm-trusted-firmware/pull/1214 (merged)
 
 For builds where we are not using Arm TF (typically `Armv7-A` builds) we have
-implemented mitigations that are being reviewed here:
+implemented mitigations that can be found here:
 * https://github.com/OP-TEE/optee_os/pull/2047 (merged)
+* https://github.com/OP-TEE/optee_os/pull/2065 (being reviewed)
 
 For SVC calls i.e., when going to S-EL0/S-EL1 (same on Armv7-A), we have
-patches being reviewed here:
-* https://github.com/OP-TEE/optee_os/pull/2055
+patches here:
+* https://github.com/OP-TEE/optee_os/pull/2055 (being reviewed)
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
@@ -81,11 +90,16 @@ under some conditions the CPU would read and execute instructions speculatively
 before the CPU handles the illegal access (traps).
 
 #### Current status:
-Our patches are being reviewed here:
-* https://github.com/OP-TEE/optee_os/pull/2048
+Our patches can be found here:
+* https://github.com/OP-TEE/optee_os/pull/2048 (merged)
 
 The mitigation ideas are the same as with [KPTI], i.e, we keep the amount of
-kernel memory being mapped to a minimum when running in usermode
+kernel memory being mapped to a minimum when running in usermode. It should
+also be noted that there are currently no known devices running OP-TEE who are
+susceptible to the Meltdown attack. Still we have decided to move on and merged
+the mitigation patches, since we believe that this gives additional security and
+it also means that we are prepared if/when we find OP-TEE running on
+Cortex-A75.
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
