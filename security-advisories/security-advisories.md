@@ -24,12 +24,10 @@ In collaboration a group of different people (see "Reported by") have found out
 that it is possible to circumvent security countermeasures and privilege
 escalation by using speculative execution, caches, out-of-order execution in a
 specific way. All details about the attacks has been thoroughly described in
-the whitepapers that can found in the [Meltdown and Spectre] page. So we will
-not cover the details here, instead we will highlight how it could affect
-OP-TEE and what the current status is about the mitigations.
-
-Note that since there are some patches still in progress, we will update this
-page when things have changed.
+the whitepapers that can found in the [Meltdown and Spectre] page. A
+[blog post](https://www.linaro.org/blog/meltdown-spectre/) is also available on
+the Linaro website. So we will not cover the details here, instead we will
+highlight how it could affect OP-TEE and what the mitigations are.
 
 ### Variant 1: bounds check bypass (CVE-2017-5753)
 
@@ -47,7 +45,7 @@ us finding vulnerable areas.
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
-| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5753](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5753) | OP-TEE-2018-0001 | All versions prior to `OP-TEE 3.0.0` (not yet released) |
+| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5753](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5753) | OP-TEE-2018-0001 | All versions |
 
 ### Variant 2: branch target injection (CVE-2017-5715)
 
@@ -71,15 +69,15 @@ patches can be found here:
 For builds where we are not using Arm TF (typically `Armv7-A` builds) we have
 implemented mitigations that can be found here:
 * https://github.com/OP-TEE/optee_os/pull/2047 (merged)
-* https://github.com/OP-TEE/optee_os/pull/2065 (being reviewed)
+* https://github.com/OP-TEE/optee_os/pull/2065 (merged)
 
-For SVC calls i.e., when going to S-EL0/S-EL1 (same on Armv7-A), we have
-patches here:
-* https://github.com/OP-TEE/optee_os/pull/2055 (being reviewed)
+For SVC calls, we have patches here:
+* https://github.com/OP-TEE/optee_os/pull/2055 (`Armv7-A`, `AArch32`) (merged)
+* https://github.com/OP-TEE/optee_os/pull/2072 (`AArch64`) (merged)
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
-| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5715](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5715) | OP-TEE-2018-0002 | All versions prior to `OP-TEE 3.0.0` (not yet released) |
+| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5715](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5715) | OP-TEE-2018-0002 | All versions prior to OP-TEE 3.0.0 |
 
 ### Variant 3: rogue data cache load (CVE-2017-5754)
 
@@ -103,7 +101,7 @@ Cortex-A75.
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
-| [Google Project Zero], [Cyberus Technology], [Graz University of Technology] | [CVE-2017-5754](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5754) | OP-TEE-2018-0003 | All versions prior to `OP-TEE 3.0.0` (not yet released) |
+| [Google Project Zero], [Cyberus Technology], [Graz University of Technology] | [CVE-2017-5754](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5754) | OP-TEE-2018-0003 | All versions prior to OP-TEE 3.0.0 |
 
 # December 2016
 ## RSA key leakage in modular exponentiation
