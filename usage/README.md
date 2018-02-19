@@ -2,6 +2,7 @@
 title: Usage
 permalink: "/usage/"
 layout: container-breadcrumb
+js-package: main-sticky
 ---
 {% include sticky-tab-bar.html %}
 
