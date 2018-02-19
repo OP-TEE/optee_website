@@ -449,7 +449,7 @@ using [Travis for OP-TEE].
 [sample_hellojni.html]: https://developer.android.com/ndk/samples/sample_hellojni.html
 [Security Advisories]: https://www.op-tee.org/security-advisories/
 [sign.py]: https://github.com/OP-TEE/optee_os/blob/master/scripts/sign.py
-[TA basics info from optee_examples]: https://github.com/linaro-swg/optee_examples/docs/TA_basics.md
+[TA basics info from optee_examples]: https://github.com/linaro-swg/optee_examples/blob/master/docs/TA_basics.md
 [TAs in xtest]: https://github.com/OP-TEE/optee_test/tree/master/ta
 [TEE Initial Configuration Compliance Test Suite v1.x]: https://www.globalplatform.org/storecontent.asp?show=testsuites
 [TI DRA7xx port]: https://github.com/OP-TEE/optee_os/commit/9b5060cd92a19b4d114a1ce8a338b18424974037
