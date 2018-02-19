@@ -4,7 +4,10 @@ date: 2016-07-04 12:00:00 Z
 categories:
 - Blog
 layout: post
-featured_image: sfo15-503-secure-storage-op-tee-image.jpeg
+image:
+    featured: true
+    path: /assets/images/sfo15-503-secure-storage-op-tee-image.jpeg
+    name: sfo15-503-secure-storage-op-tee-image.jpeg
 ---
 
 Linaro has been refining the secure storage solution in OP-TEE and in this session the audience will get an update about the current status and also will get to know about the implementation details, design decisions and what algorithms that has been used.

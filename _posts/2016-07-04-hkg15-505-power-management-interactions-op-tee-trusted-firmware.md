@@ -4,7 +4,10 @@ date: 2016-07-04 12:00:00 Z
 categories:
 - Blog
 layout: post
-featured_image: hkg15-505-power-management-interactions-op-tee-trusted-firmware-image.jpeg
+image:
+    featured: true
+    path: /assets/images/hkg15-505-power-management-interactions-op-tee-trusted-firmware-image.jpeg
+    name: hkg15-505-power-management-interactions-op-tee-trusted-firmware-image.jpeg
 ---
 
 Note: this is a joint Security/Power Management session) Understand what use cases related to Power Management have to interact with Trusted Firmware via Secure calls. Walk through some key use cases like CPU Suspend and explain how PM Linux drivers interacts with Trusted Firmware / PSCI

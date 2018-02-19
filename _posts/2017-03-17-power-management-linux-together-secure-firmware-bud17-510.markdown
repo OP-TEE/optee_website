@@ -4,7 +4,10 @@ date: 2017-03-17 12:00:00 Z
 categories:
 - Blog
 layout: post
-featured_image: power-management-linux-together-secure-firmware-bud17-510-image.jpeg
+image:
+    featured: true
+    path: /assets/images/power-management-linux-together-secure-firmware-bud17-510-image.jpeg
+    name: power-management-linux-together-secure-firmware-bud17-510-image.jpeg
 ---
 
 {% include media.html media_url="https://www.youtube.com/embed/MNvTBGNQRDY" %}
