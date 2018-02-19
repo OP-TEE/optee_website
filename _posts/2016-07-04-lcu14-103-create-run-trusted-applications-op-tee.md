@@ -1,5 +1,5 @@
 ---
-title: 'LCU14-103: How to create and run Trusted Applications on OP-TEE'
+title: 'LCU14-103 &#58; How to create and run Trusted Applications on OP-TEE'
 date: 2016-07-04 12:00:00 Z
 categories:
 - Blog

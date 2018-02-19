@@ -1,5 +1,5 @@
 ---
-title: 'HKG15-311: OP-TEE for Beginners and Porting Review'
+title: 'HKG15-311 &#58; OP-TEE for Beginners and Porting Review'
 date: 2016-07-04 12:00:00 Z
 categories:
 - Blog

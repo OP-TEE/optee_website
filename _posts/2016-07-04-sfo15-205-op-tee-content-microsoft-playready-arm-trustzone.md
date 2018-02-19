@@ -1,5 +1,5 @@
 ---
-title: 'SFO15-205: OP-TEE Content with Microsoft PlayReady on ARM TrustZone'
+title: 'SFO15-205 &#58; OP-TEE Content with Microsoft PlayReady on ARM TrustZone'
 date: 2016-07-04 12:00:00 Z
 categories:
 - Blog

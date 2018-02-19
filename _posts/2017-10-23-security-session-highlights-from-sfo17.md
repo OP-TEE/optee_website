@@ -7,6 +7,7 @@ image:
     featured: true
     path: /assets/images/sfo17-banner.jpg
     name: sfo17-banner.jpg
+layout: post
 ---
 
 Here are a couple of security highlights from last month's Linaro Connect SFO17.
