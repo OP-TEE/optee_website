@@ -6,8 +6,8 @@ categories:
 layout: post
 image:
     featured: true
-    path: /assets/images/bof-device-tree-secure-firmware-bud17-313-image.jpeg
-    name: bof-device-tree-secure-firmware-bud17-313-image.jpeg
+    path: /assets/images/bof-device-tree-secure-firmware-bud17-313-image.jpg
+    name: bof-device-tree-secure-firmware-bud17-313-image.jpg
 ---
 
 {% include media.html media_url="https://www.youtube.com/embed/kbREjQS3moM" %}
