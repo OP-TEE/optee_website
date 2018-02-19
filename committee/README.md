@@ -1,12 +1,13 @@
 ---
 title: Committee
 permalink: "/committee/"
-layout: default
+layout: container-breadcrumb
 committee_images:
 - member1.jpg
 - member2.jpg
 - member3.jpg
 ---
+{% include sticky-tab-bar.html %}
 
 ## Committee
 

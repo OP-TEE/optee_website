@@ -1,8 +1,9 @@
 ---
 title: Dependencies
 permalink: "/dependencies/"
-layout: default
+layout: container-breadcrumb
 ---
+{% include sticky-tab-bar.html %}
 
 # Linaro Security Working Group
 

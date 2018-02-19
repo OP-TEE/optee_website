@@ -1,7 +1,7 @@
 ---
 title: OP-TEE on HiKey960
 permalink: "/docs/hikey960/"
-layout: default
+layout: container-breadcrumb
 description: The instructions here will tell how to run OP-TEE on HiKey960.
 ---
 

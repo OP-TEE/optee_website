@@ -1,7 +1,7 @@
 ---
 title: OP-TEE on HiKey
 permalink: "/docs/hikey/"
-layout: default
+layout: container-breadcrumb
 description: |-
   The instructions here will tell how to run OP-TEE on HiKey. We have two variants
   that we support. One is the regular build as described in the [README.md] file.

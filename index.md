@@ -1,9 +1,7 @@
 ---
 title: Home
 permalink: "/"
-layout: home-shape
-js-vendor: home
-css-pack: home
+layout: home
 ---
 
 <div class="text-center" markdown="1">

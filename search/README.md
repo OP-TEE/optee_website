@@ -1,7 +1,7 @@
 ---
 title: Search
 permalink: "/search/"
-layout: default-plain
+layout: container
 js-vendor: search
 ---
 
