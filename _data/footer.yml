@@ -1,4 +1,7 @@
-image: /assets/images/OP-TEE-Logo_white-vertical-OPTEE-colour.svg
+image: OP-TEE-Logo_white-vertical-OPTEE-colour.svg
+
+include: members.html
+
 columns:
     - title: OP-TEE Projects
       url: /projects/

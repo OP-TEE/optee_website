@@ -1,9 +1,13 @@
 ---
 title: Security Session Highlights from SFO17
-date: 2017-10-23 12:00:00 Z
+date: 2017-10-23 12:00:00
 categories:
 - Blog
-featured_image: sfo17-banner.jpg
+image:
+    featured: true
+    path: /assets/images/sfo17-banner.jpg
+    name: sfo17-banner.jpg
+layout: post
 ---
 
 Here are a couple of security highlights from last month's Linaro Connect SFO17.

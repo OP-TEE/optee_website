@@ -1,12 +1,13 @@
 ---
 title: Notice
 permalink: "/notice/"
-layout: default
+layout: container-breadcrumb
 description: OP-TEE is designed primarily to rely on the ARM TrustZone(R) technology
   as the underlying hardware isolation mechanism. However, it has been structured
   to be compatible with any isolation technology suitable for the TEE concept and
   goals, such as running as a virtual machine or on a dedicated CPU.
 ---
+{% include sticky-tab-bar.html %}
 
 # OP-TEE
 

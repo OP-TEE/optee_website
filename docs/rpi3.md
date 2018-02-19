@@ -1,7 +1,7 @@
 ---
 title: OP-TEE on Raspberry Pi 3
 permalink: "/docs/rpi3/"
-layout: default
+layout: container-breadcrumb
 description: |-
   Sequitur Labs did the initial port which besides the actual OP-TEE port also
   patched U-boot, ARM Trusted Firmware and Linux kernel. Sequitur Labs also pulled
