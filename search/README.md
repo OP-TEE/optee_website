@@ -2,7 +2,7 @@
 title: Search
 permalink: "/search/"
 layout: container
-js-vendor: search
+js-package: search
 ---
 
 <div class="row">
