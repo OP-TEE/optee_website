@@ -146,7 +146,7 @@ $ make recovery
 ```
 
 [AOSP HiKey branch]: https://source.android.com/source/devices.html
-[official HiKey documentation]: https://www.96boards.org/documentation/ConsumerEdition/HiKey/
+[official HiKey documentation]: https://www.96boards.org/documentation/consumer/hikey/
 [OP-TEE Android Manifest]: https://github.com/linaro-swg/optee_android_manifest
 [README.md]: ../../build/
 [hikey.mk]: https://github.com/OP-TEE/build/blob/master/hikey.mk
