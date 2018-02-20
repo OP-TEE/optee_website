@@ -1,10 +1,11 @@
 ---
 title: About Open Source Trusted Execution Environment
 permalink: "/about/"
-layout: default
+layout: container-breadcrumb
 description: 'OP-TEE is an open source project which contains a full implementation
   to make up a complete Trusted Execution Environment. '
 ---
+{% include sticky-tab-bar.html %}
 
 # About OP-TEE
 

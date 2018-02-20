@@ -1,7 +1,7 @@
 ---
 title: OP-TEE on Juno
 permalink: "/docs/juno/"
-layout: default
+layout: container-breadcrumb
 description: The instructions here will tell how to run OP-TEE on the Juno board.
 ---
 

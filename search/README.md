@@ -1,8 +1,8 @@
 ---
 title: Search
 permalink: "/search/"
-layout: default-plain
-js-vendor: search
+layout: container
+js-package: search
 ---
 
 <div class="row">

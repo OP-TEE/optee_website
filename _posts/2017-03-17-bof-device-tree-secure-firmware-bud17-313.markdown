@@ -1,10 +1,13 @@
 ---
-title: 'Bud17-313 BoF: Device Tree and Secure Firmware'
+title: 'Bud17-313 BoF &#58; Device Tree and Secure Firmware'
 date: 2017-03-17 12:00:00 Z
 categories:
 - Blog
 layout: post
-featured_image: bof-device-tree-secure-firmware-bud17-313-image.jpeg
+image:
+    featured: true
+    path: /assets/images/bof-device-tree-secure-firmware-bud17-313-image.jpg
+    name: bof-device-tree-secure-firmware-bud17-313-image.jpg
 ---
 
 {% include media.html media_url="https://www.youtube.com/embed/kbREjQS3moM" %}

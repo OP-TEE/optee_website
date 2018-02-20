@@ -1,7 +1,7 @@
 ---
 title: Build System
 permalink: "/build_system/"
-layout: default
+layout: container-breadcrumb
 description: |-
   The OP-TEE build system is based on GNU make. It consists of a main `Makefile`
   in the root of the project together with sub.mk files in all source

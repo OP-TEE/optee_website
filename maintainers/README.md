@@ -1,7 +1,7 @@
 ---
 title: Maintainers
 permalink: "/maintainers/"
-layout: default
+layout: container-breadcrumb
 description: Linaro as such maintains OP-TEE, but for individual devices which might
   not be available to Linaro and/or in public in general we have assigned sub-maintainers
   for these platforms.

@@ -1,7 +1,7 @@
 ---
 title: Build
 permalink: "/build/"
-layout: default
+layout: container-breadcrumb
 description: |-
   Why this particular git? Well, as it turns out it's totally possible to put
   together everything on your own. You can build all the individual components,
