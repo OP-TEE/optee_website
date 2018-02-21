@@ -1,4 +1,5 @@
 ---
+author: op-tee
 title: 'Bud17-313 BoF &#58; Device Tree and Secure Firmware'
 date: 2017-03-17 12:00:00 Z
 categories:

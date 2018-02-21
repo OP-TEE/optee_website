@@ -1,4 +1,5 @@
 ---
+author: op-tee
 title: 'HKG15-505 &#58; Power Management Interactions with OP-TEE and Trusted Firmware'
 date: 2016-07-04 12:00:00 Z
 categories:

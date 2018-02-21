@@ -1,4 +1,5 @@
 ---
+author: op-tee
 title: HKG15-303 &#58; Secure Playback Using OP-TEE
 date: 2016-07-04 12:00:00 Z
 categories:
