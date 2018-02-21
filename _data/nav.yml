@@ -1,7 +1,17 @@
-search: true
+# Navigation Configuration
+# - Add your navigation structure to this File
+# - Toggle brand image output
+# - Toggle Search Bar.
+# Search Config
+search:
+    enabled: true
+    label: OP-TEE
+
 brand:
     text: OP-TEE
-    image: OP-TEE-Logo_white-standard-OPTEE-colour.svg
+    image: 
+        enabled: true
+        name: OP-TEE-Logo_white-standard-OPTEE-colour.svg
     url: /
 pages:
     - title: About

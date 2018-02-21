@@ -1,7 +1,7 @@
 ---
 title: Foundation Models / FVP
 permalink: "/docs/fvp/"
-layout: default
+layout: container-breadcrumb
 description: The instructions here will tell how to run OP-TEE using Foundation Models.
 ---
 

@@ -1,10 +1,14 @@
 ---
-title: 'LCU14-302: OP-TEE Porting and Future Enhancements'
+author: op-tee
+title: 'LCU14-302 &#58; OP-TEE Porting and Future Enhancements'
 date: 2016-07-04 12:00:00 Z
 categories:
 - Blog
 layout: post
-featured_image: lcu14-302-op-tee-porting-future-enhancements-image.jpeg
+image:
+    featured: true
+    path: /assets/images/lcu14-302-op-tee-porting-future-enhancements-image.jpg
+    name: lcu14-302-op-tee-porting-future-enhancements-image.jpg
 ---
 
 SWG is porting OP-TEE to ARMv8 using Fixed Virtual Platform. Initially OP-TEE is running secure world in aarch32 mode, but with the normal world code running in aarch64 mode. Since ARMv8 uses ARM Trusted Firmware we have patched it with an OP-TEE dispatcher to be able to communicate between secure and normal world.

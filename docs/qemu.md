@@ -1,7 +1,7 @@
 ---
 title: OP-TEE on QEMU
 permalink: "/docs/qemu/"
-layout: default
+layout: container-breadcrumb
 description: |-
   The instructions here will tell how to run OP-TEE using QEMU. We have two
   working configurations one for ARMv7-A and one for ARMv8-A. The major difference
