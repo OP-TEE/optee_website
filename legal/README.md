@@ -4,15 +4,12 @@ permalink: "/legal/"
 layout: container-breadcrumb
 ---
 {% include sticky-tab-bar.html %}
-
-<br>
 <div class="tabbed-area"><!-- Nav tabs -->
 <ul class="nav nav-pills tabbed-nav" id="tab-row" role="tablist" id="tabbed_nav">
 	<li class="active"><a  href="#1a" data-toggle="tab">Terms & Conditions</a></li>
 	<li><a href="#2a" data-toggle="tab">Privacy Policy</a></li>
 	<li><a href="#3a" data-toggle="tab">Trademark Usage</a></li>
 </ul>
-
 <div class="tab-content clearfix" id="tabbed_nav_content">
 <div class="tab-pane tab-pane-legal active" id="1a" markdown="1">
 ## Information about the Linaro op-tee.org Website
