@@ -1,5 +1,5 @@
 ---
-title: OP-TEE
+title: Home
 permalink: "/"
 layout: home
 ---
