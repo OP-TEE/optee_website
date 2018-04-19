@@ -40,8 +40,9 @@ side eventually could access secure memory when untrusted value is passed to
 secure side.
 
 #### Current status:
-Still under investigation, we have received GCC patches from Arm that can help
-us finding vulnerable areas.
+We have been doing some manual inspection of the OP-TEE code, and so far have
+not been able to identify any vulnerable areas. Code analysis tools and
+compiler udpdates are being discussed with members of Linaro.
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
@@ -73,11 +74,12 @@ implemented mitigations that can be found here:
 
 For SVC calls, we have patches here:
 * https://github.com/OP-TEE/optee_os/pull/2055 (`Armv7-A`, `AArch32`) (merged)
-* https://github.com/OP-TEE/optee_os/pull/2072 (`AArch64`) (merged)
+* https://github.com/OP-TEE/optee_os/pull/2072 (`AArch64`) (merged) and
+https://github.com/OP-TEE/optee_os/pull/2229 (`AArch64`) (merged)
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
-| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5715](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5715) | OP-TEE-2018-0002 | All versions prior to OP-TEE 3.0.0 |
+| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5715](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5715) | OP-TEE-2018-0002 | All versions prior to OP-TEE 3.0.0 (32 bits) or 3.1.0 (64 bits) |
 
 ### Variant 3: rogue data cache load (CVE-2017-5754)
 
