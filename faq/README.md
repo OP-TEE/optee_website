@@ -406,7 +406,7 @@ using [Travis for OP-TEE].
 - TZPC: TrustZone Protection Controller
 
 
-[Applus Laboratories]: http://www.appluslaboratories.com
+[Applus Laboratories]: http://www.appluslaboratories.com/en/
 [build.git]: https://github.com/OP-TEE/build
 [CHANGELOG.md]: https://github.com/OP-TEE/optee_os/blob/master/CHANGELOG.md
 [Crypto Abstraction Layer]: https://github.com/OP-TEE/optee_os/blob/master/documentation/crypto.md
@@ -440,7 +440,7 @@ using [Travis for OP-TEE].
 [OP-TEE Pull Requests]: https://github.com/OP-TEE/optee_os/pulls
 [OP-TEE repo setups]: ../build/#6-manifests
 [OP-TEE OS generic configuration script]: https://github.com/OP-TEE/optee_os/blob/master/mk/config.mk
-[OTrP]: https://tools.ietf.org/html/draft-pei-opentrustprotocol-01
+[OTrP]: https://tools.ietf.org/html/draft-pei-opentrustprotocol-06
 [Platforms Supported]: https://github.com/OP-TEE/optee_os#3-platforms-supported
 [porting_guidelines.md]: https://github.com/OP-TEE/optee_os/blob/master/documentation/porting_guidelines.md
 [qemu.md]: https://github.com/OP-TEE/build/blob/master/docs/qemu.md
