@@ -501,7 +501,7 @@ improvements, as usual, feel free to contribute.
 [LSK OP-TEE 4.4]: https://git.linaro.org/kernel/linux-linaro-stable.git/log/?h=v4.4/topic/optee
 [arm64: dt: RPI3: Add optee node]: https://github.com/linaro-swg/linux/commit/cc225a78910c37d78f8a00c80dcbf59ef7762884
 [OpenOCD]: http://openocd.org/
-[OP-TEE prerequisites]: ../README.md#71-prerequisites
+[OP-TEE prerequisites]: ../../build/
 [press release]: https://www.sequiturlabs.com/media_portfolio/sequitur-labs-collaborates-with-linaro-to-lower-barriers-to-iot-security-education-for-raspberry-pi-maker-community/
 [Raspbian]: https://www.raspbian.org
 [README.md]: ../../build/
