@@ -1,8 +1,8 @@
 ---
 title: OP-TEE on Texas Instruments SoCs
 permalink: "/docs/ti/"
-layout: container-breadcrumb
-description: The instructions here will tell how to run OPTEE on Texas Instruments
+layout: default
+description: The instructions here will tell how to run OP-TEE on Texas Instruments
   devices.
 ---
 
