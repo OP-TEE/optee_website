@@ -20,8 +20,6 @@ pages:
             url: /about/
           - text: Security Working Group
             url: /swg/
-          - text: Committee
-            url: /committee/
           - text: Legal
             url: /legal/
     - title: Projects

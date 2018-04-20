@@ -2,7 +2,7 @@
 title: OP-TEE on Texas Instruments SoCs
 permalink: "/docs/ti/"
 layout: container-breadcrumb
-description: The instructions here will tell how to run OPTEE on Texas Instruments
+description: The instructions here will tell how to run OP-TEE on Texas Instruments
   devices.
 ---
 
@@ -26,7 +26,7 @@ from Texas Instruments. The tools used to generate boot images for secure
 devices are part of a secure development package (SECDEV) that can be
 downloaded from:
 
-	http://www.ti.com/mysecuresoftware (login required)
+	https://myportal.ti.com (login required)
 
 The secure development package is access controlled due to NDA and export
 control restrictions. Access must be requested and granted by TI before the
