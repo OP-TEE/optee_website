@@ -207,7 +207,6 @@ at the [Security Advisories] page at op-tee.org.
 - GlobalPlatform's TEE Client API v1.1 specification
 - GlobalPlatform's TEE Internal Core API v1.1 specification.
 - GlobalPlatform's Secure Elements v1.0
-- GlobalPlatform's Trusted UI v1.0 (implementation not complete).
 - GlobalPlatform's Socket API v1.0 (TCP and UDP, but not TLS).
 
 All those specification can be found at [GlobalPlatform specifications] page.
@@ -227,8 +226,6 @@ supported in the official tree.
 ### 32-bit and/or 64-bit support?
 Both 32- and 64-bit are fully supported for all OP-TEE components.
 
-**To-Do** mention the configuration flags for NW/SW/TEE/TA etc.
-
 ### Does OP-TEE support mixed-mode, i.e., both AArch32 and AArch64 Trusted Applications on top of an AArch64 core?
 Yes!
 
@@ -239,7 +236,7 @@ Yes!
   complements the deck. Beware that the presentation is more than three years
   old, so even though it is a good source, there might be parts that are not
   relevant any longer.
-- As a good example for an **ARMv8-A** patch enabling OP-TEE support on a new
+- As a good example for an **Armv8-A** patch enabling OP-TEE support on a new
   device, please see the [ZynqMP port] that enabled support for running OP-TEE on
   Xilinx UltraScale+ Zynq MPSoC. Besides that there are similar patches for [Juno
   port], [Raspberry Pi3 port], [HiKey port].
@@ -250,7 +247,7 @@ Yes!
 Yes, it can be changed. In the current setup (for vexpress for example), there
 are `32MB DDR` dedicated for OP-TEE. `1MB` for `TEE RAM` and `1MB` for `PUB
 RAM`, this leaves `30MB` for Trusted Applications. In the Trusted Applications,
-you set `TA_DATA_STACK` and `TA_DATA_SIZE`. Typically, we set stack to `1KB` and
+you set `TA_STACK_SIZE` and `TA_DATA_SIZE`. Typically, we set stack to `2KB` and
 data to `32K`. But you are free to adjust those according to the amount of
 memory you have available. If you need them to be bigger than `1MB` then you
 also must adjust TA’s MMU L1 table accordingly, since default section mapping is
@@ -382,7 +379,7 @@ domains/rules to allow any required access, but since this is not a
 TEE-related issue, it is left as an exercise for the users.
 
 ### I've heard that there is a Widevine and PlayReady TA, how do I get access?
-Those can only be shared are under NDA with Google and Microsoft. Linaro can
+Those can only be shared are under NDA/MLA with Google and Microsoft. Linaro can
 help members of Linaro to get access to those. As of now, we cannot share it
 with non-members.
 
@@ -396,7 +393,8 @@ test cases, and is also extendable with the official GlobalPlatform test suite
 (see [TEE Initial Configuration Compliance Test Suite v1.x]).
 
 Also every single pull request in OP-TEE are being tested automatically on QEMU
-using [Travis for OP-TEE].
+using [Travis for OP-TEE], on HiKey 620 using HiKey Auto Boot and quite a few
+other sanity checks.
 
 # Abbreviations
 - OP-TEE: Open Portable TEE
