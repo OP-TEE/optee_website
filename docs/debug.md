@@ -13,12 +13,14 @@ description: In this document we would like to describe how to debug OPTEE. Depe
 	1. [Download gdb for ARM](#12-download-gdb-for-arm)
 	1. [Scripts](#13-scripts)
 	1. [Debug](#14-debug)
-	1. [Use graphical frontends](#15-use-graphical-frontends)
-		1. [ddd](#151-ddd)
-		1. [GNU Visual Debugger (gvd)](#152-gnu-visual-debugger-gvd)
-		1. [Affinic Debugger](#153-affinic-debugger)
+	1. [Debugging TA](#15-debugging-ta)
+	1. [Use graphical frontends](#16-use-graphical-frontends)
+		1. [ddd](#161-ddd)
+		1. [GNU Visual Debugger (gvd)](#162-gnu-visual-debugger-gvd)
+		1. [Affinic Debugger](#163-affinic-debugger)
+	1. [Known issues](#17-known-issues)
 2. [Ftrace](#2-ftrace)
-3. [Known issues](#3-known-issues)
+3. [Abort dumps](#3-abort-dumps-panics)
 
 In this document we would like to describe how to debug OP-TEE. Depending on the
 platform you are using you will have a couple of different options.
@@ -111,8 +113,123 @@ Breakpoint 1, tee_entry_std (smc_args=0x7df6ff98 <stack_thread+8216>)
 (gdb)
 ```
 
-## 1.5. Use graphical frontends
-### 1.5.1 ddd
+## 1.5 Debugging TA
+Assumptions:
+1.	You already know how to setup `gdb` from the previous chapter;
+2.	We use the Hello World TA ([`linaro-swg/optee_examples/hello_world`](https://github.com/linaro-swg/optee_examples/));
+3.	`pwd` is `…/hello_world/ta`
+
+First, we need to find out the LMA (Load Memory Address) of Hello World TA.
+To do that run `objdump` utility (you might need to use platform specific one
+from the toolchain of the platform you are building for):
+```bash
+$ objdump -h 8aaaf200-2450-11e4-abe2-0002a5d5c51b.elf
+```
+
+The result will look something like this:
+```
+Sections:
+Idx   Name       Size      VMA               LMA               File off  Algn
+   0   .ta_head  00000020  0000000000000000  0000000000000000  00010000  2**3
+                 CONTENTS, ALLOC, LOAD, DATA
+   1   .text     0000c614  0000000000000020  0000000000000020  00010020  2**3
+                 CONTENTS, ALLOC, LOAD, READONLY, CODE
+   2   .rodata   00002382  000000000000c638  000000000000c638  0001c638  2**3
+```
+
+Here, we are interested in the LMA (Load Memory Address) of `.text` section.
+
+The effective virtual address of the TA is computed at runtime from a
+load base address and the LMA of the `.text` section in  the TA ELF file.
+We will see below how to get this virtual memory load base address.
+
+Now, you can run gdb and connect to QEMU session.
+
+```
+(gdb) optee
+SIGTRAP is used by the debugger.
+Are you sure you want to change it? (y or n) [answered Y; input not from
+terminal]
+0x00000000 in ?? ()
+```
+
+We have to set a breakpoint inside the OP-TEE OS. Since we want to debug
+the TA, we can set a breakpoint at a stage where the OS has fully loaded and
+mapped the TA so we can access its whole memory. The best candidate seems
+`thread_enter_user_mode`. It is called when OP-TEE OS executes a TA entrypoint.
+```
+(gdb) b tee_thread_enter_user_mode
+Breakpoint 1 at 0xe106974: file core/arch/arm/kernel/thread.c, line 1100.
+```
+
+then continue the execution of vm:
+```
+(gdb) c
+Continuing.
+```
+
+Now you can run Hello World CA (Client Application) from Normal World FVP terminal:
+```bash
+root@FVP:/ optee_hello_world
+```
+
+`gdb` will hit the breakpoint at `tee_thread_enter_user_mode`, which will look something
+like this:
+```
+Breakpoint 1, thread_enter_user_mode (a0=0, a1=409104, a2=1073747840, a3=0, user_sp=1073747840, entry_func=1073803664,
+    is_32bit=false, exit_status0=0xe163b00, exit_status1=0xe163b04) at core/arch/arm/kernel/thread.c:1105
+1105            if (!get_spsr(is_32bit, entry_func, &spsr)) {
+(gdb)
+```
+
+In the Secure World terminal window you should be able to see something like this:
+```
+DEBUG: [0x0] TEE-CORE:tee_ta_init_pseudo_ta_session:259: Lookup for pseudo TA 8aaaf200-2450-11e4-abe2-0002a5d5c51b
+DEBUG: [0x0] TEE-CORE:tee_ta_init_user_ta_session:610: Load user TA 8aaaf200-2450-11e4-abe2-0002a5d5c51b
+DEBUG: [0x0] TEE-CORE:ta_load:316: ELF load address 0x40001000
+```
+
+Here, we are interested in ELF load address value, in this case it is `0x40001000`.
+This is the actual address of Hello World TA loaded by OP-TEE OS.
+
+To be able to debug Hello World TA you have to add symbols of the application
+into `gdb` using `add-symbol-file [file] [address]` command, were `[address]` is
+ELF load address + LMA of `.text` section. In this case, it is `0x40001000 + 0x20`
+
+Let’s add those symbols:
+```
+(gdb) add-symbol-file ./8aaaf200-2450-11e4-abe2-0002a5d5c51b.elf 0x40001020
+```
+
+You should see something like:
+```
+add symbol table from file "./8aaaf200-2450-11e4-abe2-0002a5d5c51b.elf" at .text_addr = 0x40001020
+```
+
+Let's setup a breakpoint inside Hello World TA, for example:
+```
+(gdb) b TA_InvokeCommandEntryPoint
+Breakpoint 2 at 0x400028e0: file hello_world_ta.c, line 135.
+```
+
+Here one can remove the optee core breakpoint (`thread_enter_user_mode`) and continue
+the execution of vm:
+```
+(gdb) del 1
+(gdb) c
+Continuing.
+```
+
+Voila! `gdb` should hit the breakpoint inside Hello World TA and you should be
+able to see something like this:
+```
+Breakpoint 2, TA_InvokeCommandEntryPoint (sess_ctx=0x0 <ta_head>, cmd_id=cmd_id@entry=0,
+    param_types=param_types@entry=3, params=params@entry=0x40000f40) at hello_world_ta.c:135
+135             switch (cmd_id) {
+```
+
+## 1.6. Use graphical frontends
+### 1.6.1 ddd
 With the `PATH` exported to the `arm-none-eabi-gdb` binary and the `optee`
 helper function defined as above in the `.gdbinit` file, you invoke ddd by
 typing:
@@ -125,7 +242,7 @@ Then in the lower pane (which is the gdb command window), just simply type
 `optee` and ddd will connect to the remote and load `tee.elf`, just as described
 above for the command line version.
 
-### 1.5.2 GNU Visual Debugger ([gvd](http://gnu.gds.tuwien.ac.at/directory/gnuVisualDebugger.html))
+### 1.6.2 GNU Visual Debugger
 This is a rather old frontend for gdb and share a lot of similarities with ddd,
 however it seems like it's more stable compared to ddd. To run it, you simply
 need to tell the path to the `arm-none-eabi-gdb` binary:
@@ -136,10 +253,17 @@ gvd --debugger $HOME/devel/toolchains/gcc-linaro-arm-none-eabi-4.9-2014.09_linux
 
 Similarly to ddd, just simply run `optee` in the lower gdb command pane in gvd.
 
-### 1.5.3 Affinic Debugger / ADG
+### 1.6.3 Affinic Debugger / ADG
 [Affinic Debugger] seems to be the most stable graphical front end. It's not
 free (at this moment it costs roughly $50 USD). If you can afford it and prefer
 graphical frontends we highly recommend this tool.
+
+## 1.7 Known issues
+1. Printing the call stack using `bt` makes gdb go into an endless loop.
+   Temporary workaround, in gdb, instead of simply writing `bt`, also mention
+   how many frames you would like to see, for example `bt 10`.
+2. Cannot set breakpoints when the system is up and running. Workaround, set the
+   breakpoints before booting up the system.
 
 # 2. Ftrace
 Ftrace is useful set of tools for debugging both kernel and to some extent user
@@ -295,12 +419,114 @@ graph-time.
 $ echo 0 > options/graph-time
 ```
 
-# 3. Known issues
-1. Printing the call stack using `bt` makes gdb go into an endless loop.
-   Temporary workaround, in gdb, instead of simply writing `bt`, also mention
-   how many frames you would like to see, for example `bt 10`.
-2. Cannot set breakpoints when the system is up and running. Workaround, set the
-   breakpoints before booting up the system.
+# 3. Abort dumps, panics
+
+When OP-TEE encounters a serious error condition, it prints diagnostic
+information to the secure console. The message contains a call stack if
+`CFG_UNWIND=y` (enabled by default).
+The following errors will trigger a dump:
+- Data or prefetch abort exception in the TEE core (kernel mode) or in a TA
+  (user mode),
+- When a user-mode Trusted Application panics, either by calling `TEE_Panic()`
+  directly or due to some error detected by the TEE Core Internal API,
+- When the TEE core detects a fatal error and decides to hang the system
+  because there is no way to proceed safely (core panic).
+
+The messages look slightly different depending on:
+- Whether the error is an exception or a panic,
+- The exception/privilege level when the exception occurred (PL0/EL0 if a
+  user mode Trusted Application was running, PL1/EL1 if it was the TEE core),
+- Whether the TEE and TA are 32 or 64 bits,
+- The exact type of exception (data or prefetch abort, translation fault,
+  read or write permission fault, alignment errors etc).
+
+Here is an example of a panic in a 32-bit Trusted Application, running on a
+32-bit TEE core (QEMU):
+
+```
+E/TC:0 TA panicked with code 0x0
+E/TC:0 Status of TA 484d4143-2d53-4841-3120-4a6f636b6542 (0xe07ba50) (active)
+E/TC:0  arch: arm  load address: 0x101000  ctx-idr: 1
+E/TC:0  stack: 0x100000 4096
+E/TC:0  region 0: va 0x100000 pa 0xe31d000 size 0x1000 flags rw-
+E/TC:0  region 1: va 0x101000 pa 0xe300000 size 0xf000 flags r-x
+E/TC:0  region 2: va 0x110000 pa 0xe30f000 size 0x3000 flags r--
+E/TC:0  region 3: va 0x113000 pa 0xe312000 size 0xb000 flags rw-
+E/TC:0  region 4: va 0 pa 0 size 0 flags ---
+E/TC:0  region 5: va 0 pa 0 size 0 flags ---
+E/TC:0  region 6: va 0 pa 0 size 0 flags ---
+E/TC:0  region 7: va 0 pa 0 size 0 flags ---
+E/TC:0 Call stack:
+E/TC:0  0x001044a8
+E/TC:0  0x0010ba59
+E/TC:0  0x00101093
+E/TC:0  0x001013ed
+E/TC:0  0x00101545
+E/TC:0  0x0010441b
+E/TC:0  0x00104477
+D/TC:0 user_ta_enter:452 tee_user_ta_enter: TA panicked with code 0x0
+D/TC:0 tee_ta_invoke_command:649 Error: ffff3024 of 3
+D/TC:0 tee_ta_close_session:402 tee_ta_close_session(0xe07be98)
+D/TC:0 tee_ta_close_session:421 Destroy session
+D/TC:0 tee_ta_close_session:447 Destroy TA ctx
+```
+
+The above dump was triggered by the TA when entering an irrecoverable error
+ending up in a `TEE_Panic(0)` call.
+
+OP-TEE provides a helper script called `symbolize.py` to facilitate the analysis
+of such issues. It is located in the OP-TEE OS source tree, and is also copied
+to the TA development kit. Whenever you are confronted with an error message
+reporting a serious error and showing a `"Call stack:"` line, you may use the
+symbolize script.
+
+`symbolize.py` reads its input from stdin and writes extended debug information
+to stdout. The `-d` (directories) option tells the script where to look for TA
+ELF file(s) or for `tee.elf` (the TEE core). The `-s` (strip) option is used to
+shorten the source file paths. Please refer to `symbolize.py --help` for
+details.
+
+
+```
+$ cat dump.txt | ./optee_os/scripts/symbolize.py -d ./optee_examples/*/ta -s `pwd`
+# (or run the script, copy and paste the dump, then press Ctrl+D)
+E/TC:0 TA panicked with code 0x0
+E/TC:0 Status of TA 484d4143-2d53-4841-3120-4a6f636b6542 (0xe07ba50) (active)
+E/TC:0  arch: arm  load address: 0x101000  ctx-idr: 1
+E/TC:0  stack: 0x100000 4096
+E/TC:0  region 0: va 0x100000 pa 0xe31d000 size 0x1000 flags rw-
+E/TC:0  region 1: va 0x101000 pa 0xe300000 size 0xf000 flags r-x .ta_head .text .rodata
+E/TC:0  region 2: va 0x110000 pa 0xe30f000 size 0x3000 flags r-- .rodata .ARM.extab .ARM.extab.text.utee_panic .ARM.extab.text.__aeabi_ldivmod .ARM.extab.text.__aeabi_uldivmod .ARM.exidx .got .dynsym .rel.got .dynamic .dynstr .hash .rel.dyn
+E/TC:0  region 3: va 0x113000 pa 0xe312000 size 0xb000 flags rw- .data .bss
+E/TC:0  region 4: va 0 pa 0 size 0 flags ---
+E/TC:0  region 5: va 0 pa 0 size 0 flags ---
+E/TC:0  region 6: va 0 pa 0 size 0 flags ---
+E/TC:0  region 7: va 0 pa 0 size 0 flags ---
+E/TC:0 Call stack:
+E/TC:0  0x001044a8 utee_panic at optee_os/lib/libutee/arch/arm/utee_syscalls_a32.S:74
+E/TC:0  0x0010ba59 TEE_Panic at optee_os/lib/libutee/tee_api_panic.c:35
+E/TC:0  0x00101093 hmac_sha1 at optee_examples/hotp/ta/hotp_ta.c:63
+E/TC:0  0x001013ed get_hotp at optee_examples/hotp/ta/hotp_ta.c:171
+E/TC:0  0x00101545 TA_InvokeCommandEntryPoint at optee_examples/hotp/ta/hotp_ta.c:225
+E/TC:0  0x0010441b entry_invoke_command at optee_os/lib/libutee/arch/arm/user_ta_entry.c:207
+E/TC:0  0x00104477 __utee_entry at optee_os/lib/libutee/arch/arm/user_ta_entry.c:235
+D/TC:0 user_ta_enter:452 tee_user_ta_enter: TA panicked with code 0x0 ???
+D/TC:0 tee_ta_invoke_command:649 Error: ffff3024 of 3
+D/TC:0 tee_ta_close_session:402 tee_ta_close_session(0xe07be98)
+D/TC:0 tee_ta_close_session:421 Destroy session
+D/TC:0 tee_ta_close_session:447 Destroy TA ctx
+```
+
+The Python script uses several tools from the GNU Binutils package to perform
+the following tasks:
+1. Translate the call stack addresses into function names, file names and line
+   numbers.
+2. Convert the abort address to a symbol plus some offset and/or an ELF section
+   name plus some offset.
+3. Print the names of the ELF sections contained in each memory region of a TA.
+
+Note that to successfully run `symbolize.py` you must also make your toolchain
+visible on the `PATH` (i.e., `export PATH=<my-toolchain-path>/bin:$PATH`).
 
 [Affinic Debugger]: http://www.affinic.com/?page_id=109
 [README.md]: ../../build/

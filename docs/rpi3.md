@@ -56,10 +56,9 @@ help out making proper upstream patches sooner or later.
 
 | Project | Base fork | What to do |
 |---------|-----------|------------|
-| linux | https://github.com/Electron752/linux.git commit: b48d47a32b2f27f55904e7248dbe5f8ff434db0a | Three things here. 1. The base is a fork itself and should be upstreamed. 2. Apply patch [arm64: dt: RPI3: Add optee node] 3. We have cherry picked the patches from [LSK OP-TEE 4.4] |
+| linux | https://github.com/Electron752/linux commit: b48d47a32b2f27f55904e7248dbe5f8ff434db0a | Three things here. 1. The base is a fork itself and should be upstreamed. 2. Apply patch [arm64: dt: RPI3: Add optee node] 3. We have cherry picked the patches from [LSK OP-TEE 4.4] |
 | arm-trusted-firmware | https://github.com/96boards-hikey/arm-trusted-firmware commit: bdec62eeb8f3153a4647770e08aafd56a0bcd42b | This should instead be based on the official OP-TEE fork or even better the official ARM repository. The patch itself should also be upstreamed. |
-| U-boot | https://github.com:linaro-swg/u-boot.git | This is just a mirror of the official U-boot git. The patches should be upstreamed. |
-| OpenOCD | https://github.com/seqlabs/openocd | The patches should be upstreamed. |
+| U-boot | https://github.com/linaro-swg/u-boot | This is just a mirror of the official U-boot git. The patches should be upstreamed. |
 
 # 3. Build instructions
 - First thing to pay attention to the [OP-TEE prerequisites]. If you forget
@@ -107,7 +106,7 @@ Suggestions to look into regarding creating a better rootfs
   patches and OP-TEE patches into the official Raspbian Linux kernel build).
 
 Having that said, in the section below about NFS boot, we've been successfully
-using an Ubuntu based root-fs (linaro-vivid).
+using a Debian based Linaro root-fs.
 
 # 5. NFS Boot
 Booting via NFS and TFTP is quite useful for several reasons, but the obvious
@@ -234,7 +233,7 @@ $ cd /home/jbech/devel/optee_projects/rpi3/boot/
 # clean previous uboot.env
 $ make u-boot-env-clean
 # generate new
-$ make u-boot-jtag-bin
+$ make u-boot-bin
 ```
 Then you need to copy your newly generated `uboot.env`(it's stored in `../out/uboot.env`)
 to the BOOT partition of your SD card.
@@ -286,10 +285,10 @@ used as initramfs. That is small and is good enough for testing and debugging.
 But sometimes you want to use a more traditional Linux filesystem, such as those
 that are in distros. With such filesystem you can apt-get (if Debian based)
 other useful tools, such as gdb on the device, valgrind etc to mention a few. An
-example of such a rootfs is the [linaro-vivid-developer-20151215-114.tar.gz],
-which is an Ubuntu 15.04 based filesystem. The procedure to use that filesystem
-with NFS is the same as for the CPIO based, you need to extract the files to a
-folder which is known by the NFS server (use regular `tar -xvf ...` command).
+example of such a rootfs is a Debian based [Linaro rootfs]. The procedure to use
+that filesystem with NFS is the same as for the CPIO based, you need to extract
+the files to a folder which is known by the NFS server (use regular `tar -xvf
+...` command).
 
 Then you need to copy `xtest` and `tee-supplicant` to `<NFS>/bin/`, copy
 `libtee.so*` to `<NFS>/lib/` and copy all `*.ta` files to
@@ -304,19 +303,19 @@ need to reboot the RPi after a rebuild.
 # 6. OpenOCD and JTAG
 First a word of warning here, even though this seems to be working quite good as
 of now, it should be well understood that this is based on incomplete and out of
-tree patches. So what are the major changes that enables this? First [OpenOCD]
-currently doesn't contain ARMv8-A / AArch64 support in the upstream tree. A
-couple of different people have put something together that gets the job done.
-But to get in a shape for upstream, there is still quite a lot left to do. The
-other change needed is in U-Boot, that is where we configure the [RPi3 GPIO
-pins] so that they will talk JTAG. The pin configuration and the wiring for the
-cable looks like this:
+tree patches. There are major changes in our U-Boot fork that add capability to
+load and execute ARM Trusted Firmware binary.
+
+To enable JTAG you need to uncomment the line: `enable_jtag_gpio=1` in
+`rpi3/firmware/config.txt`.
+
+The pin configuration and the wiring for the cable looks like this:
 
 |JTAG pin|Signal|GPIO   |Mode |Header pin|
 |--------|------|-------|-----|----------|
 | 1      |3v3   |N/A    |N/A  | 1        |
 | 3      |nTRST |GPIO22 |ALT4 | 15       |
-| 5      |TDI   |GPIO4  |ALT5 | 7        |
+| 5      |TDI   |GPIO26 |ALT4 | 37       |
 | 7      |TMS   |GPIO27 |ALT4 | 13       |
 | 9      |TCK   |GPIO25 |ALT4 | 22       |
 | 11     |RTCK  |GPIO23 |ALT4 | 16       |
@@ -342,23 +341,38 @@ that we have also connected a USB FTDI to UART cable to a few more pins.
 
 ## 6.2 OpenOCD
 ### 6.2.1 Build the software
-We are using the [Sequitur Labs OpenOCD] fork, simply clone that to your
-computer and then building is like a lot of other software, i.e.,
+Before building OpenOCD, **libusb-dev** package should be installed in advance:
 ```bash
+$ sudo apt-get install libusb-1.0-0-dev
+```
+
+We are using the [Official OpenOCD] release, simply clone that to your
+computer and then building is like a lot of other software, i.e.,
+
+```bash
+$ git clone http://repo.or.cz/openocd.git && cd openocd
 $ ./bootstrap
 $ ./configure
 $ make
 ```
+If a jtag debugger needs legacy ft2332 support, OpenOCD should be
+configured with `--enable-legacy-ft2232_libftdi` flag:
+```bash
+$ ./configure --enable-legacy-ft2232_libftdi
+```
+
 We leave it up to the reader of this guide to decide if he wants to install it
 properly (`make install`) or if he will just run it from the tree directly. The
 rest of this guide will just run it from the tree.
 
 ### 6.2.2 OpenOCD RPi3 configuration file
-In the OpenOCD fork you will find the necessary [RPi3 OpenOCD config]. As you
-can read there, it's prepared for four targets, but only one is enabled. The
-reason for that is simply because it's a lot simpler to get started with JTAG
-when running on a single core. When you have a stable setup using a single core,
-then you can start playing with enabling additional cores.
+Unfortunately, the necessary [RPi3 OpenOCD config] isn't upstreamed yet into the
+[Official OpenOCD] repository, so you should use the one stored
+here `rpi3/debugger/pi3.cfg`. As you can read there, it's prepared
+for four targets, but only one is enabled. The reason for that is simply
+because it's a lot simpler to get started with JTAG when running on a single
+core. When you have a stable setup using a single core, then you can start
+playing with enabling additional cores.
 ```
 ...
 target create $_TARGETNAME_0 aarch64 -chain-position $_CHIPNAME.dap -dbgbase 0x80010000 -ctibase 0x80018000
@@ -374,7 +388,14 @@ and [Bus Blaster] successfully. To start an OpenOCD session using a J-Link
 device you type:
 ```bash
 $ cd <openocd>
-$ ./src/openocd -f ./tcl/interface/jlink.cfg -f ./pi3.cfg
+$ ./src/openocd -f ./tcl/interface/jlink.cfg \
+-f <rpi3_repo_dir>/build/rpi3/debugger/pi3.cfg
+```
+
+For Bus Blaster type:
+```bash
+$ ./src/openocd -f ./tcl/interface/ftdi/dp_busblaster.cfg \
+-f <rpi3_repo_dir>/build/rpi3/debugger/pi3.cfg
 ```
 
 To be able to write commands to OpenOCD, you simply open up another shell and
@@ -462,20 +483,31 @@ will be a bit upset when continue running after triggering a breakpoint in
 secure world (rcu starving messages etc). If you have suggestion and or
 improvements, as usual, feel free to contribute.
 
+## 6.7 Physical memory map
+
+|Physical address|Component|
+|----------------|------|
+| 0x0            | Stubs + U-boot, U-boot self-relocates to high memory |
+| 0x80000        | Linux image        |
+| 0x01700000     | Linux DTS          |
+| 0x08000000     | Non-secure SHM     |
+| 0x08400000     | BL31               |
+| 0x08420000     | BL32 (OP-TEE core) |
+
 [buildroot]: https://buildroot.org
 [Bus Blaster]: http://dangerousprototypes.com/docs/Bus_Blaster
-[J-Link debuggers]: https://www.segger.com/jlink_base.html
-[linaro-vivid-developer-20151215-114.tar.gz]: http://releases.linaro.org/ubuntu/images/developer-arm64/15.12/linaro-vivid-developer-20151215-114.tar.gz
+[J-Link debuggers]: https://www.segger.com/products/debug-probes/j-link/models/j-link-base/
+[Linaro rootfs]: http://releases.linaro.org/debian/images/installer-arm64/latest/linaro*.tar.gz
 [LSK OP-TEE 4.4]: https://git.linaro.org/kernel/linux-linaro-stable.git/log/?h=v4.4/topic/optee
 [arm64: dt: RPI3: Add optee node]: https://github.com/linaro-swg/linux/commit/cc225a78910c37d78f8a00c80dcbf59ef7762884
-[OpenOCD]: http://openocd.org
-[OP-TEE prerequisites]: ../../build/#71-prerequisites
-[press release]: http://www.sequiturlabs.com/media_portfolio/sequitur-labs-collaborates-with-linaro-to-lower-barriers-to-iot-security-education-for-raspberry-pi-maker-community
+[OpenOCD]: http://openocd.org/
+[OP-TEE prerequisites]: ../README.md#71-prerequisites
+[press release]: https://www.sequiturlabs.com/media_portfolio/sequitur-labs-collaborates-with-linaro-to-lower-barriers-to-iot-security-education-for-raspberry-pi-maker-community/
 [Raspbian]: https://www.raspbian.org
-[README.md]: ../../build/
+[README.md]: ../README.md
 [RPi3 GPIO pins]: https://pinout.xyz/pinout/jtag
-[RPi3 OpenOCD config]: https://github.com/seqlabs/openocd/blob/armv8/pi3.cfg
-[Sequitur Labs]: http://www.sequiturlabs.com
-[Sequitur Labs OpenOCD]: https://github.com/seqlabs/openocd
+[RPi3 OpenOCD config]: https://github.com/OP-TEE/build/blob/master/rpi3/debugger/pi3.cfg
+[Official OpenOCD]: http://openocd.org/
+[Sequitur Labs]: https://www.sequiturlabs.com/
 [SMP]: https://en.wikipedia.org/wiki/Symmetric_multiprocessing
 [xtest instructions]: https://github.com/OP-TEE/build#78-load-tee-supplicant
