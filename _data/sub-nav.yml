@@ -8,9 +8,6 @@ pages:
         title: "LSWG"
         url: "/swg/"
       -
-        title: "Committee"
-        url: "/committee/"
-      -
         title: "Legal"
         url: "/legal/"
     urls: [/about/,/swg/,/committee/,/legal/]
