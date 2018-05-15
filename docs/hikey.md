@@ -145,9 +145,9 @@ described when you run the target:
 $ make recovery
 ```
 
-[AOSP HiKey branch]: https://source.android.com/source/devices.html
+[AOSP HiKey branch]: https://source.android.com/setup/build/devices
 [official HiKey documentation]: https://www.96boards.org/documentation/consumer/hikey/
 [OP-TEE Android Manifest]: https://github.com/linaro-swg/optee_android_manifest
 [README.md]: ../../build/
 [hikey.mk]: https://github.com/OP-TEE/build/blob/master/hikey.mk
-[96Boards UART Adapter Board]: http://www.96boards.org/product/uarts
+[96Boards UART Adapter Board]: https://www.96boards.org/product/uartserial/

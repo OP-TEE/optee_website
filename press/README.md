@@ -12,4 +12,4 @@ Steve Taylor, Director of Marketing [media@linaro.org](mailto:steve.taylor@linar
 
 ### Downloads for press
 
-[Click here](https://collaborate.linaro.org/display/MAR/DeviceTree)
+[Click here](https://collaborate.linaro.org/display/MAR/OP-TEE)
