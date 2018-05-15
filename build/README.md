@@ -327,12 +327,12 @@ don't have to think about anything.
 Please have a look at out [FAQ] file for a list of questions commonly asked.
 
 [ccache]: https://ccache.samba.org
-[docs]: docs
-[FAQ]: faq.md
-[fvp.md]: ./docs/fvp.md
+[docs]: ../docs/
+[FAQ]: ../faq/
+[fvp.md]: ../docs/fvp/
 [git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
-[juno.md]: ./docs/juno.md
-[hikey.md]: ./docs/hikey.md
+[juno.md]: ../docs/juno/
+[hikey.md]: ../docs/hikey/
 [manifest/README.md]: https://github.com/OP-TEE/manifest/blob/master/README.md
 [mtk8173.md]: ../docs/mtk8173/
 [MAINTAINERS]: https://github.com/OP-TEE/optee_os/blob/master/MAINTAINERS

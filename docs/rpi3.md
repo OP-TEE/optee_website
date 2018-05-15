@@ -504,7 +504,7 @@ improvements, as usual, feel free to contribute.
 [OP-TEE prerequisites]: ../../build/
 [press release]: https://www.sequiturlabs.com/media_portfolio/sequitur-labs-collaborates-with-linaro-to-lower-barriers-to-iot-security-education-for-raspberry-pi-maker-community/
 [Raspbian]: https://www.raspbian.org
-[README.md]: ../README.md
+[README.md]: ../../build/
 [RPi3 GPIO pins]: https://pinout.xyz/pinout/jtag
 [RPi3 OpenOCD config]: https://github.com/OP-TEE/build/blob/master/rpi3/debugger/pi3.cfg
 [Official OpenOCD]: http://openocd.org/
