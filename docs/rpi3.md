@@ -56,9 +56,9 @@ help out making proper upstream patches sooner or later.
 
 | Project | Base fork | What to do |
 |---------|-----------|------------|
-| linux | https://github.com/Electron752/linux.git commit: b48d47a32b2f27f55904e7248dbe5f8ff434db0a | Three things here. 1. The base is a fork itself and should be upstreamed. 2. Apply patch [arm64: dt: RPI3: Add optee node] 3. We have cherry picked the patches from [LSK OP-TEE 4.4] |
+| linux | https://github.com/Electron752/linux commit: b48d47a32b2f27f55904e7248dbe5f8ff434db0a | Three things here. 1. The base is a fork itself and should be upstreamed. 2. Apply patch [arm64: dt: RPI3: Add optee node] 3. We have cherry picked the patches from [LSK OP-TEE 4.4] |
 | arm-trusted-firmware | https://github.com/96boards-hikey/arm-trusted-firmware commit: bdec62eeb8f3153a4647770e08aafd56a0bcd42b | This should instead be based on the official OP-TEE fork or even better the official ARM repository. The patch itself should also be upstreamed. |
-| U-boot | https://github.com:linaro-swg/u-boot.git | This is just a mirror of the official U-boot git. The patches should be upstreamed. |
+| U-boot | https://github.com/linaro-swg/u-boot | This is just a mirror of the official U-boot git. The patches should be upstreamed. |
 
 # 3. Build instructions
 - First thing to pay attention to the [OP-TEE prerequisites]. If you forget
@@ -496,18 +496,18 @@ improvements, as usual, feel free to contribute.
 
 [buildroot]: https://buildroot.org
 [Bus Blaster]: http://dangerousprototypes.com/docs/Bus_Blaster
-[J-Link debuggers]: https://www.segger.com/jlink_base.html
+[J-Link debuggers]: https://www.segger.com/products/debug-probes/j-link/models/j-link-base/
 [Linaro rootfs]: http://releases.linaro.org/debian/images/installer-arm64/latest/linaro*.tar.gz
 [LSK OP-TEE 4.4]: https://git.linaro.org/kernel/linux-linaro-stable.git/log/?h=v4.4/topic/optee
 [arm64: dt: RPI3: Add optee node]: https://github.com/linaro-swg/linux/commit/cc225a78910c37d78f8a00c80dcbf59ef7762884
-[OpenOCD]: http://openocd.org
-[OP-TEE prerequisites]: ../README.md#71-prerequisites
-[press release]: http://www.sequiturlabs.com/media_portfolio/sequitur-labs-collaborates-with-linaro-to-lower-barriers-to-iot-security-education-for-raspberry-pi-maker-community
+[OpenOCD]: http://openocd.org/
+[OP-TEE prerequisites]: ../../build/
+[press release]: https://www.sequiturlabs.com/media_portfolio/sequitur-labs-collaborates-with-linaro-to-lower-barriers-to-iot-security-education-for-raspberry-pi-maker-community/
 [Raspbian]: https://www.raspbian.org
 [README.md]: ../README.md
 [RPi3 GPIO pins]: https://pinout.xyz/pinout/jtag
 [RPi3 OpenOCD config]: https://github.com/OP-TEE/build/blob/master/rpi3/debugger/pi3.cfg
 [Official OpenOCD]: http://openocd.org/
-[Sequitur Labs]: http://www.sequiturlabs.com
+[Sequitur Labs]: https://www.sequiturlabs.com/
 [SMP]: https://en.wikipedia.org/wiki/Symmetric_multiprocessing
 [xtest instructions]: https://github.com/OP-TEE/build#78-load-tee-supplicant

@@ -92,16 +92,80 @@ information.
 <!-- Please keep this list sorted in alphabetic order -->
 | Platform | Composite PLATFORM flag | Publicly available? |
 |----------|-------------------------|---------------------|
-| [ARM Juno Board](http://www.arm.com/products/tools/development-boards/versatile-express/juno-arm-development-platform.php) |`PLATFORM=vexpress-juno`| Yes |
-| [ARM Foundation FVP](http://www.arm.com/fvp) |`PLATFORM=vexpress-fvp`| Yes |
+| [ARM Juno Board](https://developer.arm.com/products/system-design/development-boards/juno-development-board) |`PLATFORM=vexpress-juno`| Yes |
+| [ARM Foundation FVP](https://developer.arm.com/products/system-design/fixed-virtual-platforms) |`PLATFORM=vexpress-fvp`| Yes |
 | [HiKey Board (HiSilicon Kirin 620)](https://www.96boards.org/products/hikey)|`PLATFORM=hikey`| Yes |
-| [MediaTek MT8173 EVB Board](http://www.mediatek.com/en/products/mobile-communications/tablet/mt8173)|`PLATFORM=mediatek-mt8173`| No |
-| [QEMU](http://wiki.qemu.org/Main_Page) |`PLATFORM=vexpress-qemu_virt`| Yes |
-| [QEMUv8](http://wiki.qemu.org/Main_Page) |`PLATFORM=vexpress-qemu_armv8a`| Yes |
+| [MediaTek MT8173 EVB Board](https://www.mediatek.com/products/tablets/mt8173)|`PLATFORM=mediatek-mt8173`| No |
+| [QEMU](https://wiki.qemu.org/Main_Page) |`PLATFORM=vexpress-qemu_virt`| Yes |
+| [QEMUv8](https://wiki.qemu.org/Main_Page) |`PLATFORM=vexpress-qemu_armv8a`| Yes |
 | [Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) |`PLATFORM=rpi3`| Yes |
 | [Texas Instruments DRA7xx](http://www.ti.com/product/DRA746)|`PLATFORM=ti-dra7xx`| Yes |
 | [Texas Instruments AM57xx](http://www.ti.com/product/AM5728)|`PLATFORM=ti-am57xx`| Yes |
-| [Texas Instruments AM43xx](http://www.ti.com/product/AM4379)|`PLATFORM=ti-am43xx`| Yes |
+| [Texas Instruments AM43xx](http://www.ti.com/product/AM4379)|`PLATFORM=ti-am43xx`| Yes | -->
+
+<div class="responsive-table">
+<table class="table-responsive">
+<thead>
+<tr>
+<th>Platform</th>
+<th>Composite PLATFORM flag</th>
+<th>Publicly available?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://developer.arm.com/products/system-design/development-boards/juno-development-board">ARM Juno Board</a></td>
+<td><code>PLATFORM=vexpress-juno</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="https://developer.arm.com/products/system-design/fixed-virtual-platforms">ARM Foundation FVP</a></td>
+<td><code>PLATFORM=vexpress-fvp</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="https://www.96boards.org/product/hikey">HiKey Board (HiSilicon Kirin 620)</a></td>
+<td><code>PLATFORM=hikey</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="https://www.mediatek.com/products/tablets/mt8173">MediaTek MT8173 EVB Board</a></td>
+<td><code>PLATFORM=mediatek-mt8173</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><a href="https://wiki.qemu.org/Main_Page">QEMU</a></td>
+<td><code>PLATFORM=vexpress-qemu_virt</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="https://wiki.qemu.org/Main_Page">QEMUv8</a></td>
+<td><code>PLATFORM=vexpress-qemu_armv8a</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b">Raspberry Pi 3</a></td>
+<td><code>PLATFORM=rpi3</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="http://www.ti.com/product/DRA746">Texas Instruments DRA7xx</a></td>
+<td><code>PLATFORM=ti-dra7xx</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="http://www.ti.com/product/AM5728">Texas Instruments AM57xx</a></td>
+<td><code>PLATFORM=ti-am57xx</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><a href="http://www.ti.com/product/AM4379">Texas Instruments AM43xx</a></td>
+<td><code>PLATFORM=ti-am43xx</code></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 # 6. Manifests
 Here is a list of manifests for the devices currently supported.
@@ -270,10 +334,10 @@ Please have a look at out [FAQ] file for a list of questions commonly asked.
 [juno.md]: ./docs/juno.md
 [hikey.md]: ./docs/hikey.md
 [manifest/README.md]: https://github.com/OP-TEE/manifest/blob/master/README.md
-[mtk8173.md]: ./docs/mtk8173.md
+[mtk8173.md]: ../docs/mtk8173/
 [MAINTAINERS]: https://github.com/OP-TEE/optee_os/blob/master/MAINTAINERS
 [OP-TEE/README.md]: https://github.com/OP-TEE/optee_os/blob/master/README.md
-[qemu.md]: ./docs/qemu.md
-[repo]: https://source.android.com/source/downloading.html
-[rpi3.md]: ./docs/rpi3.md
-[ti.md]: ./docs/ti.md
+[qemu.md]: ../docs/qemu/
+[repo]: https://source.android.com/setup/build/downloading
+[rpi3.md]: ../docs/rpi3/
+[ti.md]: ../docs/ti/
