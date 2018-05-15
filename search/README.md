@@ -17,7 +17,7 @@ css-package: search
     fess.setAttribute('enable-order', 'true');
     fess.setAttribute('link-target', '\_blank');
     // fess-url is URL for Fess Server
-    fess.setAttribute('fess-url', 'https://search.linaro.org/json/?fields.label=OP-TEE');
+    fess.setAttribute('fess-url', 'https://search.linaro.org/json/?fields.label=OpTee');
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(fess, s);
   })();
