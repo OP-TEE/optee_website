@@ -101,71 +101,8 @@ information.
 | [Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) |`PLATFORM=rpi3`| Yes |
 | [Texas Instruments DRA7xx](http://www.ti.com/product/DRA746)|`PLATFORM=ti-dra7xx`| Yes |
 | [Texas Instruments AM57xx](http://www.ti.com/product/AM5728)|`PLATFORM=ti-am57xx`| Yes |
-| [Texas Instruments AM43xx](http://www.ti.com/product/AM4379)|`PLATFORM=ti-am43xx`| Yes | -->
+| [Texas Instruments AM43xx](http://www.ti.com/product/AM4379)|`PLATFORM=ti-am43xx`| Yes |
 
-<div class="responsive-table">
-<table class="table-responsive">
-<thead>
-<tr>
-<th>Platform</th>
-<th>Composite PLATFORM flag</th>
-<th>Publicly available?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://developer.arm.com/products/system-design/development-boards/juno-development-board">ARM Juno Board</a></td>
-<td><code>PLATFORM=vexpress-juno</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://developer.arm.com/products/system-design/fixed-virtual-platforms">ARM Foundation FVP</a></td>
-<td><code>PLATFORM=vexpress-fvp</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://www.96boards.org/product/hikey">HiKey Board (HiSilicon Kirin 620)</a></td>
-<td><code>PLATFORM=hikey</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://www.mediatek.com/products/tablets/mt8173">MediaTek MT8173 EVB Board</a></td>
-<td><code>PLATFORM=mediatek-mt8173</code></td>
-<td>No</td>
-</tr>
-<tr>
-<td><a href="https://wiki.qemu.org/Main_Page">QEMU</a></td>
-<td><code>PLATFORM=vexpress-qemu_virt</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://wiki.qemu.org/Main_Page">QEMUv8</a></td>
-<td><code>PLATFORM=vexpress-qemu_armv8a</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b">Raspberry Pi 3</a></td>
-<td><code>PLATFORM=rpi3</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="http://www.ti.com/product/DRA746">Texas Instruments DRA7xx</a></td>
-<td><code>PLATFORM=ti-dra7xx</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="http://www.ti.com/product/AM5728">Texas Instruments AM57xx</a></td>
-<td><code>PLATFORM=ti-am57xx</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="http://www.ti.com/product/AM4379">Texas Instruments AM43xx</a></td>
-<td><code>PLATFORM=ti-am43xx</code></td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div>
 
 # 6. Manifests
 Here is a list of manifests for the devices currently supported.
