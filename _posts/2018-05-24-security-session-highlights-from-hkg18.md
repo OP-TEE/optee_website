@@ -6,7 +6,7 @@ categories:
 - Blog
 image:
     featured: true
-    path: /assets/images/hkg18-banner.jpg
+    path: /assets/images/posts/hkg18-banner.jpg
     name: hkg18-banner.jpg
 layout: post
 ---
