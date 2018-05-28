@@ -10,13 +10,43 @@ description: |-
   About) and then someone from the team will contact you for further discussion.
   The initial email doesn't have to contain any details.
 ---
-
 At this page we will list of all known security vulnerabilities found on OP-TEE.
 Likewise you will find when it was fixed and who reported the issue.
 
 If you have found a security issue in OP-TEE, please send us an email (see
 About) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+
+# May 2018
+## Spectre variant 4 (CVE-2018-3639)
+#### Current status:
+In the affected Arm cores (Cortex-A57, Cortex-A72, Cortex-A73 and Cortex-A75)
+who all are Armv8 based there are configuration control registers
+available at EL3 that when enabled effectively mitigate a potential
+Spectre v4 attack. This means that the mitigation for this is not being
+implemented at S-EL1 where the TEE resides. For more information about
+the EL-3 mitigations, please see the [Trusted Firmware A Security Advisory TFV 7](https://github.com/ARM-software/arm-trusted-firmware/wiki/Trusted-Firmware-A-Security-Advisory-TFV-7).
+In all officially supported Armv8 OP-TEE setups we are using TF-A as
+the firmware and therefore we consider that the TF-A mitigations at
+EL-3 effectively stop Spectre v4 attacks in a system running OP-TEE and
+TF-A.
+
+As mentioned in the
+[whitepaper](https://developer.arm.com/support/arm-security-updates/speculative-processor-vulnerability)
+from Arm about these types of attacks, there are new barriers (SSBB and PSSBB)
+being introduced also. These could also be used as a mitigation
+directly at lower exception levels. But just as for Spectre v1, this
+involves manual inspection of code and placement of barriers until tooling
+has become better to figure out this on its own. This manual work is
+error prone and very time consuming and has to be done over and over
+again. We have been doing some manual inspection of the OP-TEE code and
+so far have not been able to identify and vulnerable areas. But just as
+for Spectre v1, we continuously discuss tooling etc with members of Linaro.
+
+| Reported by  | CVE ID | OP-TEE ID | Affected versions |
+| ------------ |:------:| :-------: | ----------------- |
+| [Google Project Zero] | [CVE-2018-3639](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-3639) | N/A | N/A (EL-3 TF-A implements the mitigation) |
+
 
 # January 2018
 ## Meltdown and Spectre
@@ -42,7 +72,7 @@ secure side.
 #### Current status:
 We have been doing some manual inspection of the OP-TEE code, and so far have
 not been able to identify any vulnerable areas. Code analysis tools and
-compiler udpdates are being discussed with members of Linaro.
+compiler update are being discussed with members of Linaro.
 
 | Reported by  | CVE ID | OP-TEE ID | Affected versions |
 | ------------ |:------:| :-------: | ----------------- |
