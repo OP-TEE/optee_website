@@ -119,7 +119,7 @@ google:
     tag_manager: GTM-TDJ7LGH
 # Shema.org settings used in the schema.html include.
 schema:
-    enabled: false
+    enabled: true
     organisation:
         name: OP-TEE
         url: https://www.op-tee.org
@@ -133,7 +133,7 @@ schema:
 # Disqus Comments
 
 disqus:
-    enabled: false
+    enabled: true
     shortname: op-tee
 
 # Placeholder for Missing Images

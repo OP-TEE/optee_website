@@ -10,7 +10,6 @@ description: |-
   Makefiles, shell-scripts etc that will work nicely on the devices you are
   interested in.
 ---
-
 # OP-TEE build.git
 
 <!-- Entire row is copy/pasted from Travis build status URL generation -->
@@ -91,7 +90,7 @@ related questions etc. Please see the [MAINTAINERS] file for contact
 information.
 
 <!-- Please keep this list sorted in alphabetic order -->
-<!-- | Platform | Composite PLATFORM flag | Publicly available? |
+| Platform | Composite PLATFORM flag | Publicly available? |
 |----------|-------------------------|---------------------|
 | [ARM Juno Board](https://developer.arm.com/products/system-design/development-boards/juno-development-board) |`PLATFORM=vexpress-juno`| Yes |
 | [ARM Foundation FVP](https://developer.arm.com/products/system-design/fixed-virtual-platforms) |`PLATFORM=vexpress-fvp`| Yes |
@@ -102,76 +101,11 @@ information.
 | [Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) |`PLATFORM=rpi3`| Yes |
 | [Texas Instruments DRA7xx](http://www.ti.com/product/DRA746)|`PLATFORM=ti-dra7xx`| Yes |
 | [Texas Instruments AM57xx](http://www.ti.com/product/AM5728)|`PLATFORM=ti-am57xx`| Yes |
-| [Texas Instruments AM43xx](http://www.ti.com/product/AM4379)|`PLATFORM=ti-am43xx`| Yes | -->
+| [Texas Instruments AM43xx](http://www.ti.com/product/AM4379)|`PLATFORM=ti-am43xx`| Yes |
 
-<div class="responsive-table">
-<table class="table-responsive">
-<thead>
-<tr>
-<th>Platform</th>
-<th>Composite PLATFORM flag</th>
-<th>Publicly available?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://developer.arm.com/products/system-design/development-boards/juno-development-board">ARM Juno Board</a></td>
-<td><code>PLATFORM=vexpress-juno</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://developer.arm.com/products/system-design/fixed-virtual-platforms">ARM Foundation FVP</a></td>
-<td><code>PLATFORM=vexpress-fvp</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://www.96boards.org/product/hikey">HiKey Board (HiSilicon Kirin 620)</a></td>
-<td><code>PLATFORM=hikey</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://www.mediatek.com/products/tablets/mt8173">MediaTek MT8173 EVB Board</a></td>
-<td><code>PLATFORM=mediatek-mt8173</code></td>
-<td>No</td>
-</tr>
-<tr>
-<td><a href="https://wiki.qemu.org/Main_Page">QEMU</a></td>
-<td><code>PLATFORM=vexpress-qemu_virt</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://wiki.qemu.org/Main_Page">QEMUv8</a></td>
-<td><code>PLATFORM=vexpress-qemu_armv8a</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b">Raspberry Pi 3</a></td>
-<td><code>PLATFORM=rpi3</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="http://www.ti.com/product/DRA746">Texas Instruments DRA7xx</a></td>
-<td><code>PLATFORM=ti-dra7xx</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="http://www.ti.com/product/AM5728">Texas Instruments AM57xx</a></td>
-<td><code>PLATFORM=ti-am57xx</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><a href="http://www.ti.com/product/AM4379">Texas Instruments AM43xx</a></td>
-<td><code>PLATFORM=ti-am43xx</code></td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div>
 
 # 6. Manifests
 Here is a list of manifests for the devices currently supported.
-
-<div class="responsive-table" markdown="1">
 
 | Target | Latest (non-stable) | Stable | Device doc |
 |--------|---------------------|--------| ---------- |
@@ -186,9 +120,6 @@ Here is a list of manifests for the devices currently supported.
 | DRA7xx | `dra7xx.xml` | `dra7xx_stable.xml` | [ti.md] |
 | AM57xx | `am57xx.xml` | `am57xx_stable.xml` | [ti.md] |
 | AM43xx | `am43xx.xml` | `am43xx_stable.xml` | [ti.md] |
-
-
-</div>
 
 # 7. Get and build the solution
 Below we will describe the general way of getting the source, building the
@@ -333,7 +264,7 @@ don't have to think about anything.
 Please have a look at out [FAQ] file for a list of questions commonly asked.
 
 [ccache]: https://ccache.samba.org
-[docs]: https://github.com/OP-TEE/build/tree/master/docs
+[docs]: ../docs/
 [FAQ]: ../faq/
 [fvp.md]: ../docs/fvp/
 [git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
