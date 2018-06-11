@@ -6,7 +6,7 @@
 search:
     enabled: true
     label: OP-TEE
-
+universal-nav: true
 brand:
     text: OP-TEE
     image: 
