@@ -1,13 +1,11 @@
 ---
-title: Agreement
+title: Contributor License Agreement
 permalink: "/agreement/"
-layout: container-breadcrumb
+layout: container-breadcrumb-tabs
 description: |-
   Contributions to OP-TEE are managed by the OP-TEE gatekeepers, whose contact email address is op-tee@linaro.org.
   Anyone can contribute to OP-TEE as long as they understand that a Signed-off-by tag will be required in the patch.
 ---
-{% include sticky-tab-bar.html %}
-
 # Contributor License Agreement
 
 Contributions to OP-TEE are managed by the OP-TEE gatekeepers, whose contact email address is op-tee@linaro.org.

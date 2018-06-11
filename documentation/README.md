@@ -1,7 +1,7 @@
 ---
 title: Documentation
 permalink: "/documentation/"
-layout: container-breadcrumb
+layout: container-breadcrumb-tabs
 description: |-
   The `optee_os git`, contains the source code for the TEE in Linux using the
   ARM TrustZone technology. This component meets the GlobalPlatform
@@ -9,10 +9,6 @@ description: |-
   v1.1 as defined by the GlobalPlatform TEE Standard for the development of
   Trusted Applications.
 ---
-<div class="row">
-{% include sticky-tab-bar.html %}
-</div>
-
 # OP-TEE Trusted OS
 
 ## Contents

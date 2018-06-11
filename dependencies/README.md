@@ -1,12 +1,8 @@
 ---
 title: Dependencies
 permalink: "/dependencies/"
-layout: container-breadcrumb
+layout: container-breadcrumb-tabs
 ---
-{% include sticky-tab-bar.html %}
-
-# Linaro Security Working Group
-
 The Linaro Security Working Group (SWG) was created to help ensure an optimised
 and efficient software ecosystem exists to support ARM open source Linux distributions
 on security related topics, and to accelerate the delivery of high quality secure products
