@@ -6,3 +6,4 @@ group :jekyll_plugins do
   gem "jekyll-data"
   gem "mini_magick"
 end
+
