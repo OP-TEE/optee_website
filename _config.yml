@@ -1,0 +1,64 @@
+title: OP-TEE
+email: kyle.kirkby@linaro.org
+description: |-
+    OP-TEE is an open source project which contains a full implementation to make up a complete Trusted Execution Environment
+baseurl: "" # the subpath of your site, e.g. /blog
+
+# the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.op-tee.org"
+
+#Github Username
+github_username:  OP-TEE
+
+# Blog Structure
+permalink: /blog/:title/
+
+# Use the Jumbo Jekyll Theme
+theme: jumbo-jekyll-theme
+
+# Files to be excluded from the Jekyll Build.
+exclude:
+    - .asset-cache
+    - .sass-cache
+    - _site
+    
+# Jekyll Assets setup
+assets:
+  # Compress JS Assets - uses the uglifier 
+  compression: true
+  gzip: true
+  # Autoprefixer default settings
+  autoprefixer:
+      browsers: ["last 2 versions","> 5%","IE 9"]
+  # These are the paths to look for assets
+  sources:
+    - assets/js/
+    - assets/images/
+    - assets/images/posts/
+    - assets/css/
+
+mini_magick:
+    # Blog Image Presets
+    thumbnails:
+        source: assets/images/posts/
+        destination: assets/images/thumbnails/
+        resize: "100x100"
+        thumbnail: "100x100>"
+        gravity: "Center"
+        extent: "100x100"
+    medium:
+        source: assets/images/posts/
+        destination: assets/images/medium/
+        resize: "300x300"
+        thumbnail: "300x300>"
+        gravity: "Center"
+        extent: "300x300"
+    large:
+        source: assets/images/posts/
+        destination: assets/images/large/
+        resize: "500x500"
+        thumbnail: "500x500>"
+        gravity: "Center"
+        extent: "500x500"
+        
+    

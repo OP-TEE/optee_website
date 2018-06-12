@@ -1,9 +1,8 @@
 ---
 title: FAQ
 permalink: "/faq/"
-layout: container-breadcrumb
+layout: container-breadcrumb-tabs
 ---
-{% include sticky-tab-bar.html %}
 
 Frequently Asked Questions
 ===========================

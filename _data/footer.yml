@@ -21,15 +21,11 @@ columns:
       items:
         - text: LSGW
           url : /swg/
-        - text: Dependencies
-          url : /dependencies/
         - text: Roadmap
           url : /roadmap/
     - title: About
       url: /about/
       items:
-        - text: Committee
-          url : /committee/
         - text: FAQ
           url : /faq/
         - text: Documentation
