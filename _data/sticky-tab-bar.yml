@@ -8,9 +8,6 @@ pages:
         title: "LSWG"
         url: "/swg/"
       -
-        title: "Committee"
-        url: "/committee/"
-      -
         title: "Legal"
         url: "/legal/"
     urls: [/about/,/swg/,/committee/,/legal/]
@@ -20,12 +17,9 @@ pages:
         title: OP-TEE Projects 
         url: /projects/
       -
-        title: OP-TEE Dependencies
-        url: /dependencies/
-      -
         title: Roadmap
         url: /roadmap/
-    urls: [/projects/, /dependencies/, /roadmap/]
+    urls: [/projects/, /roadmap/]
   -
     list:
       -

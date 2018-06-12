@@ -26,8 +26,6 @@ pages:
       options:
           - text: OP-TEE Projects
             url: /projects/
-          - text: Dependencies
-            url: /dependencies/
           - text: Roadmap
             url: /roadmap/
           - text: Security Advisories
