@@ -1,4 +1,4 @@
 [
     "^/committee(/?|/index.html)$ / [R,L,NC]",
-    "^/dependencies(/?|/index.html)$ / [R,L,NC]",
+    "^/dependencies(/?|/index.html)$ / [R,L,NC]"
 ]
