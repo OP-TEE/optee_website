@@ -1,7 +1,4 @@
-image: OP-TEE-Logo_white-vertical-OPTEE-colour.svg
-
 include: members.html
-
 columns:
     - title: OP-TEE Projects
       url: /projects/
@@ -16,13 +13,6 @@ columns:
           url : https://github.com/OP-TEE/manifest
         - text: build
           url : https://github.com/OP-TEE/build
-    - title:
-      url:
-      items:
-        - text: LSGW
-          url : /swg/
-        - text: Roadmap
-          url : /roadmap/
     - title: About
       url: /about/
       items:
@@ -30,11 +20,21 @@ columns:
           url : /faq/
         - text: Documentation
           url : /documentation/
-    - title: Other Linaro Projects
+        - text: LSGW
+          url : /swg/
+        - text: Roadmap
+          url : /roadmap/
+    - title: Linaro Projects
       url: https://www.linaro.org/work/
       items:
         - text: 96Boards
           url : https://96boards.org/
+        - text: 96Boards.ai
+          url : https://www.96boards.ai
+        - text: DeviceTree
+          url : https://www.devicetree.org
+        - text: OpenDataPlane
+          url : https://www.opendataplane.org
         - text: Developer Cloud
           url : https://linaro.cloud/
         - text: View all
