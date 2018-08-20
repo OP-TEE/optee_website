@@ -36,7 +36,9 @@ assets:
     - assets/images/
     - assets/images/posts/
     - assets/css/
-
+plugins:
+ - jekyll-theme-assets-updated
+ 
 mini_magick:
     # Blog Image Presets
     thumbnails:
