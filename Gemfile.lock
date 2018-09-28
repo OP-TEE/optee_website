@@ -18,8 +18,8 @@ GEM
     execjs (2.7.0)
     extras (0.3.0)
       forwardable-extended (~> 2.5)
-    fastimage (2.1.3)
-    ffi (1.9.25)
+    fastimage (2.1.4)
+    ffi (1.9.0)
     forwardable-extended (2.6.0)
     hash-joiner (0.0.7)
       safe_yaml
@@ -28,7 +28,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    jekyll (3.7.3)
+    jekyll (3.7.4)
       addressable (~> 2.4)
       colorator (~> 1.0)
       em-websocket (~> 0.5)
@@ -50,13 +50,13 @@ GEM
       sprockets (~> 3.3, < 3.7)
     jekyll-data (1.0.0)
       jekyll (~> 3.3)
-    jekyll-feed (0.10.0)
+    jekyll-feed (0.11.0)
       jekyll (~> 3.3)
-    jekyll-paginate-v2 (1.9.4)
+    jekyll-paginate-v2 (2.0.0)
       jekyll (~> 3.0)
     jekyll-readme-index (0.2.0)
       jekyll (~> 3.0)
-    jekyll-redirect-from (0.13.0)
+    jekyll-redirect-from (0.14.0)
       jekyll (~> 3.3)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
@@ -74,7 +74,7 @@ GEM
     jekyll-watch (2.0.0)
       listen (~> 3.0)
     json (2.1.0)
-    jumbo-jekyll-theme (1.7.35)
+    jumbo-jekyll-theme (1.8.3)
       autoprefixer-rails (~> 5.0, >= 5.0.0.1)
       bootstrap-sass (~> 3.3)
       hash-joiner (~> 0)
@@ -97,18 +97,18 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
     mercenary (0.3.6)
-    mini_magick (4.8.0)
+    mini_magick (4.9.2)
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     rack (1.6.10)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rouge (3.1.1)
+    rouge (3.2.1)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
-    sass (3.5.6)
+    sass (3.6.0)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -116,16 +116,17 @@ GEM
     sprockets (3.6.3)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    uglifier (4.1.11)
+    uglifier (4.1.19)
       execjs (>= 0.3.0, < 3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  ffi (= 1.9.0)
   jekyll-data
-  jumbo-jekyll-theme (= 1.7.35)
+  jumbo-jekyll-theme (= 1.8.3)
   mini_magick
 
 BUNDLED WITH
-   1.16.1
+   1.16.5
