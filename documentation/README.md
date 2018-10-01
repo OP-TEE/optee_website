@@ -93,7 +93,7 @@ The `Maintained` column shows:
 | [Texas Instruments AM43xx](http://www.ti.com/processors/sitara/arm-cortex-a9/am438x/overview.html)|`PLATFORM=ti-am43xx`| Yes | ![Actively maintained](/documentation/images/green.svg) |
 | [Xilinx Zynq 7000 ZC702](http://www.xilinx.com/products/boards-and-kits/ek-z7-zc702-g.html)|`PLATFORM=zynq7k-zc702`| Yes | ![Not maintained](/documentation/images/red.svg) v2.3.0 |
 | [Xilinx Zynq UltraScale+ MPSOC](http://www.xilinx.com/products/silicon-devices/soc/zynq-ultrascale-mpsoc.html)|`PLATFORM=zynqmp-zcu102`| Yes | ![Not maintained](/documentation/images/red.svg) v2.4.0 |
-| [Spreadtrum SC9860](http://www.spreadtrum.com/en/SC9860GV.html)|`PLATFORM=sprd-sc9860`| No | ![Not maintained](/documentation/images/red.svg) v2.1.0 |
+| [Spreadtrum SC9860](http://spreadtrum.com/en/SC9860GV.html)|`PLATFORM=sprd-sc9860`| No | ![Not maintained](/documentation/images/red.svg) v2.1.0 |
 
 ---
 ## 4. Get and build OP-TEE software
