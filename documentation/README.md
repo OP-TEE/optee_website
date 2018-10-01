@@ -84,7 +84,7 @@ The `Maintained` column shows:
 | [QEMU](http://wiki.qemu.org/Main_Page) |`PLATFORM=vexpress-qemu_virt`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
 | [QEMUv8](http://wiki.qemu.org/Main_Page) |`PLATFORM=vexpress-qemu_armv8a`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
 | [Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) |`PLATFORM=rpi3`| Yes | ![Actively maintained](/documentation/images/green.svg) |
-| [Renesas RCAR](https://www.renesas.com/en-sg/solutions/automotive/products/rcar-h3.html)|`PLATFORM=rcar`| No | ![Actively maintained](/documentation/images/green.svg) |
+| [Renesas RCAR](https://www.renesas.com/eu/en/solutions/automotive/soc/r-car-h3.html)|`PLATFORM=rcar`| No | ![Actively maintained](/documentation/images/green.svg) |
 | [Rockchip RK322X](http://www.rock-chips.com/a/en/products/RK32_Series/2016/1109/799.html) |`PLATFORM=rockchip-rk322x`| No | ![Actively maintained](/documentation/images/green.svg) |
 | [STMicroelectronics b2260 - h410 (96boards fmt)](http://www.st.com/web/en/catalog/mmc/FM131/SC999/SS1628/PF258776) |`PLATFORM=stm-b2260`| No | ![Actively maintained](/documentation/images/green.svg) |
 | [STMicroelectronics b2120 - h310 / h410](http://www.st.com/web/en/catalog/mmc/FM131/SC999/SS1628/PF258776) |`PLATFORM=stm-cannes`| No | ![Actively maintained](/documentation/images/green.svg) |
