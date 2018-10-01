@@ -1,11 +1,9 @@
 ---
-title: FAQ
+title: Frequently Asked Questions
 permalink: "/faq/"
 layout: container-breadcrumb-tabs
 ---
 
-Frequently Asked Questions
-===========================
 1.  [Source code](#1-source-code)
 2.  [Building](#2-building)
 3.  [License](#3-license)

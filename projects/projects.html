@@ -2,14 +2,15 @@
 title: Projects
 permalink: "/projects/"
 layout: container-breadcrumb
+css-package: projects
 ---
 {% include sticky-tab-bar.html %}
 
 <!-- Tab panes Start-->
 <div class="row projects-row">
-    <div class="col-md-4">
+    <div class="col-md-4 fly">
         <a href="https://github.com/OP-TEE/optee_os" class="project">
-            <i class="fa fa-github project-icon fa-5x text-center center-block"   aria-hidden="true"></i>
+            <i class="fa fa-github project-icon fa-5x text-center center-block" aria-hidden="true"></i>
             <h4 class="project-title text-center">optee_os <span class="fa fa-external-link" aria-hidden="true"></span></h4>
         </a>
         <p class="text-center">The optee_os git contains the source code for the TEE in Linux using the ARM® TrustZone® technology. This component meets the GlobalPlatform TEE System Architecture specification. It also provides the TEE Internal core API v1.1 as defined by the GlobalPlatform TEE standard for the development of Trusted Applications.
@@ -19,7 +20,7 @@ layout: container-breadcrumb
                 </a>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 fly">
         <a href="https://github.com/OP-TEE/optee_client">
             <i class="fa fa-github project-icon fa-5x text-center center-block"  class="project" aria-hidden="true"></i>
             <h4 class="project-title text-center">optee_client</h4>
@@ -30,7 +31,7 @@ layout: container-breadcrumb
             </a>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 fly">
         <a href="https://github.com/OP-TEE/optee_test">
             <i class="fa fa-github project-icon fa-5x text-center center-block" class="project"  aria-hidden="true"></i>
             <h4 class="project-title text-center">optee_test</h4>
@@ -46,7 +47,7 @@ layout: container-breadcrumb
 <hr/>
 
 <div class="row projects-row">
-    <div class="col-md-4">
+    <div class="col-md-4 fly">
         <a href="https://github.com/OP-TEE/manifest"><i class="fa fa-github project-icon fa-5x text-center center-block" aria-hidden="true"></i>
             <h4 class="project-title text-center">manifest</h4></a>
         <p class="text-center">The manifest git contains all the repo xml-files for all our supported configurations (note, OpenEmbedded and AOSP are handled differently due to the nature of how they are doing things).</p>
@@ -56,7 +57,7 @@ layout: container-breadcrumb
             </a>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 fly">
         <a href="https://github.com/OP-TEE/build"><i class="fa fa-github project-icon fa-5x text-center center-block" aria-hidden="true"></i>
             <h4 class="project-title text-center">build</h4></a>
         <p class="text-center">This project contains a set of helper makefiles with the intention to make it a bit easier for newcomers to get started. The general goal with those makefiles are that “make all”, “make run” or “make flash” should be the only targets you’d need to call. Some flags etc are propagated correctly to the various git’s involved in building “the OP-TEE solution”. But for experienced developers we recommend that try to understand how to build components individually and therefore also learn how to enable various flags manually.</p>
@@ -64,7 +65,7 @@ layout: container-breadcrumb
               More Info <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
             </a>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 fly">
         <a href="https://github.com/OP-TEE/optee_linuxdriver"><i class="fa fa-github project-icon fa-5x text-center center-block" aria-hidden="true"></i>
             <h4 class="project-title text-center">optee_linuxdriver (deprecated)</h4></a>
         <p class="text-center">Used to be the official “OP-TEE” Linux kernel driver. This has been deprecated in favor for the version we are trying to mainline, which as of now corresponds to <a href="https://lkml.org/lkml/2016/6/1/377">this</a> patch set.</p>
