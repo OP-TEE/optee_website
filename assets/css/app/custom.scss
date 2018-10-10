@@ -52,3 +52,12 @@ div#contact-thanks {
     width:100%;
     overflow: scroll;
 }
+
+// Overide the margin-bottom on the featured-jumbotron so the shaped divider is positoned correctly.
+#wrapper div#featured-jumbotron {
+    margin-bottom: 40px;
+    margin-top:40px;
+}
+#content-container #homepage-text p {
+    font-size: 18px;
+}

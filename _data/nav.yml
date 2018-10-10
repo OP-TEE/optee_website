@@ -6,7 +6,7 @@
 search:
     enabled: true
     label: OP-TEE
-
+universal-nav: true
 brand:
     text: OP-TEE
     image: 
@@ -26,8 +26,6 @@ pages:
       options:
           - text: OP-TEE Projects
             url: /projects/
-          - text: Dependencies
-            url: /dependencies/
           - text: Roadmap
             url: /roadmap/
           - text: Security Advisories

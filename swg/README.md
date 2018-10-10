@@ -1,17 +1,13 @@
 ---
-title: Security Working Group
+title: Linaro Security Working Group
 permalink: "/swg/"
-layout: container-breadcrumb
+layout: container-breadcrumb-tabs
 description: |-
   The Linaro Security Working Group (SWG) was created to help ensure an optimised
   and efficient software ecosystem exists to support ARM open source Linux distributions
   on security related topics, and to accelerate the delivery of high quality secure products
   across the ARM open source ecosystem.
 ---
-{% include sticky-tab-bar.html %}
-
-# Linaro Security Working Group
-
 The Linaro Security Working Group (SWG) was created to help ensure an optimised
 and efficient software ecosystem exists to support ARM open source Linux distributions
 on security related topics, and to accelerate the delivery of high quality secure products

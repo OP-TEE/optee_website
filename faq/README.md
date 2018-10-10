@@ -1,12 +1,9 @@
 ---
-title: FAQ
+title: Frequently Asked Questions
 permalink: "/faq/"
-layout: container-breadcrumb
+layout: container-breadcrumb-tabs
 ---
-{% include sticky-tab-bar.html %}
 
-Frequently Asked Questions
-===========================
 1.  [Source code](#1-source-code)
 2.  [Building](#2-building)
 3.  [License](#3-license)
