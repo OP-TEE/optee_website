@@ -1,7 +1,7 @@
 ---
 title: Debug
 permalink: "/docs/debug/"
-layout: default
+layout: container-breadcrumb
 description: In this document we would like to describe how to debug OP-TEE. Depending
   on the platform you are using you will have a couple of different options.
 ---
