@@ -497,7 +497,7 @@ improvements, as usual, feel free to contribute.
 [buildroot]: https://buildroot.org
 [Bus Blaster]: http://dangerousprototypes.com/docs/Bus_Blaster
 [J-Link debuggers]: https://www.segger.com/products/debug-probes/j-link/models/j-link-base/
-[Linaro rootfs]: http://releases.linaro.org/debian/images/installer-arm64/latest/linaro*.tar.gz
+[Linaro rootfs]: http://releases.linaro.org/debian/images/installer-arm64/latest/
 [LSK OP-TEE 4.4]: https://git.linaro.org/kernel/linux-linaro-stable.git/log/?h=v4.4/topic/optee
 [arm64: dt: RPI3: Add optee node]: https://github.com/linaro-swg/linux/commit/cc225a78910c37d78f8a00c80dcbf59ef7762884
 [OpenOCD]: http://openocd.org/

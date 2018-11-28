@@ -1,10 +1,9 @@
 ---
 title: Docs
 permalink: "/docs/"
-layout: default
+layout: container-breadcrumb
 description: OP-TEE documentation
 ---
-
 # OP-TEE Docs
 
 * [Debugging OP-TEE](/docs/debug/)
