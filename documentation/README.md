@@ -77,7 +77,7 @@ The `Maintained` column shows:
 | [HiKey Board (HiSilicon Kirin 620)](https://www.96boards.org/product/hikey)|`PLATFORM=hikey` or `PLATFORM=hikey-hikey`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
 | [HiKey960 Board (HiSilicon Kirin 960)](https://www.96boards.org/product/hikey960)|`PLATFORM=hikey-hikey960`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
 | [Marvell ARMADA 7K Family](https://www.marvell.com/embedded-processors/armada/armada-70xx/)|`PLATFORM=marvell-armada7k8k`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
-| [Marvell ARMADA 8K Family](http://www.marvell.com/embedded-processors/armada/aarmada-80xx/)|`PLATFORM=marvell-armada7k8k`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
+| [Marvell ARMADA 8K Family](http://www.marvell.com/embedded-processors/armada/armada-80xx/)|`PLATFORM=marvell-armada7k8k`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
 | [Marvell ARMADA 3700 Family](http://www.marvell.com/embedded-processors/armada/armada-3700/)|`PLATFORM=marvell-armada3700`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
 | [MediaTek MT8173 EVB Board](https://www.mediatek.com/products/tablets/mt8173)|`PLATFORM=mediatek-mt8173`| No | ![Not maintained](/documentation/images/green.svg) v3.0.0 |
 | [Poplar Board (HiSilicon Hi3798C V200)](https://www.96boards.org/product/poplar)|`PLATFORM=poplar`| Yes | ![Actively Maintained](/documentation/images/green.svg) |
