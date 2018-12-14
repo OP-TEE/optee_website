@@ -46,7 +46,6 @@ div#contact-thanks {
 }
 .row.members {
     background-color: #fff;
-    padding:40px;
 }
 .responsive-table{
     width:100%;
@@ -79,4 +78,7 @@ div#contact-thanks {
     background-color: #3a3a3a;
     border: 1px solid #000000;
     color:white;
+}
+.navbar-brand svg {
+    height: $navbar-height;
 }
