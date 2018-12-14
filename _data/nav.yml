@@ -11,7 +11,8 @@ brand:
     text: OP-TEE
     image: 
         enabled: true
-        name: OP-TEE-Logo_white-standard-OPTEE-colour.svg
+        svg: true
+        name: OP-TEE-Logo.html
     url: /
 pages:
     - title: About

@@ -2,38 +2,40 @@ favicon: favicon.png
 search-label: OP-TEE
 name: OP-TEE
 slogan: Open Portable Trusted Execution Environment
-
 # Breadcrumb Settings
 breadcrumb:
     image: background-image.jpg
-
-
+newsletter:
+    enabled: true
+    url: https://op-tee.us3.list-manage.com/subscribe/post?u=14baaae786342d0d405ee59c2&amp;id=88e0dbe42c
+tags_enabled: true
+# Settings for the home page
+jumbotron:
+    # Darken is set to true by default - if you wish to remove the image overlay
+    # then change this setting to false.
+    darken: true
 #Content Repo for static site.
 # Used for the edit on github include
 edit-on-github:
     enabled: true
     repo: https://github.com/OP-TEE/optee_website
-
+error-pages:
+  # image: /assets/images/content/path-to-image.jpg
+  svg: linaro-404.html
+  not-found-title: 404 page not found!
+  not-found-desc: Sorry, but the page you were looking for could not be found.
 # Mailchimp settings
 mailchimp:
     enabled: true
     id: 88e0dbe42c
-    
-# Footer Newsletter toggle.
-newsletter:
-    enabled: true
-
 # Blog tags
 tags_enabled: true
-
 # Members
 members:
     key: devicetree_members
     excludes: [/contact/]
-    
 # Footer Image default is linaro sprinkle
-linaro-footer-image: Linaro-Sprinkle.png
-    
+linaro-footer-image: /assets/images/Linaro-Sprinkle.png
 # Settings for the home page
 home:
     #Content Background Image E.g. DeviceTree.org
@@ -60,7 +62,6 @@ github_username: op-tee
 # youtube_username: linaroorg
 # twitter_username: linaroorg
 # slideshare_username: linaroorg
-
 # Blog setup
 blog:
     # Toggle site wide comments display.
@@ -106,14 +107,11 @@ schema:
             county: Cambridge 
             post_code: CB22 7GG
             country_code: UK
-
 # Disqus Comments
-
 disqus:
     enabled: true
     shortname: op-tee
-
 # Placeholder for Missing Images
-placeholder: placeholder.png
+placeholder: /assets/images/placeholder.png
 
 
