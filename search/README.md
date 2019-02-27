@@ -1,7 +1,9 @@
 ---
 title: Search
+description: >
+    Search the pages on OP-TEE.org
 permalink: "/search/"
-layout: container
+layout: jumbotron-container
 js-package: search
 css-package: search
 ---

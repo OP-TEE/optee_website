@@ -1,7 +1,15 @@
 ---
 title: Legal
 permalink: "/legal/"
-layout: container-breadcrumb-tabs
+description: >
+    Please find all relevant legal information in regards to OP-TEE and it's website here.
+layout: jumbotron-container
+jumbotron:
+    triangle-divider: true
+    animation: fade
+    background-image: /assets/images/background-image.jpg
+    title: Legal
+    description: ""
 ---
 
 <div class="tabbed-area"><!-- Nav tabs -->
@@ -206,7 +214,7 @@ LEC-ELA-30990-V0.91, 10 April 2015, Copyright (c) 2015 Linaro Limited
 <div class="tab-pane tab-pane-legal" id="3a" markdown="1">
 Linaro® is a registered trademark of Linaro in the United Kingdom and other countries
 
-Linaro has applied to have ‘96 Boards’ registered as a trademark in the UK, US and other countries.
+Linaro has applied to have `OP-TEE` registered as a trademark in the UK, US and other countries.
 
 Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries
 
@@ -218,6 +226,6 @@ The Trademark policy and guidelines provide information on what is allowed, what
 
 
 </div>
-	  </div>
+</div>
 
-    </div>
+</div>
