@@ -15,26 +15,12 @@ brand:
         name: OP-TEE-Logo.html
     url: /
 pages:
-    - title: About
-      options:
-          - text: Overview
-            url: /about/
-          - text: Security Working Group
-            url: /swg/
-          - text: Legal
-            url: /legal/
-    - title: Projects
-      options:
-          - text: OP-TEE Projects
-            url: /projects/
-          - text: Roadmap
-            url: /roadmap/
-          - text: Security Advisories
-            url: /security-advisories/
+    - title: Roadmap
+      url: /roadmap/
+    - title: Security Advisories
+      url: /security-advisories/
     - title: Documentation
       url: /documentation/
-    - title: FAQ
-      url: /faq/
     - title: Blog
       url: /blog/
     - title: Contact
