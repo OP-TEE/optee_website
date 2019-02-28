@@ -22,8 +22,173 @@ At this page we will list of all known security vulnerabilities found on OP-TEE.
 Likewise you will find when it was fixed and who reported the issue.
 
 If you have found a security issue in OP-TEE, please send us an email (see
-About) and then someone from the team will contact you for further discussion.
+[Contact]) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+
+# October 2018
+## Riscure mini-audit
+
+### Integer overflow in crypto system calls (x2) - part 2
+The function `syscall_asymm_verify` is a system call used to verify
+cryptographic signatures. One of the parameters passed in by a TA is
+`num_params`. The TEE kernel locally allocates a heap buffer of size
+`sizeof(TEE_Attribute) * num_params` without checking for an integer overflow
+in the multiplication. The lack of checking can result in a smaller heap buffer
+than required. The user supplied input `usr_params` is then copied into this
+buffer, but making the additional checks in `copy_in_attrs` fail can be used to
+terminate the copy at any moment. This allows a heap based buffer overflow with
+attacker controlled data written outside the boundaries of the buffer. Such
+corruption might allow code execution in the context of the TEE kernel.
+
+**optee_os.git:**
+ - [svc: check for allocation overflow in crypto calls part 2 (70697bf3c5d)](
+https://github.com/OP-TEE/optee_os/commit/70697bf3c5dc3d201341b01a1a8e5bc6d2fb48f8)
+
+| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
+| ------------ | :-------: | :--------------: | ------------------ |
+| [Riscure]    | Not/Ready | OP-TEE-2018-0011 | v3.3.0 and earlier |
+
+### Integer overflow in crypto system calls (x2)
+The function `syscall_obj_generate_key` is a system call which generates a
+cryptographic key. This system call is exposed to TAs which supply the length
+of the key to be generated, its type, and a number of attributes it should
+have. A multiplication operation involving the number of parameters is not
+checked for overflow which can lead to an out-of-bounds write. One of the
+parameters passed in by a TA is `param_count`. The TEE kernel locally allocates
+a heap buffer of size `sizeof(TEE_Attribute) * param_count`, without checking
+for an integer overflow in the multiplication. The lack of checking can result
+in a smaller heap buffer than required. The user supplied input `usr_params` is
+then copied into this buffer, but making the additional checks in
+`copy_in_attrs` fail can be used to terminate the copy at any moment. This
+allows a heap based buffer overflow with attacker controlled data written
+outside the boundaries of the buffer. Such corruption might allow code
+execution in the context of the TEE kernel.
+
+**optee_os.git:**
+ - [svc: check for allocation overflow in crypto calls (a637243270f)](
+https://github.com/OP-TEE/optee_os/commit/a637243270fc1faae16de059091795c32d86e65e)
+
+| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
+| ------------ | :-------: | :--------------: | ------------------ |
+| [Riscure]    | Not/Ready | OP-TEE-2018-0010 | v3.3.0 and earlier |
+
+### Integer overflow in crypto system calls
+The function `syscall_cryp_obj_populate` is a system call which initializes the
+attributes of a cryptographic object. This system call is exposed to TAs which
+supply a reference to the crypto object to be populated along with a number of
+attributes it must posses. The number of attributes is used as part of the
+multiplication to allocate memory. It is not checked for an overflow, which can
+lead to an out-of-bounds write. One of the parameters passed in by a TA is
+`attr_count`. The TEE kernel locally allocates a heap buffer of size
+`sizeof(TEE_Attribute) * attr_count` without checking for an integer overflow
+in the multiplication. The lack of checking can result in a smaller heap buffer
+than required. The user supplied input `usr_attrs` is then copied into this
+buffer, but making the additional checks in `copy_in_attrs` fail can be used to
+terminate the copy at any moment. This allows a heap based buffer overflow with
+attacker controlled data written outside the boundaries of the buffer. Such
+corruption might allow code execution in the context of the TEE kernel.
+
+**optee_os.git:**
+ - [svc: check for allocation overflow in syscall_cryp_obj_populate (b60e1cee406)](
+https://github.com/OP-TEE/optee_os/commit/b60e1cee406a1ff521145ab9534370dfb85dd592)
+
+| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
+| ------------ | :-------: | :--------------: | ------------------ |
+| [Riscure]    | Not/Ready | OP-TEE-2018-0009 | v3.3.0 and earlier |
+
+### Buffer checks missing when calling pseudo TAs
+The function `tee_svc_copy_param` is used to copy in parameters when a TA wants
+to open a session with or invoke a command upon another TA. It is used in
+system calls and is therefore indirectly callable by any TA. However, this
+function does not do sufficient parameter checking when the called TA is a
+pseudo TA. One of the parameters passed in is `callee_params` which is passed
+directly through from the TA. It is verified that this structure itself resides
+in either shared memory or memory which the calling TA has read access to.
+However, this structure can contain pointers as its members. The structure
+`callee_params` is first copied into the output parameter param. In the case
+that the called TA is a pseudo TA no further checking is done and a success
+code is returned. It is not verified that the members of param point to valid
+memory. This means there is a mismatch between the validation performed when
+invoking a normal TA and when invoking a pseudo TA. If a pseudo TA relies on
+the pointers being validated as it would be for a normal TA, it might use these
+pointers without further validation. This might result in memory corruption and
+memory disclosure.
+
+**optee_os.git:**
+ - [core: svc: always check ta parameters (d5c5b0b77b2)](
+https://github.com/OP-TEE/optee_os/commit/d5c5b0b77b2b589666024d219a8007b3f5b6faeb)
+
+| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
+| ------------ | :-------: | :--------------: | ------------------ |
+| [Riscure]    | Not/Ready | OP-TEE-2018-0007 | v3.3.0 and earlier |
+
+### Potential disclosure of previously loaded TA code and data
+The function `elf_load_body` is used to load the code and data segments while
+dynamically loading a TA. The amount of memory allocated for the code and data
+segments is previously determined and the sum of it is stored in
+`state->vasize`. The actual allocated amount of memory is rounded up the next
+multiple of the memory pool granularity. To ensure that the newly loaded TA is
+not able to observe any data belonging to a TA previously stored on this exact
+location in memory, the memory block is set to zero. The size used to memset
+the block to zero is the sum of the sizes of the segments, not the rounded size
+of the actual allocation. This means that the remaining space at the end of the
+allocation is not cleared, potentially leaking code and/or data of a previous
+TA. The information gained by this attack is limited by the memory layout of
+the (compromised) TA performing the attack and the flags (i.e. is unloading the
+TA prevented when the last session is closed due to
+`TA_FLAG_INSTANCE_KEEP_ALIVE`) and layout of the attacked TA.
+
+**optee_os.git:**
+ - [core: clear the entire TA area (7e768f8a473)](
+https://github.com/OP-TEE/optee_os/commit/7e768f8a473409215fe3fff8f6e31f8a3a0103c6)
+
+| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
+| ------------ | :-------: | :--------------: | ------------------ |
+| [Riscure]    | Not/Ready | OP-TEE-2018-0006 | v3.3.0 and earlier |
+
+### tee_mmu_check_access_rights does not check final page of TA buffer
+The function `tee_mmu_check_access_rights` is used to check access rights to a
+given memory region. This function is used when a TA performs a system call to
+verify that the TA has the correct access rights to the buffer it provides.
+However, the function `tee_mmu_check_access_rights` does not check every page of
+the TA provided buffer. A TA provides a buffer as a pointer (uaddr) and a
+length (a). The provided buffer is checked piecewise in increments of addr_incr
+(4KiB) in a for-loop. In the case where len is not already page aligned, the
+termination condition a < (uaddr + len) has been passed when addr_incr is added
+the last time of the loop iteration. Therefore, the final page of the TA
+provided buffer is not checked. A TA could provide a buffer of which up to 4KiB
+resides in the context of the TEE kernel or another TA. This could lead to
+memory corruption of the TEE itself or another TA. Memory corruption
+vulnerabilities can have serious impact such as allowing runtime control.
+
+**optee_os.git:**
+ - [core: tee_mmu_check_access_rights() check all pages (95f36d661f2)](
+https://github.com/OP-TEE/optee_os/commit/95f36d661f2b75887772ea28baaad904bde96970)
+
+| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
+| ------------ | :-------: | :--------------: | ------------------ |
+| [Riscure]    | Not/Ready | OP-TEE-2018-0005 | v3.3.0 and earlier |
+
+### Unchecked parameters are passed through from REE
+The function `set_rmem_param` is a helper function used when copying parameters
+locally for TA calls. It is used when a parameter is a buffer of type rmem. The
+function receives an input parameter param from the REE and an output parameter
+mem. After finding the shared memory object referenced by param the offset and
+size members of param are copied into mem as is. There is no validation done to
+ensure that these members actually do reside in shared memory. There is no
+further checking done on param before it gets passed on to the TA through the
+function `pointer sess->ctx->ops->enter_invoke_cmd` in the function
+tee_ta_invoke_command. How this problem manifests itself is very dependent on
+how the passed parameters are used by the TA. However, it could lead to
+corruption of any memory which the TA can access.
+
+**optee_os.git:**
+ - [core: ensure that supplied range matches MOBJ (e3adcf566cb)](
+https://github.com/OP-TEE/optee_os/commit/e3adcf566cb278444830e7badfdcc3983e334fd1)
+
+| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
+| ------------ | :-------: | :--------------: | ------------------ |
+| [Riscure]    | Not/Ready | OP-TEE-2018-0004 | v3.3.0 and earlier |
 
 # May 2018
 ## Spectre variant 4 (CVE-2018-3639)
@@ -242,6 +407,7 @@ patch.
 
 [Applus+ Laboratories]: http://www.appluslaboratories.com
 [Cyberus Technology]: https://www.cyberus-technology.de
+[Contact]: https://optee.readthedocs.io/general/contact.html#vulnerability-reporting
 [Data61]: https://www.data61.csiro.au
 [Google Project Zero]: https://googleprojectzero.blogspot.com
 [Graz University of Technology]: https://www.iaik.tugraz.at
@@ -254,6 +420,7 @@ patch.
 [optee_test]: https://github.com/OP-TEE/optee_test
 [OP-TEE]: https://github.com/OP-TEE
 [Rambus]: https://www.rambus.com
+[Riscure]: https://www.riscure.com
 [University of Adelaide]: https://www.adelaide.edu.au
 [University of Maryland]: https://www.umd.edu
 [University of Pennsylvania]: https://www.upenn.edu
