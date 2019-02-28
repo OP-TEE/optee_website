@@ -21,7 +21,6 @@ jumbotron:
 ---
 <div class="row content" id="content-container">
 <div class="container text-center fly" id="homepage-text" markdown="1">
-<p>
 OP-TEE was initially developed by ST-Ericsson (and later on by STMicroelectronics), but this was before OP-TEE got the
 name “OP-TEE” and was turned into an open source project. Back then it was a closed source and a proprietary TEE
 project. In 2013, ST-Ericsson obtained GlobalPlatform’s compliance qualification with this implementation, proving that
@@ -43,6 +42,5 @@ STMicroelectronics but maintained by Linaro and STMicroelectronics. In 2015 ther
 from STMicroelectronics to Linaro and since then it has been Linaro who is the primary owner and maintainer of the
 project. But for the maintenance part, it has become a shared responsibility between Linaro, Linaro members and other
 companies who are using OP-TEE.
-</p>
 </div>
 </div>
