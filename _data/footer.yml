@@ -42,7 +42,7 @@ columns:
           url : https://optee.readthedocs.io/debug/index.html
         - text: FAQ
           url : https://optee.readthedocs.io/faq/faq.html
-companylinks:
+company-links:
     - name: Legal
       url: /legal/
     - name: Contact
