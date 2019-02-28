@@ -3,8 +3,8 @@ footer-image: /assets/images/Linaro-Sprinkle.png
 footer-image-url: /
 company-copyright-text: Linaro Limited
 columns:
-    - title: OP-TEE Projects
-      url: /projects/
+    - title: OP-TEE Repositories
+      url: https://github.com/OP-TEE
       items:
         - text: optee_os
           url : https://github.com/OP-TEE/optee_os
@@ -16,19 +16,8 @@ columns:
           url : https://github.com/OP-TEE/manifest
         - text: build
           url : https://github.com/OP-TEE/build
-    - title: About
-      url: /about/
-      items:
-        - text: FAQ
-          url : /faq/
-        - text: Documentation
-          url : /documentation/
-        - text: LSGW
-          url : /swg/
-        - text: Roadmap
-          url : /roadmap/
     - title: Linaro Projects
-      url: https://www.linaro.org/work/
+      url: https://www.linaro.org/engineering/
       items:
         - text: 96Boards
           url : https://96boards.org/
@@ -36,16 +25,27 @@ columns:
           url : https://www.96boards.ai
         - text: DeviceTree
           url : https://www.devicetree.org
-        - text: OpenDataPlane
-          url : https://www.opendataplane.org
         - text: Developer Cloud
           url : https://linaro.cloud/
         - text: View all
           url : https://www.linaro.org/work/
-companylinks:
+    - title: OP-TEE Documentation
+      url: https://optee.readthedocs.io
+      items:
+        - text: Getting Started
+          url : https://optee.readthedocs.io/general/index.html
+        - text: Architecture
+          url : https://optee.readthedocs.io/architecture/index.html
+        - text: Build & Run
+          url : https://optee.readthedocs.io/building/index.html
+        - text: Debugging Techniques
+          url : https://optee.readthedocs.io/debug/index.html
+        - text: FAQ
+          url : https://optee.readthedocs.io/faq/faq.html
+company-links:
     - name: Legal
       url: /legal/
     - name: Contact
       url: /contact/
     - name: Press
-      url: /press/
+      url: https://www.linaro.org/press/

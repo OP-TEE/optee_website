@@ -1,7 +1,7 @@
 ---
 title: Security Advisories.
 permalink: "/security-advisories/"
-layout: container-breadcrumb
+layout: jumbotron-container
 description: |-
   At this page we will list of all known security vulnerabilities found on OP-TEE.
   Likewise you will find when it was fixed and who reported the issue.
@@ -9,6 +9,14 @@ description: |-
   If you have found a security issue in OP-TEE, please send us an email (see
   About) and then someone from the team will contact you for further discussion.
   The initial email doesn't have to contain any details.
+jumbotron:
+    triangle-divider: true
+    title: Security Advisories
+    description: >
+        At this page we will list of all known security vulnerabilities found on OP-TEE.
+        Likewise you will find when it was fixed and who reported the issue.
+    animation: fade
+    background-image: /assets/images/background-image.jpg
 ---
 At this page we will list of all known security vulnerabilities found on OP-TEE.
 Likewise you will find when it was fixed and who reported the issue.
