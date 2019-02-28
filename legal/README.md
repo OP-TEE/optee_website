@@ -22,7 +22,7 @@ jumbotron:
 <div class="tab-pane tab-pane-legal active" id="1a" markdown="1">
 ## Information about the Linaro op-tee.org Website
 
-Please refer to: [https://www.op-tee.org/about/](https://www.op-tee.org/about/)
+Please refer to: [https://optee.readthedocs.io/general/about.html](https://optee.readthedocs.io/general/about.html)
 
 ## Information about Linaro™
 
