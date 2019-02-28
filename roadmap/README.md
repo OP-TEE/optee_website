@@ -2,7 +2,7 @@
 title: OP-TEE Roadmap
 permalink: "/roadmap/"
 description: >
-    The roadmap features the key development goals for each version(relesase) of the OP-TEE project.
+    The roadmap features the key development goals for each version (relesase) of the OP-TEE project.
 layout: jumbotron-container
 jumbotron:
     triangle-divider: true
