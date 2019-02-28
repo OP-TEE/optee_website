@@ -8,3 +8,4 @@
 //= require app/sticky-tab-bar
 //= require app/custom
 //= require app/fly
+//= require app/search
