@@ -10,17 +10,16 @@ description: >
 layout: jumbotron
 jumbotron:
     triangle-divider: true
-    animation: fade
     background-image: /assets/images/background-image.jpg
     description: >-
         Isolation ● Small footprint ● Portability
     buttons:
         - title: Get Involved
           url: /contact/
-          class: btn btn-primary btn-lg fade-in-three bottom-border-five
+          class: btn btn-primary btn-lg bottom-border-five
 ---
 <div class="row content" id="content-container">
-<div class="container text-center fly" id="homepage-text" markdown="1">
+<div class="container text-center" id="homepage-text" markdown="1">
 OP-TEE was initially developed by ST-Ericsson (and later on by STMicroelectronics), but this was before OP-TEE got the
 name “OP-TEE” and was turned into an open source project. Back then it was a closed source and a proprietary TEE
 project. In 2013, ST-Ericsson obtained GlobalPlatform’s compliance qualification with this implementation, proving that
