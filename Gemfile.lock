@@ -3,7 +3,7 @@ GEM
   specs:
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.5.1)
+    autoprefixer-rails (9.5.1.1)
       execjs
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
@@ -54,6 +54,9 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-include-cache (0.2.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-last-modified-at (1.1.0)
+      jekyll (>= 3.7, < 5.0)
+      posix-spawn (~> 0.3.9)
     jekyll-paginate-v2 (2.0.0)
       jekyll (~> 3.0)
     jekyll-readme-index (0.2.0)
@@ -78,7 +81,7 @@ GEM
       jekyll
     jekyll-watch (2.1.2)
       listen (~> 3.0)
-    jumbo-jekyll-theme (3.9.4)
+    jumbo-jekyll-theme (4.5.0)
       autoprefixer-rails (~> 9.0, >= 9.0.0)
       bootstrap-sass (~> 3.4.1)
       ffi (~> 1.9.24)
@@ -88,6 +91,7 @@ GEM
       jekyll-data (> 0)
       jekyll-feed (> 0)
       jekyll-include-cache
+      jekyll-last-modified-at
       jekyll-paginate-v2 (> 0)
       jekyll-readme-index (= 0.2)
       jekyll-redirect-from (~> 0.12)
@@ -110,6 +114,7 @@ GEM
     mini_magick (4.9.3)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
+    posix-spawn (0.3.13)
     public_suffix (3.0.3)
     rack (1.6.11)
     rake (12.3.2)
@@ -139,7 +144,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll-data
-  jumbo-jekyll-theme (= 3.9.4)
+  jumbo-jekyll-theme (= 4.5.0)
   mini_magick
 
 BUNDLED WITH
