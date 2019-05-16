@@ -16,7 +16,7 @@ jumbotron:
     buttons:
         - title: Get Involved
           url: /contact/
-          class: btn btn-primary btn-lg fade-in-three bottom-border-five
+          class: btn btn-primary btn-lg bottom-border-five
 ---
 <div class="row content" id="content-container">
 <div class="container text-center" id="homepage-text" markdown="1">
