@@ -2,5 +2,5 @@
     "^/committee(/?|/index.html)$ / [R,L,NC]",
     "^/dependencies(/?|/index.html)$ / [R,L,NC]",
     "^/blog(/?|/index.html)$ /news/ [R,L,NC]",
-    "^/blog/(.*)(/?|/index.html)$ /news/ [R,L,NC]",
+    "^/blog/(.*)(/?|/index.html)$ /news/ [R,L,NC]"
 ]
