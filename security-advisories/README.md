@@ -787,7 +787,7 @@ patch.
 [Graz University of Technology]: https://www.iaik.tugraz.at
 [Intel Security Advanced Threat Research]: http://www.intelsecurity.com/advanced-threat-research
 [KPTI]: https://lwn.net/Articles/741878
-[LibTomCrypt]: http://www.libtom.org/LibTomCrypt
+[LibTomCrypt]: https://www.libtom.net/LibTomCrypt/
 [Meltdown and Spectre]: https://spectreattack.com
 [Meltdown whitepaper]: https://meltdownattack.com/meltdown.pdf
 [Netflix]: https://www.netflix.com
