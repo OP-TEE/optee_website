@@ -1,51 +1,44 @@
-include: members.html
-footer-image: /assets/images/Linaro-Sprinkle.png
-footer-image-url: /
-company-copyright-text: Linaro Limited
-columns:
-    - title: OP-TEE Repositories
-      url: https://github.com/OP-TEE
-      items:
-        - text: optee_os
-          url : https://github.com/OP-TEE/optee_os
-        - text: optee_client
-          url : https://github.com/OP-TEE/optee_client
-        - text: optee_test
-          url : https://github.com/OP-TEE/optee_test
-        - text: manifest
-          url : https://github.com/OP-TEE/manifest
-        - text: build
-          url : https://github.com/OP-TEE/build
-    - title: Linaro Projects
-      url: https://www.linaro.org/engineering/
-      items:
-        - text: 96Boards
-          url : https://96boards.org/
-        - text: 96Boards.ai
-          url : https://www.96boards.ai
-        - text: DeviceTree
-          url : https://www.devicetree.org
-        - text: Developer Cloud
-          url : https://linaro.cloud/
-        - text: View all
-          url : https://www.linaro.org/work/
-    - title: OP-TEE Documentation
-      url: https://optee.readthedocs.io
-      items:
-        - text: Getting Started
-          url : https://optee.readthedocs.io/general/index.html
-        - text: Architecture
-          url : https://optee.readthedocs.io/architecture/index.html
-        - text: Build & Run
-          url : https://optee.readthedocs.io/building/index.html
-        - text: Debugging Techniques
-          url : https://optee.readthedocs.io/debug/index.html
-        - text: FAQ
-          url : https://optee.readthedocs.io/faq/faq.html
+# Copyright text to be displayed at the very bottom of the footer
+copyright-text: Linaro Limited
+# Set this to false if you do not want the Linaro logo in the footer.
+linaro-branding: true
+# Social Media Icons Row
+social-media-icons: true
+# Display the contact details section
+display-contact-details: true
+# These links are displayed at the very bottom of the footer.
 company-links:
     - name: Legal
       url: /legal/
     - name: Contact
       url: /contact/
     - name: Press
-      url: https://www.linaro.org/press/
+      url: /press/
+second-column:
+    title: OP-TEE on GitHub
+    latest-posts: false
+    items:
+      - name: optee_os
+        url : https://github.com/OP-TEE/optee_os
+      - name: optee_client
+        url : https://github.com/OP-TEE/optee_client
+      - name: optee_test
+        url : https://github.com/OP-TEE/optee_test
+      - name: manifest
+        url : https://github.com/OP-TEE/manifest
+      - name: build
+        url : https://github.com/OP-TEE/build
+# Custom Col on the right
+third-column:
+    title: Other Projects
+    items:
+      - name: 96Boards
+        url: https://www.96boards.org
+      - name: Linaro Connect
+        url: https://connect.linaro.org
+      - name: DeviceTree
+        url: https://www.devicetree.org
+      - name: OP-TEE
+        url: https://www.op-tee.org
+      - name: Linaro Developer Cloud
+        url: https://www.linaro.cloud
