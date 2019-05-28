@@ -1,6 +1,6 @@
 ---
 title: Security Advisories.
-permalink: "/security-advisories/"
+permalink: /security-advisories/
 layout: jumbotron-container
 description: |-
   At this page we will list of all known security vulnerabilities found on OP-TEE.
@@ -24,6 +24,380 @@ Likewise you will find when it was fixed and who reported the issue.
 If you have found a security issue in OP-TEE, please send us an email (see
 [Contact]) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+# May 2019
+## Netflix review
+
+### RPC alloc could allocate smaller shared memory than requested
+The function thread_rpc_alloc() [used by functions thread_rpc_alloc_payload(),
+thread_rpc_alloc_global_payload()] allocates shared memory buffer via RPC. The
+required size is copied to the RPC's thread shared memory arg[] from internal
+TEE memory params[] in get_rpc_arg(). Then thread_rpc_alloc() calls thread_rpc()
+to send the request to the REE.
+
+The REE then process the request, update shared memory arg[] at will, when the
+RPC is completed, thread_rpc() returns. thread_rpc_alloc() then call
+get_rpc_alloc_res() to parse result from the REE and allocate corresponding
+memory object (mobj) in case of success (using buf_ptr and size from arg[]).
+
+Consequences: Resulting allocated memory could be smaller than requested:
+Returned memory [PA,SIZE] could be inside shared memory 'NSEC', but if caller
+does not check mobj->size, this could be leverage to access invalid or
+restricted memory beyond the shared 'NSEC' intended memory; consequence of doing
+so depends on memory arrangement and memory map. This could also have other side
+effects in the case of attribute [OPTEE_MSG_ATTR_NONCONTIG], like mapping less
+pages than expected.
+
+e.g.#1: gprof_send_rpc() uses thread_rpc_alloc_payload(SIZE), then use returned
+mobj to get the virtual address, but assume the requested SIZE is served, and
+does not check the actual size of the allocated memory object, and uses memcpy()
+over it.
+
+e.g.#2: ta_load() uses thread_rpc_alloc_payload() to allocate space for a TA
+binary, then get the virtual address (ta_buf) from the associated mobj without
+further checks on the size. ta_buf is later used assumed to be of a given size.
+
+e.g.#3: tee_fs_rpc_cache_alloc() uses thread_rpc_alloc_payload(), then get the
+va from the mobj, but the size is the one given in argument, and could be
+smaller than the one in the mobj. This API is used in various places.
+
+e.g.#4 tee_rpmb_*()->tee_rpmb_alloc()->thread_rpc_alloc_payload(), the va from
+the mobj could point to a smaller allocated block than required.
+
+**optee_os.git:**
+ - [core: verify size of allocated shared memory (cc6bc5f9421)](
+https://github.com/OP-TEE/optee_os/commit/cc6bc5f94210ea24b774c997fd482c936735db71)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0001 | v3.5.0 and earlier |
+
+
+### Poison or leak shared secure memory allocated in the kernel
+Memory allocated through alloc_temp_sec_mem() is not scrubbed when returned. One
+could leverage this to copy arbitrary data into this secure memory
+pool or to snoop former data from a previous call done by another TA (e.g. using
+TEE_PARAM_TYPE_MEMREF_OUTPUT allows to map the data while not overwriting it,
+hence accessing to what is already there).
+
+**optee_os.git:**
+ - [core: scrub user-tainted memory returned by alloc_temp_sec_mem() (93488596e6)](
+https://github.com/OP-TEE/optee_os/commit/934885496e6db0b7c4c8ca28a1aee6696dcc72a6)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0002 | v3.5.0 and earlier |
+
+### Poison kernel heap memory
+syscall_log(), syscall_open_ta_session(), syscall_get_property()
+... can be used to poison kernel heap memory. Data copied from userland is not
+scrubbed when the syscall returns. e.g. when doing syscall_log() one can copy
+arbitrary data of variable length onto kernel memory. When free() is called, the
+block is returned to the memory pool, tainted with that userland data.
+
+**optee_os.git:**
+ - [core: scrub user-tainted kernel heap memory before freeing it (70b613102c)](
+https://github.com/OP-TEE/optee_os/commit/70b613102ce72808f6a0ad9f6f97f0545fd6ad02)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0003 | v3.5.0 and earlier |
+
+### Integer overflow on parameters from REE leads to smaller memory object than expected
+msg_param_mobj_from_noncontig() does not check that buf_ptr+size do
+not overflow. As a result, num_pages could be computed small, while size could
+be big. Only 'num_pages' will be mapped/registered in the returned mobj. If the
+caller does not compare mobj->size with required size, it can end-up
+manipulating memory out of the intended region. Same rational as for 1.1 apply,
+one could use it to make the caller accessing memory beyond the shared memory.
+
+e.g. set_tmem_param()->msg_param_mobj_from_nonconfig() takes the returned mobj
+as it is, and associate to it the size that came from the REE without checking
+the actual mobj->size. The outcome of this depends on memory arrangement and TA
+implementation.
+
+e.g. tee_entry_std()->register_shm()->msg_param_mobj_from_noncontig(). This path
+should not be problematique for the discussed use case where num_pages is
+smaller than expected, but the buffer overflow may have other attack use cases.
+
+e.g. thread_rpc_alloc()->get_rpc_alloc_res()->msg_param_mobj_from_noncontig().
+This path provides a similar attack as discussed in "RPC alloc could allocate
+smaller shared memory than requested", where the resulting mobj->size is smaller
+that requested/expected.
+
+**optee_os.git:**
+ - [core: check for overflow in msg_param_mobj_from_noncontig() (e1509d6e61)](
+https://github.com/OP-TEE/optee_os/commit/e1509d6e6178011df581c535ee8bf8c147053df2)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0004 | v3.5.0 and earlier |
+
+### TA binaries should be authenticated before doing operations based on their content
+Loading a TA, which is an ELF binary, triggers a lot of operations done on the
+content of the ELF structure/info which are under REE control. It would be
+preferable to fully authenticate the binary before doing any of those ELF
+related operations (loading segments etc). This will not prevent the ELF
+manipulation from going wrong, but it will move the threat from anyone on the
+REE accessing the binaries, to restricted people having a valid key to sign a
+binary.
+
+e.g. for REE FS TA storage, the hash is verified only when full binary have been
+consumed, which is at the end of the ELF binding process. See
+ree_fs_ta.c::ta_read().
+
+Additionally, this is a weak spot: a lot of operations rely on getting there, if
+the check_digest() never happens for X reason, the caller will just keep going
+(effectively allowing a non-authenticated TA to run). No attack path where
+identified, but some may exist or may be introduced to alter either the
+handle->nw_ta_size in ree_fs_ta.c, or the state->data_len in elf_load.c allowing
+to bypass the digest check.
+
+**optee_os.git:**
+ - [core: REE FS TAs: add option to verify signature before processing (7db24ad625)](
+https://github.com/OP-TEE/optee_os/commit/7db24ad625b91a7f4f16c33b7c825cd56952a8cf)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0005 | v3.5.0 and earlier |
+
+### Constant time memory compare function
+A constant time memory compare function should be available for the Trusted
+Applications in the TEE/TA API.
+
+**optee_os.git:**
+ - [libutee: TEE_MemCompare(): use constant time algorithm (65551e69a0)](
+https://github.com/OP-TEE/optee_os/commit/65551e69a006c496fb18d8374389b7b3617c2076)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0006 | v3.5.0 and earlier |
+
+### Overflows during RPMB operations
+During the RPMB initialization process, the TEE request the REE for
+some of the device information
+[tee_rpmb_init()->tee_rpmb_get_dev_info()->tee_rpmb_invoke()] The returned
+information from the REE (struct rpmb_dev_info) is not checked and some of the
+fields are used in multiplication, also used to compute rpmb_ctx->rel_wr_blkcnt
+which could end up being 0 or very large.
+
+At run time, controlling rel_wr_blkcnt is also important as it leads to better
+control in sub functions used later in the code, like inside
+tee_rpmb_write_blk(). All of the operations should there be under tight control
+and make use of the xxx_OVERFLOW() macros as much as possible, this includes
+computing blkcnt, req_size, tmp_blkcnt, ...
+
+**optee_os.git:**
+ - [core: RPMB FS: check for potential overflows (ea81076f78)](
+https://github.com/OP-TEE/optee_os/commit/ea81076f7896de7278dcd62b47b99d5dc3351caf)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0007 | v3.5.0 and earlier |
+
+### Use of arbitrary virtual address in TEE crypto service
+syscall_authenc_init() dos not check that the given nonce address
+is within TA accessible memory.
+
+**optee_os.git:**
+ - [core: syscall_authenc_init(): check nonce accessibility (06aa9a9b41)](
+https://github.com/OP-TEE/optee_os/commit/06aa9a9b4117a045197c39ba9754422ce0593c0f)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0008 | v3.5.0 and earlier |
+
+### Integer overflows in TEE crypto service
+There is a risk of integer overflowsa in the following locations.
+- copy_in_attrs(): if a very large 'attr_count' is given, the following
+  operation overflows: "attr_count * sizeof(struct utee_attribute)"
+- syscall_cryp_obj_populate(): if a very large 'attr_count' is given, the
+  following operation overflows "sizeof(TEE_Attribute) * attr_count"
+- syscall_asymm_verify(), syscall_asymm_operate(): if a very large 'num_params'
+  is given, the following operation overflows "sizeof(TEE_Attribute) *
+  num_params"
+- syscall_cryp_derive_key(), syscall_obj_generate_key(): if a very large
+  'param_count' is given, the following operation overflows
+  "sizeof(TEE_Attribute) * param_count"
+- syscall_cryp_derive_key(): if a very large 'params[0].content.ref.length' is
+  given, the following overflows "params[0].content.ref.length * 8" [this is
+  probably not realistic as params[0].content.ref.len is checked to some extend
+  during attrs copy]
+
+**optee_os.git:**
+ - [core: crypto: add overflow check when copying attributes (bd81e5b95e)](
+https://github.com/OP-TEE/optee_os/commit/bd81e5b95ec910e9e3fa9f1824f3981288af5d50)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0009 | v3.5.0 and earlier |
+
+### Copying memory with source and destination overlap should use memmove(),merged offset may be wrong.
+get_elf_segments() final stage tries to aggregate segments. Inside
+the "while (idx < num_segs)" loop, the logic to remove the current index is to
+run a memcpy() to shift down everything beyond that point, basically 'moving'
+down the rest of the segments.
+
+**optee_os.git:**
+ - [core: get_elf_segments(): use memmove on overlapping memory (3bcb882f20)](
+https://github.com/OP-TEE/optee_os/commit/3bcb882f200c2dd14ea1937031d5bd97bf6a78ca)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0010 | v3.5.0 and earlier |
+
+### core: load_elf_from_store(): check stack size
+ROUNDUP operations while adding the stack segment could overflow.
+
+Inside load_elf_from_store(), the ta_head structure is retrieved from
+un-authenticated area, and contains the stack size. The stack size could either
+already be 0, or could be large enough so it become 0 when rounded up to
+STACK_ALIGNMENT.
+
+When allocating the memory using alloc_ta_mem(), which can allocate a 0 bytes
+size memory block.
+
+The code then call vm_map() to actually add the stack segment, and provide the
+stack_size (which can be 0, or very large if CFG_PAGED_USER_TA is used) as an
+argument. vm_map() logic round up the size again to SMALL_PAGE_SIZE (which is
+larger than STACK_ALIGNMENT). Again here, the size could either already be 0, or
+end-up being 0.
+
+vm_map() will in either way return a virtual address to the caller for this 0
+bytes memory block. Now there is a disconnection between, ta_head->stack_size,
+mobj_stack->size and reg->size=3D0, which all 3 could contain different values.
+Consequence on having a disconnection between the various values, or having a 0
+bytes stack size has not been analyzed.
+
+**optee_os.git:**
+ - [core: load_elf_from_store(): check stack size (b17e2e4444)](
+https://github.com/OP-TEE/optee_os/commit/b17e2e44441a6b8233d5e2bdccdac4ec23a0e819)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0011 | v3.5.0 and earlier |
+
+### SHDR_GET_*() macros integer overflow
+The SHDR_GET_SIZE(), SHDR_GET_HASH() and SHDR_GET_SIG() macros
+could overflow depending on given 'x' and associated hash_size, sig_size values.
+
+Note: no other attack path than the ones reported by Riscure (not using keyword
+'return' when checking img_size and shdr_size) are identified to exploit this
+overflow, however it is error prone and could lead to a future vulnerability.
+
+**optee_os.git:**
+ - [core: add VA overflow check in shdr_alloc_and_copy() (062765e4f8)](
+https://github.com/OP-TEE/optee_os/commit/062765e4f80b97c90fd62d17859b675797af5de9)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0012 | v3.5.0 and earlier |
+
+### MOBJ_REG_SHM_SIZE() integer overflow
+The macro MOBJ_REG_SHM_SIZE() could overflow depending on
+'nr_pages'.
+
+e.g. mobj_mapped_shm_alloc()->mobj_reg_shm_alloc() called in various places.
+
+In such case, the mobj_reg_shm memory would be a small memory block, while
+num_pages would be large, which could lead to a generous memcpy() when copying
+the pages in internal memory, the outcome of this depends on memory mapping.
+
+Note: no attack path are identified to exploit this overflow, however it is
+error prone and could lead to a future vulnerability.
+
+**optee_os.git:**
+ - [core: add overflow check in mobj_reg_shm_alloc() (8ad7af5027)](
+https://github.com/OP-TEE/optee_os/commit/8ad7af50273124c3cf043a798df633ae2c388913)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0013 | v3.5.0 and earlier |
+
+### Virtual address returned to the REE
+session context virtual address is returned to the REE in
+entry_open_session(); it is then used back in entry_close_session() and
+entry_invoke_command().
+
+Sharing virtual addresses with the REE leads to virtual memory addresses
+disclosure that could be leverage to defeat ASLR and/or mount an attack.
+Exchanging virtual addresses between REE and TEE is generally a bad idea, it
+discloses TEE internal virtual addresses and flows info which could lead to
+future vulnerabilities if any error is made while verifying or manipulating the
+exchanged virtual address.
+
+Additionally, a vaddr_t is used to carry the virtual address, which on a 64bits
+could overflow/swap as the session 'id' is a uint32_t [see tee_ta_get_session()]
+and have other side-effects on the execution (being non-unique | N to 1).
+
+**optee_os.git:**
+ - [core: do not use virtual addresses as session identifier (99164a05ff)](
+https://github.com/OP-TEE/optee_os/commit/99164a05ff515a077ff0f3e1550838d24623665b)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0014 | v3.5.0 and earlier |
+
+### Integer overflow could lead to too large num_syms and rel_end during relocation process
+(shdr[sym_tab_idx].sh_addr + shdr[sym_tab_idx].sh_size) and
+(shdr[rel_sidx].sh_addr + shdr[rel_sidx].sh_size) could overflow, resulting in a
+large num_syms, or an invalid rel_end. Both could be used to access beyond
+legitimate memory. Outcome of such flaw is unclear but could be used to snoop or
+alter memory.
+
+**optee_os.git:**
+ - [core: ELF relocation: use ADD_OVERFLOW() (781c8f007c)](
+https://github.com/OP-TEE/optee_os/commit/781c8f007c4b4ac1d1966f1aacd37fbfe5d628aa)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0015 | v3.5.0 and earlier |
+
+### ehdr.e_shnum could be very large and used to access out of bound memory
+At the end of elf_load_body(), code process relocation information
+segment: the relocation information are copied in a system heap memory block,
+associated to state->shdr. As the computed size is the result of an uncontrolled
+multiplication (ehdr.e_shnum * ehdr.e_shentsize), it could have overflowed and
+result in allocating a small memory block.
+
+Later in the code, there are no MUL_OVERFLOW() check either performed, and the
+code will access beyond the allocated memory. (e.g. in elf_process_rel() ) The
+outcome of this flaw depends on system heap memory arrangement but could be used
+to snoop information or alter memory.
+
+e.g. e32_process_rel() retrieved sym_tab_idx from shdr[rel_sidx].sh_link, then
+check if sym_tab_idx is smaller than ehdr->e_shnum; as the later can be as large
+as needed, shdr[sym_tab_idx] can point beyond the allocated memory block.
+Additionally, depending on memory arrangement, one could point to shared memory,
+and control the targeted memory block to mount further TOCTOU attacks (for
+instance to set sym_tab to an arbitrary value by updating
+shdr[sym_tab_idx].sh_addr with proper timing).
+
+**optee_os.git:**
+ - [core: elf_load_body(): use MUL_OVERFLOW() to get size of section headers (5787ecdf75)](
+https://github.com/OP-TEE/optee_os/commit/5787ecdf758d9edbfb5fb93c49c808f7a51a214b)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0016 | v3.5.0 and earlier |
+
+### Integer overflow in TA memory map logic
+vm_map() and umap_add_region() do not check that given offs +
+ROUNDUP(len...) do not overflow. As a result the check to see if the region is
+in within a given memory object can be bypassed and both offset and/or size
+parameters could be very large.
+
+This could be leverage to alter the intended behavior of functions using either
+the region size or the region offset, like tee_mmu_user_pa2va_helper() for
+instance.
+
+**optee_os.git:**
+ - [core: umap_add_region(): add overflow check (bcc81cf8f0)](
+https://github.com/OP-TEE/optee_os/commit/bcc81cf8f0ec93c62ff5bc1b1c3d09e50cc2525f)
+
+| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------: | :--------------: | ------------------ |
+| [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0017 | v3.5.0 and earlier |
+
 
 # October 2018
 ## Riscure mini-audit
@@ -413,9 +787,10 @@ patch.
 [Graz University of Technology]: https://www.iaik.tugraz.at
 [Intel Security Advanced Threat Research]: http://www.intelsecurity.com/advanced-threat-research
 [KPTI]: https://lwn.net/Articles/741878
-[LibTomCrypt]: http://www.libtom.org/LibTomCrypt
+[LibTomCrypt]: https://www.libtom.net/LibTomCrypt/
 [Meltdown and Spectre]: https://spectreattack.com
 [Meltdown whitepaper]: https://meltdownattack.com/meltdown.pdf
+[Netflix]: https://www.netflix.com
 [optee_os]: https://github.com/OP-TEE/optee_os
 [optee_test]: https://github.com/OP-TEE/optee_test
 [OP-TEE]: https://github.com/OP-TEE
