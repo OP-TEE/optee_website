@@ -1,5 +1,5 @@
 title: OP-TEE
-email: kyle.kirkby@linaro.org
+email: contact@linaro.org
 description: |-
     OP-TEE is an open source project which contains a full implementation to make up a complete Trusted Execution Environment
 baseurl: "" # the subpath of your site, e.g. /blog
