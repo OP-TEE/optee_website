@@ -1,6 +1,6 @@
 ---
 title: Security Advisories.
-permalink: "/security-advisories/"
+permalink: /security-advisories/
 layout: jumbotron-container
 description: |-
   At this page we will list of all known security vulnerabilities found on OP-TEE.
