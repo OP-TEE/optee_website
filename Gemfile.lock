@@ -75,7 +75,7 @@ GEM
       jekyll
     jekyll-watch (2.1.2)
       listen (~> 3.0)
-    jumbo-jekyll-theme (4.7.4)
+    jumbo-jekyll-theme (4.7.6)
       autoprefixer-rails (~> 9.0, >= 9.0.0)
       ffi (~> 1.9.24)
       hash-joiner (~> 0)
@@ -131,7 +131,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll-data
-  jumbo-jekyll-theme (= 4.7.4)
+  jumbo-jekyll-theme (= 4.7.6)
   mini_magick
 
 BUNDLED WITH
