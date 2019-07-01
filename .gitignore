@@ -1,4 +1,6 @@
-_site/*
+_site
 .asset-cache
 .sass-cache
-
+Gemfile.lock
+staging.op-tee.org
+production.op-tee.org
