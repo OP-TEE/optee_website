@@ -18,6 +18,7 @@ exclude:
     - staging.op-tee.org
     - production.op-tee.org
     - build-site.sh
+    - check-links.sh
     - CODEOWNERS
     - Gemfile
     - Gemfile.lock
