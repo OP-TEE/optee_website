@@ -15,7 +15,6 @@ jumbotron:
     description: >
         At this page we will list of all known security vulnerabilities found on OP-TEE.
         Likewise you will find when it was fixed and who reported the issue.
-    animation: fade
     background-image: /assets/images/background-image.jpg
 ---
 At this page we will list of all known security vulnerabilities found on OP-TEE.
