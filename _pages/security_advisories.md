@@ -23,6 +23,30 @@ Likewise you will find when it was fixed and who reported the issue.
 If you have found a security issue in OP-TEE, please send us an email (see
 [Contact]) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+# June 2019
+## ecc_sign_hash blinding CVE-2018-12437
+Keegan Ryan from nccgroup discovered a vulnerability in the ECC implementation
+of many crypto libraries that allows a hacker to recover the ECDSA or DSA
+private keys using a side channel attack. This has been fixed in the crypto
+library upstream trees.
+
+OP-TEE is using a fork of LibTomCrypt. The fork is based on an older version of
+LibTomCrypt and therefore the fix for ECC vulnerability was missing. After being
+informed about this, we have backported the fix into the LibTomCrypt fork in
+OP-TEE.
+
+For more details about the vulnerability, please refer to the initial disclosure
+report (link: [technical-advisory-return-of-the-hidden-number-problem]).
+
+**optee_os.git:**
+ - [ecc_sign_hash blinding CVE-2018-12437 (8bbd9b374a)](
+https://github.com/OP-TEE/optee_os/commit/8bbd9b374a51a1b8617796aae8a70c271543357f)
+
+| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------:        | :--------------: | ------------------ |
+| Santos Merino del Pozo      | [CVE-2018-12437] | OP-TEE-2019-0018 | v3.5.0 and earlier |
+
+
 # May 2019
 ## Netflix review
 
@@ -795,6 +819,8 @@ patch.
 [OP-TEE]: https://github.com/OP-TEE
 [Rambus]: https://www.rambus.com
 [Riscure]: https://www.riscure.com
+[technical-advisory-return-of-the-hidden-number-problem]: https://www.nccgroup.trust/us/our-research/technical-advisory-return-of-the-hidden-number-problem/
 [University of Adelaide]: https://www.adelaide.edu.au
 [University of Maryland]: https://www.umd.edu
 [University of Pennsylvania]: https://www.upenn.edu
+[CVE-2018-12437]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12437
