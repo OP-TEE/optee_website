@@ -1,4 +1,4 @@
-favicon: favicon.png
+favicon: /assets/images/favicon.png
 search-label: OP-TEE
 name: OP-TEE
 slogan: Open Portable Trusted Execution Environment
@@ -51,8 +51,8 @@ home:
         # Title for the home page jumbotron
         # Background image for the home page located in assets/images
         background-image:
-            darken: true    
-            name: background-image.jpg        
+            darken: true
+            name: background-image.jpg
 
 # # Jekyll social media site settings. Github, LinkedIn, Google+, Facebook and Youtube
 github_username: op-tee
@@ -91,11 +91,10 @@ blog:
         #       display_fields:
         #           title: title
         #           url: url
-                  
+
 #Google analytics
-google:
-    tag_manager: GTM-TDJ7LGH
-    analytics: UA-16756069-20
+google_analytics:
+    production: UA-16756069-20
 # Shema.org settings used in the schema.html include.
 schema:
     enabled: true
@@ -103,9 +102,9 @@ schema:
         name: OP-TEE
         url: https://www.op-tee.org
         address:
-            street: Harston Mill, Royston Rd 
-            town: Harston 
-            county: Cambridge 
+            street: Harston Mill, Royston Rd
+            town: Harston
+            county: Cambridge
             post_code: CB22 7GG
             country_code: UK
 # Disqus Comments
@@ -114,5 +113,3 @@ disqus:
     shortname: op-tee
 # Placeholder for Missing Images
 placeholder: /assets/images/placeholder.png
-
-

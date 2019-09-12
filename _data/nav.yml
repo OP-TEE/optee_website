@@ -4,19 +4,17 @@
 # - Toggle Search Bar.
 # Search Config
 search:
-    enabled: true
+    enabled: false
     label: OP-TEE
 universal-nav: true
 brand:
     text: OP-TEE
-    image: 
+    image:
         enabled: true
         svg: true
         name: OP-TEE-Logo.html
     url: /
 pages:
-    - title: Roadmap
-      url: /roadmap/
     - title: Security Advisories
       url: /security-advisories/
     - title: Documentation
