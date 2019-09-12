@@ -701,7 +701,7 @@ such algorithm is the so called [Montgomery powering
 ladder](https://cr.yp.to/bib/2003/joye-ladder.pdf), which does the same amount
 of operations in every loop. I.e., it will always do square and multiply in
 every loop. The fix (Montgomery ladder) for the timing attack has been
-implemented in:  
+implemented in:
 
 **optee_os.git:**
 - [libmpa: Implement Montgomery ladder
@@ -727,7 +727,7 @@ to final result instead of just doing the exponentiation directly. However, this
 also means that if somethings goes wrong in the intermediate calculations with
 'p' or 'q' it is possible to completely recover the private key if you also have
 access to a valid signature. I.e. it's the combination of valid and invalid
-signature that makes it possible to recover the private key.  
+signature that makes it possible to recover the private key.
 
 The important thing is to never ever return any incorrect signature back to
 the caller. LibTomCrypt already has mitigations for this. They have the flag
@@ -781,7 +781,7 @@ patch.
 
 [Applus+ Laboratories]: http://www.appluslaboratories.com
 [Cyberus Technology]: https://www.cyberus-technology.de
-[Contact]: https://optee.readthedocs.io/general/contact.html#vulnerability-reporting
+[Contact]: https://optee.readthedocs.io/en/latest/general/contact.html#vulnerability-reporting
 [Data61]: https://www.data61.csiro.au
 [Google Project Zero]: https://googleprojectzero.blogspot.com
 [Graz University of Technology]: https://www.iaik.tugraz.at
@@ -799,4 +799,3 @@ patch.
 [University of Adelaide]: https://www.adelaide.edu.au
 [University of Maryland]: https://www.umd.edu
 [University of Pennsylvania]: https://www.upenn.edu
-
