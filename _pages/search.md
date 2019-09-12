@@ -3,7 +3,7 @@ title: Search
 description: >
     Search the pages on OP-TEE.org
 permalink: "/search/"
-layout: jumbotron-container
+layout: flow
 ---
 <script>
   (function() {

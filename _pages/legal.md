@@ -92,7 +92,7 @@ Where the Website contains links to other sites and resources provided by third 
 
 ## Thank you for visiting the Website.
 
-LEC-ELA-30989-V0.91, 10 April 2015\. Copyright (c) 2015 Linaro Limited
+LEC-ELA-30989-V0.91, 10 April 2015\. Copyright (c) 2019 Linaro Limited
 
 </div>
 <div class="tab-pane tab-pane-legal" id="2a" markdown="1">
@@ -208,7 +208,7 @@ We may revise this privacy policy at any time by amending this page. You are exp
 
 Thank you for visiting Our site.
 
-LEC-ELA-30990-V0.91, 10 April 2015, Copyright (c) 2015 Linaro Limited
+LEC-ELA-30990-V0.91, 10 April 2015, Copyright (c) 2019 Linaro Limited
 
 </div>
 <div class="tab-pane tab-pane-legal" id="3a" markdown="1">
