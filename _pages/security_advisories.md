@@ -780,7 +780,7 @@ patch.
 
 [Applus+ Laboratories]: http://www.appluslaboratories.com
 [Cyberus Technology]: https://www.cyberus-technology.de
-[Contact]: https://optee.readthedocs.io/general/contact.html#vulnerability-reporting
+[Contact]: https://optee.readthedocs.io/en/latest/general/contact.html#vulnerability-reporting
 [Data61]: https://www.data61.csiro.au
 [Google Project Zero]: https://googleprojectzero.blogspot.com
 [Graz University of Technology]: https://www.iaik.tugraz.at

@@ -14,7 +14,7 @@ flow:
           style: text-center
           text_content:
             text: >
-                For public queries and questions please view the contact page [here](https://optee.readthedocs.io/general/contact.html).
+                For public queries and questions please view the contact page [here](https://optee.readthedocs.io/en/latest/general/contact.html).
         - format: text
           style: text-center
           text_content:
