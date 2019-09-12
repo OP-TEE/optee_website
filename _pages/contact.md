@@ -28,13 +28,3 @@ flow:
               url: mailto:contact@linaro.org?subject=OP-TEE.org - Contact Us
               icon: fa fa-envelope
 ---
-<div class="col-xs-12 text-center">
-    <address>
-        OP-TEE c/o Linaro<br>
-        Harston Mill<br>
-        Royston Rd<br>
-        Harston<br>
-        Cambridge<br>
-        CB22 7GG<br>
-    </address>
-</div>
