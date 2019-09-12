@@ -14,9 +14,15 @@ blog_images_dir: assets/images/posts/
 theme: jumbo-jekyll-theme
 # Files to be excluded from the Jekyll Build.
 exclude:
-    - .asset-cache
-    - .sass-cache
     - _site
+    - staging.op-tee.org
+    - production.op-tee.org
+    - build-site.sh
+    - check-links.sh
+    - CODEOWNERS
+    - Gemfile
+    - Gemfile.lock
+    - README.md
 # Jekyll Assets setup
 assets:
   # Compress JS Assets - uses the uglifier 

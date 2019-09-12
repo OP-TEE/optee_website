@@ -1,7 +1,6 @@
-_site/*
+_site
 .asset-cache
 .sass-cache
 Gemfile.lock
-production.op-tee.org
 staging.op-tee.org
-assets/resized
+production.op-tee.org
