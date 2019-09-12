@@ -4,3 +4,4 @@ _site/*
 Gemfile.lock
 production.op-tee.org
 staging.op-tee.org
+assets/resized
