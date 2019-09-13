@@ -57,7 +57,7 @@ flow:
             size: h2
             text: Supporting Companies
         - format: members
-          style: zoom grayscale
+          style: zoom
           members_content:
             item_width: "12" #bootstrap col-sm- value e.g 3, 4, 5ths etc
             items:
