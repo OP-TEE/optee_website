@@ -34,7 +34,7 @@ flow:
                     the APIs were behaving as expected. After the [split in
                     2013](https://www.ericsson.com/en/press-releases/2013/8/ericsson-and-stmicroelectronics-complete-transaction-to-split-up-st-ericsson)
                     of [Ericsson](https://www.ericsson.com/en) and
-                    [STMicroelectronics](https://www.st.com/content/st_com/en.html), `TEE`
+                    [STMicroelectronics](https://www.st.com/content/st_com/en.html), TEE
                     became owned by STMicroelectronics.
           - format: text
             style: text-center
