@@ -38,17 +38,16 @@ flow:
           - format: text
             text_content:
                 text: >
-                    Later in 2013, [Linaro](https://www.linaro.org/) was starting for
-                    for the Security Working Group (SWG): one of the initial key tasks
-                    for the SWG was to work on an open-source TEE project. After talking
-                    to various TEE vendors, Linaro began working with the
-                    STMicroelectronics TEE project. Before we were able to open-source
-                    this code, we needed to replace some proprietary components with
-                    open source components. This work took several months with engineers
-                    from both STMicroelectronics and Linaro's SWG making significant
-                    contributions. These components included the cryptographic library,
-                    secure monitor, build system and others. At the same time, the code
-                    base was cleaned up with the application of [Coding
+                    Later in 2013, [Linaro](https://www.linaro.org/) formed the Security Working
+                    Group (SWG): one of the initial key tasks for the SWG was to work on an
+                    open-source TEE project. After talking to various TEE vendors, Linaro began
+                    working with the STMicroelectronics TEE project. Before we were able to
+                    open-source this code, we needed to replace some proprietary components with
+                    open source components. This work took several months with engineers from both
+                    STMicroelectronics and Linaro's SWG making significant contributions. These
+                    components included the cryptographic library, secure monitor, build system and
+                    others. At the same time, the code base was cleaned up with the application of
+                    [Coding
                     standards](https://optee.readthedocs.io/en/latest/general/coding_standards.html#coding-standards),
                     by running
                     [checkpatch](http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/scripts/checkpatch.pl),
