@@ -24,7 +24,6 @@ flow:
     - row: container_row
       sections:
           - format: text
-            style: text-center
             text_content:
                 text: >
                     `OP-TEE` was initially developed as `TEE` by
@@ -37,7 +36,6 @@ flow:
                     [STMicroelectronics](https://www.st.com/content/st_com/en.html), TEE
                     became owned by STMicroelectronics.
           - format: text
-            style: text-center
             text_content:
                 text: >
                     Later in 2013, [Linaro](https://www.linaro.org/) was starting for
@@ -56,7 +54,6 @@ flow:
                     [checkpatch](http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/scripts/checkpatch.pl),
                     and via other related processes.
           - format: text
-            style: text-center
             text_content:
                 text: >
                     On the 12th of June 2014, OP-TEE was born as an open-source project.
