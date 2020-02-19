@@ -23,6 +23,56 @@ Likewise you will find when it was fixed and who reported the issue.
 If you have found a security issue in OP-TEE, please send us an email (see
 [Contact]) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+# August 2019
+## Calling update and final functions before init
+With inconsistent or malformed data it has been possible to call
+"update" and "final" crypto functions directly. Using a fuzzer tool [1]
+we have seen that this results in asserts, i.e., a crash that
+potentially could leak sensitive information.
+
+By setting the state (initialized) in the crypto context (i.e., the
+tee_cryp_state) at the end of all syscall_*_init functions and then add
+a check of the state at the beginning of all update and final functions,
+we prevent direct entrance to the "update" and "final" functions.
+
+[1] https://github.com/MartijnB/optee_fuzzer
+
+**optee_os.git:**
+ - [cryp: prevent direct calls to update and final functions (34a08bec75)](
+https://github.com/OP-TEE/optee_os/commit/34a08bec755670ea0490cb53bbc68058cafc69b6)
+
+| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------:        | :--------------: | ------------------ |
+| [Riscure]                   | N/A              | OP-TEE-2019-0021 | v3.6.0 and earlier |
+
+## Uninitialized cipher state
+When calling syscall_cipher_init there were no check being done that the state
+coming from the TA has been initialized to a valid cipher state, this could
+trigger an assert that eventually code be a way to make an attack on TEE core.
+
+**optee_os.git:**
+ - [cryp: ensure that mode is cipher in syscall_cipher_init (28aa35f5d9)](
+https://github.com/OP-TEE/optee_os/commit/28aa35f5d9df4a9df841ca89fe1b0b21d595b4d7)
+
+| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------:        | :--------------: | ------------------ |
+| [Riscure]                   | N/A              | OP-TEE-2019-0020 | v3.6.0 and earlier |
+
+## Uninitialized authenticated encryption state
+When doing calls to syscall_authenc_xyz functions (all of them except
+syscall_authenc_init) where no checking being done that the state coming from
+the TA has been initialized to a valid authenticated encryption state. As a
+consequence of that it's possible to redirect execution to other functions.
+Doing like that will make TEE core end up with a data abort.
+
+**optee_os.git:**
+ - [cryp: ensure that mode is AE in syscall_authenc_ functions (45a367d8cf)](
+https://github.com/OP-TEE/optee_os/commit/45a367d8cf3692389c49058731503c54ec5c70df)
+
+| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
+| --------------------------- | :-------:        | :--------------: | ------------------ |
+| [Riscure]                   | N/A              | OP-TEE-2019-0019 | v3.6.0 and earlier |
+
 # June 2019
 ## ecc_sign_hash blinding CVE-2018-12437
 Keegan Ryan from nccgroup discovered a vulnerability in the ECC implementation
