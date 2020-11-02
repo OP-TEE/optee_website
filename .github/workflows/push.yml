@@ -37,7 +37,7 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check links
-        run: /srv/github-action-scripts/check-links.sh /srv/site-builds/${{ env.SITE_URL }}
+        run: /srv/github-action-scripts/check-links.sh ${{ github.workspace }}/website/${{ env.SITE_URL }}
 
       - name: Check routing rules
         run: /srv/github-action-scripts/test-routing-rules.sh
@@ -46,13 +46,13 @@ jobs:
         run: mkdir -p /srv/s3-staging/${{ env.SITE_URL }}
 
       - name: Sync build to staging directory
-        run: rsync -crui /srv/site-builds/${{ env.SITE_URL }}/ /srv/s3-staging/${{ env.SITE_URL }} --delete
+        run: rsync -crui ${{ github.workspace }}/website/${{ env.SITE_URL }}/ /srv/s3-staging/${{ env.SITE_URL }} --delete
 
       - name: Upload to S3
         run: /srv/github-action-scripts/upload-to-s3-root.sh
 
       - name: Set up Lambda redirect
-        run: /srv/github-action-scripts/set-up-lambda-redirect.sh /srv/site-builds/${{ env.SITE_URL }}
+        run: /srv/github-action-scripts/set-up-lambda-redirect.sh ${{ github.workspace }}/website/${{ env.SITE_URL }}
 
       - name: Set up security headers
         run: cd /srv/github-action-scripts && pipenv run python lambda-security-headers.py
