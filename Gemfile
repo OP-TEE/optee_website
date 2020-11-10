@@ -1,9 +1,7 @@
 source "https://rubygems.org"
-
-gem "jumbo-jekyll-theme", "5.6.9.2"
-
+gem "linaro-jekyll-theme", "4.1.5"
+# Jekyll Plugins
 group :jekyll_plugins do
-  gem "jekyll-data"
-  gem "mini_magick"
-  gem "kramdown-parser-gfm"
+  gem "closure-compiler"
+  gem "nokogiri"
 end
