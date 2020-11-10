@@ -4,22 +4,22 @@
 # - Toggle Search Bar.
 # Search Config
 search:
-    enabled: false
-    label: OP-TEE
-universal-nav: true
+  enabled: false
+  label: OP-TEE
+universal_nav: true
 brand:
-    text: OP-TEE
-    image:
-        enabled: true
-        svg: true
-        name: OP-TEE-Logo.html
-    url: /
+  text: OP-TEE
+  image:
+    enabled: true
+    svg: true
+    name: OP-TEE-Logo.html
+  url: /
 pages:
-    - title: Security Advisories
-      url: /security-advisories/
-    - title: Documentation
-      url: /documentation/
-    - title: News & Blogs
-      url: /latest/
-    - title: Contact
-      url: /contact/
+  - title: Security Advisories
+    url: /security-advisories/
+  - title: Documentation
+    url: /documentation/
+  - title: News & Blogs
+    url: /latest/
+  - title: Contact
+    url: /contact/
