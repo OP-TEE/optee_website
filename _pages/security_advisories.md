@@ -1,7 +1,7 @@
 ---
 title: Security Advisories.
 permalink: /security-advisories/
-layout: jumbotron-container
+layout: flow
 description: |-
   At this page we will list of all known security vulnerabilities found on OP-TEE.
   Likewise you will find when it was fixed and who reported the issue.
@@ -10,55 +10,62 @@ description: |-
   About) and then someone from the team will contact you for further discussion.
   The initial email doesn't have to contain any details.
 jumbotron:
-    triangle-divider: true
-    title: Security Advisories
-    description: >
-        At this page we will list of all known security vulnerabilities found on OP-TEE.
-        Likewise you will find when it was fixed and who reported the issue.
-    background-image: /assets/images/background-image.jpg
+  title: Security Advisories
+  description: >
+    At this page we will list of all known security vulnerabilities found on OP-TEE.
+    Likewise you will find when it was fixed and who reported the issue.
+  image: /assets/images/background-image.jpg
+flow:
+  - row: main_content_row
 ---
+
 At this page we will list of all known security vulnerabilities found on OP-TEE.
 Likewise you will find when it was fixed and who reported the issue.
 
 If you have found a security issue in OP-TEE, please send us an email (see
 [Contact]) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+
 # August 2019
+
 ## Calling update and final functions before init
+
 With inconsistent or malformed data it has been possible to call
 "update" and "final" crypto functions directly. Using a fuzzer tool [1]
 we have seen that this results in asserts, i.e., a crash that
 potentially could leak sensitive information.
 
 By setting the state (initialized) in the crypto context (i.e., the
-tee_cryp_state) at the end of all syscall_*_init functions and then add
+tee*cryp_state) at the end of all syscall*\*\_init functions and then add
 a check of the state at the beginning of all update and final functions,
 we prevent direct entrance to the "update" and "final" functions.
 
 [1] https://github.com/MartijnB/optee_fuzzer
 
 **optee_os.git:**
- - [cryp: prevent direct calls to update and final functions (34a08bec75)](
-https://github.com/OP-TEE/optee_os/commit/34a08bec755670ea0490cb53bbc68058cafc69b6)
 
-| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
-| --------------------------- | :-------:        | :--------------: | ------------------ |
-| [Riscure]                   | N/A              | OP-TEE-2019-0021 | v3.6.0 and earlier |
+- [cryp: prevent direct calls to update and final functions (34a08bec75)](https://github.com/OP-TEE/optee_os/commit/34a08bec755670ea0490cb53bbc68058cafc69b6)
+
+| Reported by | CVE ID |    OP-TEE ID     | Affected versions  |
+| ----------- | :----: | :--------------: | ------------------ |
+| [Riscure]   |  N/A   | OP-TEE-2019-0021 | v3.6.0 and earlier |
 
 ## Uninitialized cipher state
+
 When calling syscall_cipher_init there were no check being done that the state
 coming from the TA has been initialized to a valid cipher state, this could
 trigger an assert that eventually code be a way to make an attack on TEE core.
 
 **optee_os.git:**
- - [cryp: ensure that mode is cipher in syscall_cipher_init (28aa35f5d9)](
-https://github.com/OP-TEE/optee_os/commit/28aa35f5d9df4a9df841ca89fe1b0b21d595b4d7)
 
-| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
-| --------------------------- | :-------:        | :--------------: | ------------------ |
-| [Riscure]                   | N/A              | OP-TEE-2019-0020 | v3.6.0 and earlier |
+- [cryp: ensure that mode is cipher in syscall_cipher_init (28aa35f5d9)](https://github.com/OP-TEE/optee_os/commit/28aa35f5d9df4a9df841ca89fe1b0b21d595b4d7)
+
+| Reported by | CVE ID |    OP-TEE ID     | Affected versions  |
+| ----------- | :----: | :--------------: | ------------------ |
+| [Riscure]   |  N/A   | OP-TEE-2019-0020 | v3.6.0 and earlier |
 
 ## Uninitialized authenticated encryption state
+
 When doing calls to syscall_authenc_xyz functions (all of them except
 syscall_authenc_init) where no checking being done that the state coming from
 the TA has been initialized to a valid authenticated encryption state. As a
@@ -66,15 +73,17 @@ consequence of that it's possible to redirect execution to other functions.
 Doing like that will make TEE core end up with a data abort.
 
 **optee_os.git:**
- - [cryp: ensure that mode is AE in syscall_authenc_ functions (45a367d8cf)](
-https://github.com/OP-TEE/optee_os/commit/45a367d8cf3692389c49058731503c54ec5c70df)
 
-| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
-| --------------------------- | :-------:        | :--------------: | ------------------ |
-| [Riscure]                   | N/A              | OP-TEE-2019-0019 | v3.6.0 and earlier |
+- [cryp: ensure that mode is AE in syscall*authenc* functions (45a367d8cf)](https://github.com/OP-TEE/optee_os/commit/45a367d8cf3692389c49058731503c54ec5c70df)
+
+| Reported by | CVE ID |    OP-TEE ID     | Affected versions  |
+| ----------- | :----: | :--------------: | ------------------ |
+| [Riscure]   |  N/A   | OP-TEE-2019-0019 | v3.6.0 and earlier |
 
 # June 2019
+
 ## ecc_sign_hash blinding CVE-2018-12437
+
 Keegan Ryan from nccgroup discovered a vulnerability in the ECC implementation
 of many crypto libraries that allows a hacker to recover the ECDSA or DSA
 private keys using a side channel attack. This has been fixed in the crypto
@@ -89,18 +98,19 @@ For more details about the vulnerability, please refer to the initial disclosure
 report (link: [technical-advisory-return-of-the-hidden-number-problem]).
 
 **optee_os.git:**
- - [ecc_sign_hash blinding CVE-2018-12437 (8bbd9b374a)](
-https://github.com/OP-TEE/optee_os/commit/8bbd9b374a51a1b8617796aae8a70c271543357f)
 
-| Reported by                 | CVE ID           | OP-TEE ID        | Affected versions  |
-| --------------------------- | :-------:        | :--------------: | ------------------ |
-| Santos Merino del Pozo      | [CVE-2018-12437] | OP-TEE-2019-0018 | v3.5.0 and earlier |
+- [ecc_sign_hash blinding CVE-2018-12437 (8bbd9b374a)](https://github.com/OP-TEE/optee_os/commit/8bbd9b374a51a1b8617796aae8a70c271543357f)
 
+| Reported by            |      CVE ID      |    OP-TEE ID     | Affected versions  |
+| ---------------------- | :--------------: | :--------------: | ------------------ |
+| Santos Merino del Pozo | [CVE-2018-12437] | OP-TEE-2019-0018 | v3.5.0 and earlier |
 
 # May 2019
+
 ## Netflix review
 
 ### RPC alloc could allocate smaller shared memory than requested
+
 The function thread_rpc_alloc() [used by functions thread_rpc_alloc_payload(),
 thread_rpc_alloc_global_payload()] allocates shared memory buffer via RPC. The
 required size is copied to the RPC's thread shared memory arg[] from internal
@@ -133,19 +143,19 @@ e.g.#3: tee_fs_rpc_cache_alloc() uses thread_rpc_alloc_payload(), then get the
 va from the mobj, but the size is the one given in argument, and could be
 smaller than the one in the mobj. This API is used in various places.
 
-e.g.#4 tee_rpmb_*()->tee_rpmb_alloc()->thread_rpc_alloc_payload(), the va from
+e.g.#4 tee*rpmb*\*()->tee_rpmb_alloc()->thread_rpc_alloc_payload(), the va from
 the mobj could point to a smaller allocated block than required.
 
 **optee_os.git:**
- - [core: verify size of allocated shared memory (cc6bc5f9421)](
-https://github.com/OP-TEE/optee_os/commit/cc6bc5f94210ea24b774c997fd482c936735db71)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: verify size of allocated shared memory (cc6bc5f9421)](https://github.com/OP-TEE/optee_os/commit/cc6bc5f94210ea24b774c997fd482c936735db71)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0001 | v3.5.0 and earlier |
 
-
 ### Poison or leak shared secure memory allocated in the kernel
+
 Memory allocated through alloc_temp_sec_mem() is not scrubbed when returned. One
 could leverage this to copy arbitrary data into this secure memory
 pool or to snoop former data from a previous call done by another TA (e.g. using
@@ -153,14 +163,15 @@ TEE_PARAM_TYPE_MEMREF_OUTPUT allows to map the data while not overwriting it,
 hence accessing to what is already there).
 
 **optee_os.git:**
- - [core: scrub user-tainted memory returned by alloc_temp_sec_mem() (93488596e6)](
-https://github.com/OP-TEE/optee_os/commit/934885496e6db0b7c4c8ca28a1aee6696dcc72a6)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: scrub user-tainted memory returned by alloc_temp_sec_mem() (93488596e6)](https://github.com/OP-TEE/optee_os/commit/934885496e6db0b7c4c8ca28a1aee6696dcc72a6)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0002 | v3.5.0 and earlier |
 
 ### Poison kernel heap memory
+
 syscall_log(), syscall_open_ta_session(), syscall_get_property()
 ... can be used to poison kernel heap memory. Data copied from userland is not
 scrubbed when the syscall returns. e.g. when doing syscall_log() one can copy
@@ -168,14 +179,15 @@ arbitrary data of variable length onto kernel memory. When free() is called, the
 block is returned to the memory pool, tainted with that userland data.
 
 **optee_os.git:**
- - [core: scrub user-tainted kernel heap memory before freeing it (70b613102c)](
-https://github.com/OP-TEE/optee_os/commit/70b613102ce72808f6a0ad9f6f97f0545fd6ad02)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: scrub user-tainted kernel heap memory before freeing it (70b613102c)](https://github.com/OP-TEE/optee_os/commit/70b613102ce72808f6a0ad9f6f97f0545fd6ad02)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0003 | v3.5.0 and earlier |
 
 ### Integer overflow on parameters from REE leads to smaller memory object than expected
+
 msg_param_mobj_from_noncontig() does not check that buf_ptr+size do
 not overflow. As a result, num_pages could be computed small, while size could
 be big. Only 'num_pages' will be mapped/registered in the returned mobj. If the
@@ -198,14 +210,15 @@ smaller shared memory than requested", where the resulting mobj->size is smaller
 that requested/expected.
 
 **optee_os.git:**
- - [core: check for overflow in msg_param_mobj_from_noncontig() (e1509d6e61)](
-https://github.com/OP-TEE/optee_os/commit/e1509d6e6178011df581c535ee8bf8c147053df2)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: check for overflow in msg_param_mobj_from_noncontig() (e1509d6e61)](https://github.com/OP-TEE/optee_os/commit/e1509d6e6178011df581c535ee8bf8c147053df2)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0004 | v3.5.0 and earlier |
 
 ### TA binaries should be authenticated before doing operations based on their content
+
 Loading a TA, which is an ELF binary, triggers a lot of operations done on the
 content of the ELF structure/info which are under REE control. It would be
 preferable to fully authenticate the binary before doing any of those ELF
@@ -226,26 +239,28 @@ handle->nw_ta_size in ree_fs_ta.c, or the state->data_len in elf_load.c allowing
 to bypass the digest check.
 
 **optee_os.git:**
- - [core: REE FS TAs: add option to verify signature before processing (7db24ad625)](
-https://github.com/OP-TEE/optee_os/commit/7db24ad625b91a7f4f16c33b7c825cd56952a8cf)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: REE FS TAs: add option to verify signature before processing (7db24ad625)](https://github.com/OP-TEE/optee_os/commit/7db24ad625b91a7f4f16c33b7c825cd56952a8cf)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0005 | v3.5.0 and earlier |
 
 ### Constant time memory compare function
+
 A constant time memory compare function should be available for the Trusted
 Applications in the TEE/TA API.
 
 **optee_os.git:**
- - [libutee: TEE_MemCompare(): use constant time algorithm (65551e69a0)](
-https://github.com/OP-TEE/optee_os/commit/65551e69a006c496fb18d8374389b7b3617c2076)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [libutee: TEE_MemCompare(): use constant time algorithm (65551e69a0)](https://github.com/OP-TEE/optee_os/commit/65551e69a006c496fb18d8374389b7b3617c2076)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0006 | v3.5.0 and earlier |
 
 ### Overflows during RPMB operations
+
 During the RPMB initialization process, the TEE request the REE for
 some of the device information
 [tee_rpmb_init()->tee_rpmb_get_dev_info()->tee_rpmb_invoke()] The returned
@@ -260,65 +275,70 @@ and make use of the xxx_OVERFLOW() macros as much as possible, this includes
 computing blkcnt, req_size, tmp_blkcnt, ...
 
 **optee_os.git:**
- - [core: RPMB FS: check for potential overflows (ea81076f78)](
-https://github.com/OP-TEE/optee_os/commit/ea81076f7896de7278dcd62b47b99d5dc3351caf)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: RPMB FS: check for potential overflows (ea81076f78)](https://github.com/OP-TEE/optee_os/commit/ea81076f7896de7278dcd62b47b99d5dc3351caf)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0007 | v3.5.0 and earlier |
 
 ### Use of arbitrary virtual address in TEE crypto service
+
 syscall_authenc_init() dos not check that the given nonce address
 is within TA accessible memory.
 
 **optee_os.git:**
- - [core: syscall_authenc_init(): check nonce accessibility (06aa9a9b41)](
-https://github.com/OP-TEE/optee_os/commit/06aa9a9b4117a045197c39ba9754422ce0593c0f)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: syscall_authenc_init(): check nonce accessibility (06aa9a9b41)](https://github.com/OP-TEE/optee_os/commit/06aa9a9b4117a045197c39ba9754422ce0593c0f)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0008 | v3.5.0 and earlier |
 
 ### Integer overflows in TEE crypto service
+
 There is a risk of integer overflowsa in the following locations.
+
 - copy_in_attrs(): if a very large 'attr_count' is given, the following
-  operation overflows: "attr_count * sizeof(struct utee_attribute)"
+  operation overflows: "attr_count \* sizeof(struct utee_attribute)"
 - syscall_cryp_obj_populate(): if a very large 'attr_count' is given, the
-  following operation overflows "sizeof(TEE_Attribute) * attr_count"
+  following operation overflows "sizeof(TEE_Attribute) \* attr_count"
 - syscall_asymm_verify(), syscall_asymm_operate(): if a very large 'num_params'
-  is given, the following operation overflows "sizeof(TEE_Attribute) *
+  is given, the following operation overflows "sizeof(TEE_Attribute) \*
   num_params"
 - syscall_cryp_derive_key(), syscall_obj_generate_key(): if a very large
   'param_count' is given, the following operation overflows
-  "sizeof(TEE_Attribute) * param_count"
+  "sizeof(TEE_Attribute) \* param_count"
 - syscall_cryp_derive_key(): if a very large 'params[0].content.ref.length' is
-  given, the following overflows "params[0].content.ref.length * 8" [this is
+  given, the following overflows "params[0].content.ref.length \* 8" [this is
   probably not realistic as params[0].content.ref.len is checked to some extend
   during attrs copy]
 
 **optee_os.git:**
- - [core: crypto: add overflow check when copying attributes (bd81e5b95e)](
-https://github.com/OP-TEE/optee_os/commit/bd81e5b95ec910e9e3fa9f1824f3981288af5d50)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: crypto: add overflow check when copying attributes (bd81e5b95e)](https://github.com/OP-TEE/optee_os/commit/bd81e5b95ec910e9e3fa9f1824f3981288af5d50)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0009 | v3.5.0 and earlier |
 
 ### Copying memory with source and destination overlap should use memmove(),merged offset may be wrong.
+
 get_elf_segments() final stage tries to aggregate segments. Inside
 the "while (idx < num_segs)" loop, the logic to remove the current index is to
 run a memcpy() to shift down everything beyond that point, basically 'moving'
 down the rest of the segments.
 
 **optee_os.git:**
- - [core: get_elf_segments(): use memmove on overlapping memory (3bcb882f20)](
-https://github.com/OP-TEE/optee_os/commit/3bcb882f200c2dd14ea1937031d5bd97bf6a78ca)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: get_elf_segments(): use memmove on overlapping memory (3bcb882f20)](https://github.com/OP-TEE/optee_os/commit/3bcb882f200c2dd14ea1937031d5bd97bf6a78ca)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0010 | v3.5.0 and earlier |
 
 ### core: load_elf_from_store(): check stack size
+
 ROUNDUP operations while adding the stack segment could overflow.
 
 Inside load_elf_from_store(), the ta_head structure is retrieved from
@@ -342,14 +362,15 @@ Consequence on having a disconnection between the various values, or having a 0
 bytes stack size has not been analyzed.
 
 **optee_os.git:**
- - [core: load_elf_from_store(): check stack size (b17e2e4444)](
-https://github.com/OP-TEE/optee_os/commit/b17e2e44441a6b8233d5e2bdccdac4ec23a0e819)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: load_elf_from_store(): check stack size (b17e2e4444)](https://github.com/OP-TEE/optee_os/commit/b17e2e44441a6b8233d5e2bdccdac4ec23a0e819)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0011 | v3.5.0 and earlier |
 
-### SHDR_GET_*() macros integer overflow
+### SHDR*GET*\*() macros integer overflow
+
 The SHDR_GET_SIZE(), SHDR_GET_HASH() and SHDR_GET_SIG() macros
 could overflow depending on given 'x' and associated hash_size, sig_size values.
 
@@ -358,14 +379,15 @@ Note: no other attack path than the ones reported by Riscure (not using keyword
 overflow, however it is error prone and could lead to a future vulnerability.
 
 **optee_os.git:**
- - [core: add VA overflow check in shdr_alloc_and_copy() (062765e4f8)](
-https://github.com/OP-TEE/optee_os/commit/062765e4f80b97c90fd62d17859b675797af5de9)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: add VA overflow check in shdr_alloc_and_copy() (062765e4f8)](https://github.com/OP-TEE/optee_os/commit/062765e4f80b97c90fd62d17859b675797af5de9)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0012 | v3.5.0 and earlier |
 
 ### MOBJ_REG_SHM_SIZE() integer overflow
+
 The macro MOBJ_REG_SHM_SIZE() could overflow depending on
 'nr_pages'.
 
@@ -379,14 +401,15 @@ Note: no attack path are identified to exploit this overflow, however it is
 error prone and could lead to a future vulnerability.
 
 **optee_os.git:**
- - [core: add overflow check in mobj_reg_shm_alloc() (8ad7af5027)](
-https://github.com/OP-TEE/optee_os/commit/8ad7af50273124c3cf043a798df633ae2c388913)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: add overflow check in mobj_reg_shm_alloc() (8ad7af5027)](https://github.com/OP-TEE/optee_os/commit/8ad7af50273124c3cf043a798df633ae2c388913)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0013 | v3.5.0 and earlier |
 
 ### Virtual address returned to the REE
+
 session context virtual address is returned to the REE in
 entry_open_session(); it is then used back in entry_close_session() and
 entry_invoke_command().
@@ -403,14 +426,15 @@ could overflow/swap as the session 'id' is a uint32_t [see tee_ta_get_session()]
 and have other side-effects on the execution (being non-unique | N to 1).
 
 **optee_os.git:**
- - [core: do not use virtual addresses as session identifier (99164a05ff)](
-https://github.com/OP-TEE/optee_os/commit/99164a05ff515a077ff0f3e1550838d24623665b)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: do not use virtual addresses as session identifier (99164a05ff)](https://github.com/OP-TEE/optee_os/commit/99164a05ff515a077ff0f3e1550838d24623665b)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0014 | v3.5.0 and earlier |
 
 ### Integer overflow could lead to too large num_syms and rel_end during relocation process
+
 (shdr[sym_tab_idx].sh_addr + shdr[sym_tab_idx].sh_size) and
 (shdr[rel_sidx].sh_addr + shdr[rel_sidx].sh_size) could overflow, resulting in a
 large num_syms, or an invalid rel_end. Both could be used to access beyond
@@ -418,18 +442,19 @@ legitimate memory. Outcome of such flaw is unclear but could be used to snoop or
 alter memory.
 
 **optee_os.git:**
- - [core: ELF relocation: use ADD_OVERFLOW() (781c8f007c)](
-https://github.com/OP-TEE/optee_os/commit/781c8f007c4b4ac1d1966f1aacd37fbfe5d628aa)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: ELF relocation: use ADD_OVERFLOW() (781c8f007c)](https://github.com/OP-TEE/optee_os/commit/781c8f007c4b4ac1d1966f1aacd37fbfe5d628aa)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0015 | v3.5.0 and earlier |
 
 ### ehdr.e_shnum could be very large and used to access out of bound memory
+
 At the end of elf_load_body(), code process relocation information
 segment: the relocation information are copied in a system heap memory block,
 associated to state->shdr. As the computed size is the result of an uncontrolled
-multiplication (ehdr.e_shnum * ehdr.e_shentsize), it could have overflowed and
+multiplication (ehdr.e_shnum \* ehdr.e_shentsize), it could have overflowed and
 result in allocating a small memory block.
 
 Later in the code, there are no MUL_OVERFLOW() check either performed, and the
@@ -446,14 +471,15 @@ instance to set sym_tab to an arbitrary value by updating
 shdr[sym_tab_idx].sh_addr with proper timing).
 
 **optee_os.git:**
- - [core: elf_load_body(): use MUL_OVERFLOW() to get size of section headers (5787ecdf75)](
-https://github.com/OP-TEE/optee_os/commit/5787ecdf758d9edbfb5fb93c49c808f7a51a214b)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: elf_load_body(): use MUL_OVERFLOW() to get size of section headers (5787ecdf75)](https://github.com/OP-TEE/optee_os/commit/5787ecdf758d9edbfb5fb93c49c808f7a51a214b)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0016 | v3.5.0 and earlier |
 
 ### Integer overflow in TA memory map logic
+
 vm_map() and umap_add_region() do not check that given offs +
 ROUNDUP(len...) do not overflow. As a result the check to see if the region is
 in within a given memory object can be bypassed and both offset and/or size
@@ -464,18 +490,19 @@ the region size or the region offset, like tee_mmu_user_pa2va_helper() for
 instance.
 
 **optee_os.git:**
- - [core: umap_add_region(): add overflow check (bcc81cf8f0)](
-https://github.com/OP-TEE/optee_os/commit/bcc81cf8f0ec93c62ff5bc1b1c3d09e50cc2525f)
 
-| Reported by                 | CVE ID    | OP-TEE ID        | Affected versions  |
+- [core: umap_add_region(): add overflow check (bcc81cf8f0)](https://github.com/OP-TEE/optee_os/commit/bcc81cf8f0ec93c62ff5bc1b1c3d09e50cc2525f)
+
+| Reported by                 |  CVE ID   |    OP-TEE ID     | Affected versions  |
 | --------------------------- | :-------: | :--------------: | ------------------ |
 | [Netflix] (Bastien Simondi) | Not/Ready | OP-TEE-2019-0017 | v3.5.0 and earlier |
 
-
 # October 2018
+
 ## Riscure mini-audit
 
 ### Integer overflow in crypto system calls (x2) - part 2
+
 The function `syscall_asymm_verify` is a system call used to verify
 cryptographic signatures. One of the parameters passed in by a TA is
 `num_params`. The TEE kernel locally allocates a heap buffer of size
@@ -488,14 +515,15 @@ attacker controlled data written outside the boundaries of the buffer. Such
 corruption might allow code execution in the context of the TEE kernel.
 
 **optee_os.git:**
- - [svc: check for allocation overflow in crypto calls part 2 (70697bf3c5d)](
-https://github.com/OP-TEE/optee_os/commit/70697bf3c5dc3d201341b01a1a8e5bc6d2fb48f8)
 
-| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
-| ------------ | :-------: | :--------------: | ------------------ |
-| [Riscure]    | Not/Ready | OP-TEE-2018-0011 | v3.3.0 and earlier |
+- [svc: check for allocation overflow in crypto calls part 2 (70697bf3c5d)](https://github.com/OP-TEE/optee_os/commit/70697bf3c5dc3d201341b01a1a8e5bc6d2fb48f8)
+
+| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
+| ----------- | :-------: | :--------------: | ------------------ |
+| [Riscure]   | Not/Ready | OP-TEE-2018-0011 | v3.3.0 and earlier |
 
 ### Integer overflow in crypto system calls (x2)
+
 The function `syscall_obj_generate_key` is a system call which generates a
 cryptographic key. This system call is exposed to TAs which supply the length
 of the key to be generated, its type, and a number of attributes it should
@@ -512,14 +540,15 @@ outside the boundaries of the buffer. Such corruption might allow code
 execution in the context of the TEE kernel.
 
 **optee_os.git:**
- - [svc: check for allocation overflow in crypto calls (a637243270f)](
-https://github.com/OP-TEE/optee_os/commit/a637243270fc1faae16de059091795c32d86e65e)
 
-| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
-| ------------ | :-------: | :--------------: | ------------------ |
-| [Riscure]    | Not/Ready | OP-TEE-2018-0010 | v3.3.0 and earlier |
+- [svc: check for allocation overflow in crypto calls (a637243270f)](https://github.com/OP-TEE/optee_os/commit/a637243270fc1faae16de059091795c32d86e65e)
+
+| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
+| ----------- | :-------: | :--------------: | ------------------ |
+| [Riscure]   | Not/Ready | OP-TEE-2018-0010 | v3.3.0 and earlier |
 
 ### Integer overflow in crypto system calls
+
 The function `syscall_cryp_obj_populate` is a system call which initializes the
 attributes of a cryptographic object. This system call is exposed to TAs which
 supply a reference to the crypto object to be populated along with a number of
@@ -536,14 +565,15 @@ attacker controlled data written outside the boundaries of the buffer. Such
 corruption might allow code execution in the context of the TEE kernel.
 
 **optee_os.git:**
- - [svc: check for allocation overflow in syscall_cryp_obj_populate (b60e1cee406)](
-https://github.com/OP-TEE/optee_os/commit/b60e1cee406a1ff521145ab9534370dfb85dd592)
 
-| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
-| ------------ | :-------: | :--------------: | ------------------ |
-| [Riscure]    | Not/Ready | OP-TEE-2018-0009 | v3.3.0 and earlier |
+- [svc: check for allocation overflow in syscall_cryp_obj_populate (b60e1cee406)](https://github.com/OP-TEE/optee_os/commit/b60e1cee406a1ff521145ab9534370dfb85dd592)
+
+| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
+| ----------- | :-------: | :--------------: | ------------------ |
+| [Riscure]   | Not/Ready | OP-TEE-2018-0009 | v3.3.0 and earlier |
 
 ### Buffer checks missing when calling pseudo TAs
+
 The function `tee_svc_copy_param` is used to copy in parameters when a TA wants
 to open a session with or invoke a command upon another TA. It is used in
 system calls and is therefore indirectly callable by any TA. However, this
@@ -562,14 +592,15 @@ pointers without further validation. This might result in memory corruption and
 memory disclosure.
 
 **optee_os.git:**
- - [core: svc: always check ta parameters (d5c5b0b77b2)](
-https://github.com/OP-TEE/optee_os/commit/d5c5b0b77b2b589666024d219a8007b3f5b6faeb)
 
-| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
-| ------------ | :-------: | :--------------: | ------------------ |
-| [Riscure]    | Not/Ready | OP-TEE-2018-0007 | v3.3.0 and earlier |
+- [core: svc: always check ta parameters (d5c5b0b77b2)](https://github.com/OP-TEE/optee_os/commit/d5c5b0b77b2b589666024d219a8007b3f5b6faeb)
+
+| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
+| ----------- | :-------: | :--------------: | ------------------ |
+| [Riscure]   | Not/Ready | OP-TEE-2018-0007 | v3.3.0 and earlier |
 
 ### Potential disclosure of previously loaded TA code and data
+
 The function `elf_load_body` is used to load the code and data segments while
 dynamically loading a TA. The amount of memory allocated for the code and data
 segments is previously determined and the sum of it is stored in
@@ -586,14 +617,15 @@ TA prevented when the last session is closed due to
 `TA_FLAG_INSTANCE_KEEP_ALIVE`) and layout of the attacked TA.
 
 **optee_os.git:**
- - [core: clear the entire TA area (7e768f8a473)](
-https://github.com/OP-TEE/optee_os/commit/7e768f8a473409215fe3fff8f6e31f8a3a0103c6)
 
-| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
-| ------------ | :-------: | :--------------: | ------------------ |
-| [Riscure]    | Not/Ready | OP-TEE-2018-0006 | v3.3.0 and earlier |
+- [core: clear the entire TA area (7e768f8a473)](https://github.com/OP-TEE/optee_os/commit/7e768f8a473409215fe3fff8f6e31f8a3a0103c6)
+
+| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
+| ----------- | :-------: | :--------------: | ------------------ |
+| [Riscure]   | Not/Ready | OP-TEE-2018-0006 | v3.3.0 and earlier |
 
 ### tee_mmu_check_access_rights does not check final page of TA buffer
+
 The function `tee_mmu_check_access_rights` is used to check access rights to a
 given memory region. This function is used when a TA performs a system call to
 verify that the TA has the correct access rights to the buffer it provides.
@@ -609,14 +641,15 @@ memory corruption of the TEE itself or another TA. Memory corruption
 vulnerabilities can have serious impact such as allowing runtime control.
 
 **optee_os.git:**
- - [core: tee_mmu_check_access_rights() check all pages (95f36d661f2)](
-https://github.com/OP-TEE/optee_os/commit/95f36d661f2b75887772ea28baaad904bde96970)
 
-| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
-| ------------ | :-------: | :--------------: | ------------------ |
-| [Riscure]    | Not/Ready | OP-TEE-2018-0005 | v3.3.0 and earlier |
+- [core: tee_mmu_check_access_rights() check all pages (95f36d661f2)](https://github.com/OP-TEE/optee_os/commit/95f36d661f2b75887772ea28baaad904bde96970)
+
+| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
+| ----------- | :-------: | :--------------: | ------------------ |
+| [Riscure]   | Not/Ready | OP-TEE-2018-0005 | v3.3.0 and earlier |
 
 ### Unchecked parameters are passed through from REE
+
 The function `set_rmem_param` is a helper function used when copying parameters
 locally for TA calls. It is used when a parameter is a buffer of type rmem. The
 function receives an input parameter param from the REE and an output parameter
@@ -630,16 +663,19 @@ how the passed parameters are used by the TA. However, it could lead to
 corruption of any memory which the TA can access.
 
 **optee_os.git:**
- - [core: ensure that supplied range matches MOBJ (e3adcf566cb)](
-https://github.com/OP-TEE/optee_os/commit/e3adcf566cb278444830e7badfdcc3983e334fd1)
 
-| Reported by  | CVE ID    | OP-TEE ID        | Affected versions  |
-| ------------ | :-------: | :--------------: | ------------------ |
-| [Riscure]    | Not/Ready | OP-TEE-2018-0004 | v3.3.0 and earlier |
+- [core: ensure that supplied range matches MOBJ (e3adcf566cb)](https://github.com/OP-TEE/optee_os/commit/e3adcf566cb278444830e7badfdcc3983e334fd1)
+
+| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
+| ----------- | :-------: | :--------------: | ------------------ |
+| [Riscure]   | Not/Ready | OP-TEE-2018-0004 | v3.3.0 and earlier |
 
 # May 2018
+
 ## Spectre variant 4 (CVE-2018-3639)
+
 #### Current status:
+
 In the affected Arm cores (Cortex-A57, Cortex-A72, Cortex-A73 and Cortex-A75)
 who all are Armv8 based there are configuration control registers
 available at EL3 that when enabled effectively mitigate a potential
@@ -663,13 +699,14 @@ again. We have been doing some manual inspection of the OP-TEE code and
 so far have not been able to identify and vulnerable areas. But just as
 for Spectre v1, we continuously discuss tooling etc with members of Linaro.
 
-| Reported by  | CVE ID | OP-TEE ID | Affected versions |
-| ------------ |:------:| :-------: | ----------------- |
-| [Google Project Zero] | [CVE-2018-3639](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-3639) | N/A | N/A (EL-3 TF-A implements the mitigation) |
-
+| Reported by           |                                    CVE ID                                     | OP-TEE ID | Affected versions                         |
+| --------------------- | :---------------------------------------------------------------------------: | :-------: | ----------------------------------------- |
+| [Google Project Zero] | [CVE-2018-3639](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-3639) |    N/A    | N/A (EL-3 TF-A implements the mitigation) |
 
 # January 2018
+
 ## Meltdown and Spectre
+
 In collaboration a group of different people (see "Reported by") have found out
 that it is possible to circumvent security countermeasures and privilege
 escalation by using speculative execution, caches, out-of-order execution in a
@@ -682,6 +719,7 @@ highlight how it could affect OP-TEE and what the mitigations are.
 ### Variant 1: bounds check bypass (CVE-2017-5753)
 
 #### Possible attack
+
 Since user data provided to Trusted Applications most often comes from
 non-secure side, it is important to check the code where we are using those
 non-secure parameters. The same type of checks are necessary when doing
@@ -690,17 +728,19 @@ side eventually could access secure memory when untrusted value is passed to
 secure side.
 
 #### Current status:
+
 We have been doing some manual inspection of the OP-TEE code, and so far have
 not been able to identify any vulnerable areas. Code analysis tools and
 compiler update are being discussed with members of Linaro.
 
-| Reported by  | CVE ID | OP-TEE ID | Affected versions |
-| ------------ |:------:| :-------: | ----------------- |
-| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5753](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5753) | OP-TEE-2018-0001 | All versions |
+| Reported by                                                                                                                                                  |                                    CVE ID                                     |    OP-TEE ID     | Affected versions |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------: | :--------------: | ----------------- |
+| [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5753](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5753) | OP-TEE-2018-0001 | All versions      |
 
 ### Variant 2: branch target injection (CVE-2017-5715)
 
 #### Possible attack
+
 In theory it would be possible for a program in non-secure world to train the
 branch predictor to trick the secure monitor to speculatively read secure
 memory and as a consequence of that leak information to the cache that can be
@@ -709,39 +749,47 @@ find a gadget that can be used as a trampoline to get access kernel memory
 (from a Trusted Application for example).
 
 The mitigation here is to invalidate the branch predictor when:
-* Going from non-secure to the secure environment.
-* When doing syscall from S-EL0 to S-EL1.
+
+- Going from non-secure to the secure environment.
+- When doing syscall from S-EL0 to S-EL1.
 
 #### Current status:
+
 For `Armv8-A` builds we are typically running OP-TEE with Arm Trusted Firmware,
 patches can be found here:
-* https://github.com/ARM-software/arm-trusted-firmware/pull/1214 (merged)
+
+- https://github.com/ARM-software/arm-trusted-firmware/pull/1214 (merged)
 
 For builds where we are not using Arm TF (typically `Armv7-A` builds) we have
 implemented mitigations that can be found here:
-* https://github.com/OP-TEE/optee_os/pull/2047 (merged)
-* https://github.com/OP-TEE/optee_os/pull/2065 (merged)
+
+- https://github.com/OP-TEE/optee_os/pull/2047 (merged)
+- https://github.com/OP-TEE/optee_os/pull/2065 (merged)
 
 For SVC calls, we have patches here:
-* https://github.com/OP-TEE/optee_os/pull/2055 (`Armv7-A`, `AArch32`) (merged)
-* https://github.com/OP-TEE/optee_os/pull/2072 (`AArch64`) (merged) and
-https://github.com/OP-TEE/optee_os/pull/2229 (`AArch64`) (merged)
 
-| Reported by  | CVE ID | OP-TEE ID | Affected versions |
-| ------------ |:------:| :-------: | ----------------- |
+- https://github.com/OP-TEE/optee_os/pull/2055 (`Armv7-A`, `AArch32`) (merged)
+- https://github.com/OP-TEE/optee_os/pull/2072 (`AArch64`) (merged) and
+  https://github.com/OP-TEE/optee_os/pull/2229 (`AArch64`) (merged)
+
+| Reported by                                                                                                                                                  |                                    CVE ID                                     |    OP-TEE ID     | Affected versions                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------: | :--------------: | --------------------------------------------------------------- |
 | [Google Project Zero], [University of Pennsylvania], [University of Maryland], [Rambus], [Graz University of Technology], [University of Adelaide], [Data61] | [CVE-2017-5715](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5715) | OP-TEE-2018-0002 | All versions prior to OP-TEE 3.0.0 (32 bits) or 3.1.0 (64 bits) |
 
 ### Variant 3: rogue data cache load (CVE-2017-5754)
 
 #### Possible attack
+
 Just as in Linux kernel it could be possible to do the same type of attack from
 a Trusted Application as being described in the [Meltdown whitepaper]. I.e.,
 under some conditions the CPU would read and execute instructions speculatively
 before the CPU handles the illegal access (traps).
 
 #### Current status:
+
 Our patches can be found here:
-* https://github.com/OP-TEE/optee_os/pull/2048 (merged)
+
+- https://github.com/OP-TEE/optee_os/pull/2048 (merged)
 
 The mitigation ideas are the same as with [KPTI], i.e, we keep the amount of
 kernel memory being mapped to a minimum when running in usermode. It should
@@ -751,13 +799,16 @@ the mitigation patches, since we believe that this gives additional security and
 it also means that we are prepared if/when we find OP-TEE running on
 Cortex-A75.
 
-| Reported by  | CVE ID | OP-TEE ID | Affected versions |
-| ------------ |:------:| :-------: | ----------------- |
+| Reported by                                                                  |                                    CVE ID                                     |    OP-TEE ID     | Affected versions                  |
+| ---------------------------------------------------------------------------- | :---------------------------------------------------------------------------: | :--------------: | ---------------------------------- |
 | [Google Project Zero], [Cyberus Technology], [Graz University of Technology] | [CVE-2017-5754](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5754) | OP-TEE-2018-0003 | All versions prior to OP-TEE 3.0.0 |
 
 # December 2016
+
 ## RSA key leakage in modular exponentiation
+
 #### Description
+
 [Applus+ Laboratories] found out that OP-TEE is vulnerable to a timing attack
 when doing the [Montgomery operations](http://www.phedny.net/papers/Timing%20attacks%20on%20RSA.pdf).
 
@@ -777,16 +828,18 @@ every loop. The fix (Montgomery ladder) for the timing attack has been
 implemented in:
 
 **optee_os.git:**
-- [libmpa: Implement Montgomery ladder
-(40b1b281a6)](https://github.com/OP-TEE/optee_os/commit/40b1b281a6f85f8658be749dc92b57d6a8bd5e78)
 
-| Reported by  | CVE ID | OP-TEE ID | Affected versions |
-| ------------ |:------:| :-------: | ----------------- |
+- [libmpa: Implement Montgomery ladder
+  (40b1b281a6)](https://github.com/OP-TEE/optee_os/commit/40b1b281a6f85f8658be749dc92b57d6a8bd5e78)
+
+| Reported by            |                                       CVE ID                                        |    OP-TEE ID     | Affected versions                  |
+| ---------------------- | :---------------------------------------------------------------------------------: | :--------------: | ---------------------------------- |
 | [Applus+ Laboratories] | [CVE-2017-1000413](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000413) | OP-TEE-2016-0003 | All versions prior to OP-TEE 2.5.0 |
 
-
 ## Bellcore attack
+
 #### Description
+
 [Applus+ Laboratories] found out that OP-TEE is vulnerable to the [Bellcore
 attack](https://eprint.iacr.org/2012/553.pdf) when using fault injection /
 glitching attack.
@@ -813,21 +866,24 @@ number generation for big number (mpanum). The fixes for this issue can be found
 in:
 
 **optee_os.git:**
- - [ltc: Implement mp_rand for mpa_desc
-(13c9b83130)](https://github.com/OP-TEE/optee_os/commit/13c9b83130e08ddd53fb3a456a678c7e3040deb9)
- - [ltc: Enable RSA_CRT_HARDENING and RSA_CRT_BLINDING
-(93b0a7015c)](https://github.com/OP-TEE/optee_os/commit/93b0a7015c46d68f2bc8d1bc6c57bb6532269777).
+
+- [ltc: Implement mp_rand for mpa_desc
+  (13c9b83130)](https://github.com/OP-TEE/optee_os/commit/13c9b83130e08ddd53fb3a456a678c7e3040deb9)
+- [ltc: Enable RSA_CRT_HARDENING and RSA_CRT_BLINDING
+  (93b0a7015c)](https://github.com/OP-TEE/optee_os/commit/93b0a7015c46d68f2bc8d1bc6c57bb6532269777).
 
 The fix can be found in OP-TEE starting from v2.5.0.
 
-| Reported by  | CVE ID | OP-TEE ID | Affected versions |
-| ------------ |:------:| :-------: | ----------------- |
+| Reported by            |                                       CVE ID                                        |    OP-TEE ID     | Affected versions                  |
+| ---------------------- | :---------------------------------------------------------------------------------: | :--------------: | ---------------------------------- |
 | [Applus+ Laboratories] | [CVE-2017-1000412](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000412) | OP-TEE-2017-0002 | All versions prior to OP-TEE 2.5.0 |
 
-
 # June 2016
+
 ## Bleichenbacher signature forgery attack
+
 #### Description
+
 A vulnerability in the [OP-TEE] project was found by Intel Security Advanced
 Threat Research in June 2016. It appeared that OP-TEE was vulnerable to
 [Bleichenbacher signature forgery attack](https://www.ietf.org/mail-archive/web/openpgp/current/msg00999.html).
@@ -848,29 +904,29 @@ can also be found upstream in
 [this](https://github.com/OP-TEE/optee_test/commit/b58916e35fe1f73cb7d32eb5ac04ab66f59669)
 patch.
 
-| Reported by  | CVE ID | OP-TEE ID | Affected versions |
-| ------------ |:------:| :-------: | ----------------- |
+| Reported by                               |                                    CVE ID                                     |    OP-TEE ID     | Affected versions                                            |
+| ----------------------------------------- | :---------------------------------------------------------------------------: | :--------------: | ------------------------------------------------------------ |
 | [Intel Security Advanced Threat Research] | [CVE-2016-6129](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6129) | OP-TEE-2016-0001 | All versions prior to OP-TEE v2.2.0 (fixed in OP-TEE v2.2.0) |
 
-[Applus+ Laboratories]: http://www.appluslaboratories.com
-[Cyberus Technology]: https://www.cyberus-technology.de
-[Contact]: https://optee.readthedocs.io/en/latest/general/contact.html#vulnerability-reporting
-[Data61]: https://www.data61.csiro.au
-[Google Project Zero]: https://googleprojectzero.blogspot.com
-[Graz University of Technology]: https://www.iaik.tugraz.at
-[Intel Security Advanced Threat Research]: http://www.intelsecurity.com/advanced-threat-research
-[KPTI]: https://lwn.net/Articles/741878
-[LibTomCrypt]: https://www.libtom.net/LibTomCrypt/
-[Meltdown and Spectre]: https://spectreattack.com
-[Meltdown whitepaper]: https://meltdownattack.com/meltdown.pdf
-[Netflix]: https://www.netflix.com
+[applus+ laboratories]: http://www.appluslaboratories.com
+[cyberus technology]: https://www.cyberus-technology.de
+[contact]: https://optee.readthedocs.io/en/latest/general/contact.html#vulnerability-reporting
+[data61]: https://www.data61.csiro.au
+[google project zero]: https://googleprojectzero.blogspot.com
+[graz university of technology]: https://www.iaik.tugraz.at
+[intel security advanced threat research]: http://www.intelsecurity.com/advanced-threat-research
+[kpti]: https://lwn.net/Articles/741878
+[libtomcrypt]: https://www.libtom.net/LibTomCrypt/
+[meltdown and spectre]: https://spectreattack.com
+[meltdown whitepaper]: https://meltdownattack.com/meltdown.pdf
+[netflix]: https://www.netflix.com
 [optee_os]: https://github.com/OP-TEE/optee_os
 [optee_test]: https://github.com/OP-TEE/optee_test
-[OP-TEE]: https://github.com/OP-TEE
-[Rambus]: https://www.rambus.com
-[Riscure]: https://www.riscure.com
+[op-tee]: https://github.com/OP-TEE
+[rambus]: https://www.rambus.com
+[riscure]: https://www.riscure.com
 [technical-advisory-return-of-the-hidden-number-problem]: https://www.nccgroup.trust/us/our-research/technical-advisory-return-of-the-hidden-number-problem/
-[University of Adelaide]: https://www.adelaide.edu.au
-[University of Maryland]: https://www.umd.edu
-[University of Pennsylvania]: https://www.upenn.edu
-[CVE-2018-12437]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12437
+[university of adelaide]: https://www.adelaide.edu.au
+[university of maryland]: https://www.umd.edu
+[university of pennsylvania]: https://www.upenn.edu
+[cve-2018-12437]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12437
