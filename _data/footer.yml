@@ -1,42 +1,13 @@
 # Copyright text to be displayed at the very bottom of the footer
-copyright-text: Linaro Limited
+copyright_text: Linaro Limited
 # Set this to false if you do not want the Linaro logo in the footer.
-linaro-branding: true
-# Social Media Icons Row
-social-media-icons: true
-# Display the contact details section
-display-contact-details: true
+footer_brand:
+  path: /assets/images/Linaro-logo-white.png
+  alt: Linaro Logo
+  url: https://www.linaro.org
 # These links are displayed at the very bottom of the footer.
-company-links:
-    - name: Legal
-      url: /legal/
-    - name: Contact
-      url: /contact/
-second-column:
-    title: OP-TEE on GitHub
-    latest-posts: false
-    items:
-      - name: optee_os
-        url : https://github.com/OP-TEE/optee_os
-      - name: optee_client
-        url : https://github.com/OP-TEE/optee_client
-      - name: optee_test
-        url : https://github.com/OP-TEE/optee_test
-      - name: manifest
-        url : https://github.com/OP-TEE/manifest
-      - name: build
-        url : https://github.com/OP-TEE/build
-# Custom Col on the right
-third-column:
-    title: Other Projects
-    items:
-      - name: 96Boards
-        url: https://www.96boards.org
-      - name: Linaro Connect
-        url: https://connect.linaro.org
-      - name: DeviceTree
-        url: https://www.devicetree.org
-      - name: OP-TEE
-        url: https://www.op-tee.org
-      - name: Linaro Developer Cloud
-        url: https://www.linaro.cloud
+company_links:
+  - name: Legal
+    url: /legal/
+  - name: Contact
+    url: /contact/
