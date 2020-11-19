@@ -25,6 +25,30 @@ Likewise you will find when it was fixed and who reported the issue.
 If you have found a security issue in OP-TEE, please send us an email (see
 [Contact]) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+# November 2020
+
+## Replay Attack Vulnerabilities in RPMB Protocol Applications
+
+Western Digital has identified a couple of security vulnerabilities in the RPMB
+protocol. By doing a man in the middle attack it's possible to get the system
+into a state different to what the legitimate user believes it is.
+The possible types of attacks are software downgrades. The mitigation idea is
+to always at boot (or during first use of RPMB) read the write counter from the
+RPMB and then send dummy packets with a dummy block until the counter value in
+the response is the expected (counter + 1). First after that sequence, it's OK
+to communicate with the RPMB with the intended data. For more details, please
+see the [Western Digital security bulletin] and the [Western Digital
+whitepaper] for this CVE. Thanks to NXP who notified the OP-TEE project about
+this issue.
+
+**optee_os.git:**
+
+- [core: fix RPMB rollback vulnerability (a8fb1651777)](https://github.com/OP-TEE/optee_os/commit/a8fb1651777edc48702e166c7a8c5827b92c4a8e)
+
+| Reported by          | CVE ID           |    OP-TEE ID     | Affected versions   |
+| -------------------- | :--------------: | :--------------: | ------------------- |
+| Western Digital, NXP |  CVE-2020-13799  | OP-TEE-2019-0022 | v3.11.0 and earlier |
+
 
 # August 2019
 
@@ -930,3 +954,5 @@ patch.
 [university of maryland]: https://www.umd.edu
 [university of pennsylvania]: https://www.upenn.edu
 [cve-2018-12437]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12437
+[western digital security bulletin]: https://www.westerndigital.com/support/productsecurity/wdc-20008-replay-attack-vulnerabilities-rpmb-protocol-applications
+[western digital whitepaper]: https://documents.westerndigital.com/content/dam/doc-library/en_us/assets/public/western-digital/collateral/white-paper/white-paper-replay-protected-memory-block-protocol-vulernabilities.pdf
