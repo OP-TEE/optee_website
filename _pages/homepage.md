@@ -27,47 +27,34 @@ flow:
       - format: text
         text_content:
           text: >
-            `OP-TEE` was initially developed as `TEE` by
-            [ST-Ericsson](http://www.stericsson.com/). In 2013, ST-Ericsson
-            achieved compliance with
-            [GlobalPlatform](https://globalplatform.org/)’s qualification, proving
-            the APIs were behaving as expected. After the [split in
-            2013](https://www.ericsson.com/en/press-releases/2013/8/ericsson-and-stmicroelectronics-complete-transaction-to-split-up-st-ericsson)
-            of [Ericsson](https://www.ericsson.com/en) and
-            [STMicroelectronics](https://www.st.com/content/st_com/en.html), TEE
-            became owned by STMicroelectronics.
+            OP-TEE is an open source Trusted Execution Enviroment (TEE) implementing the
+            [Arm TrustZone technology](https://developer.arm.com/ip-products/security-ip/trustzone).
+            OP-TEE has been ported to many Arm [devices and
+            platforms](https://optee.readthedocs.io/en/latest/general/platforms.html).
+            Originally it was developed as a proprietary TEE solution by ST-Ericsson that
+            later on was moved over to STMicroelectronics.
       - format: text
         text_content:
           text: >
-            Later in 2013, [Linaro](https://www.linaro.org/) formed the Security Working
+            Back in 2013, [Linaro](https://www.linaro.org/) formed the Security Working
             Group (SWG): one of the initial key tasks for the SWG was to work on an
             open-source TEE project. After talking to various TEE vendors, Linaro began
-            working with the STMicroelectronics TEE project. Before we were able to
-            open-source this code, we needed to replace some proprietary components with
-            open source components. This work took several months with engineers from both
-            STMicroelectronics and Linaro's SWG making significant contributions. These
-            components included the cryptographic library, secure monitor, build system and
-            others. At the same time, the code base was cleaned up with the application of
-            [Coding
-            standards](https://optee.readthedocs.io/en/latest/general/coding_standards.html#coding-standards),
-            by running
-            [checkpatch](http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/scripts/checkpatch.pl),
-            and via other related processes.
+            working with STMicroelectronics to convert their TEE solution from being a
+            proprietary TEE to become an open source TEE. After a few months of
+            refactoring and rewriting major parts of the code so it was compatible with
+            the BSD 2-Clause license it was released to the general public around the
+            summer in 2014.
       - format: text
         text_content:
           text: >
-            On the 12th of June 2014, OP-TEE was born as an open-source project.
-            On that day, the first commit to OP-TEE's [GitHub
-            organisation](https://github.com/OP-TEE/) was pushed. Shortly
-            afterwards, a [press
-            release](https://www.linaro.org/blog/op-tee-open-source-security-mass-market/)
-            announcing the project was made. During the first year as an open
-            source project, it was owned by STMicroelectronics but jointly
-            maintained by Linaro and STMicroelectronics. In 2015, ownership of the
-            OP-TEE project was transferred from STMicroelectronics to Linaro:
-            since then, Linaro has been the primary owner and maintainer of the
-            project. Maintenance is jointly shared between Linaro, Linaro members
-            and other companies who are using OP-TEE.
+            In 2015, ownership of the OP-TEE project was transferred from
+            STMicroelectronics to Linaro. Between 2015 and 2019, Linaro was the owner of
+            the project and the maintenance was shared together with the members of
+            Linaro. Late 2019, Linaro transferred the OP-TEE project to the
+            [TrustedFirmware.org](https://www.trustedfirmware.org/) project, who has been
+            the governing body since then. Linaro is still in charge of scheduling
+            releases, acting on security incidents etc. But when it comes to development
+            and features there are many companies contributing to the project.
       - format: title
         style: text-center
         title_content:
