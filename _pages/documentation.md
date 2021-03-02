@@ -12,4 +12,11 @@ jumbotron:
       url: https://optee.readthedocs.io
       class: btn btn-primary
       icon: fa fa-book
+flow:
+  - row: container_row
+    sections:
+      - format: text
+        text_content:
+          text: >
+            All documentation for the OP-TEE project can be found at https://optee.readthedocs.io.
 ---
