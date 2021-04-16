@@ -25,6 +25,45 @@ Likewise you will find when it was fixed and who reported the issue.
 If you have found a security issue in OP-TEE, please send us an email (see
 [Contact]) and then someone from the team will contact you for further discussion.
 The initial email doesn't have to contain any details.
+# February 2021
+
+## Paged TAs mapping corruption
+
+In the 3.x series of OP-TEE, up to 3.12.0 there have been 2 issues affecting
+paged trusted applications that allow a client of a trusted application (TA)
+to corrupt the TA memory memory when the TA is about to invoke another TA with
+a private memory reference as invocation parameter.
+
+Only platforms with CFG_WITH_PAGER=y and CFG_PAGED_USER_TA=y are affected.
+
+The first issue relates to how client memory references are unmapped in trusted
+application context. When pager is enabled, mapping information were not cleared
+from the trusted application MMU tables. This issue affects all 3.x series up to
+3.12.0.
+
+The second issue is a flaw introduced in 3.6.0 where a core service helps
+TAs to isolate the memory it they are about to pass to another TA they invoke.
+This service makes the TA to request a newly mapped ZI pages (through a
+syscall to OP-TEE system PTA). The implementation is fine but due to previous
+issue, paged TAs happen to still map client old memory reference instead of
+the new ZI maps claims to core. A client could leverage this flaw to invoke
+a TA right before it is about to claim new ZI pages and have the TA mapping
+the client memory instead of TA new ZI pages.
+
+The flaw has been addressed in 3.13.0 by fixing initial issue to properly
+update TA MMU translation tables when client memory reference parameters
+are unmapped from TA context.
+
+**optee_os.git:**
+
+- [core: add pgt_clear_ctx_range (74cb1bdc230)](https://github.com/OP-TEE/optee_os/commit/74cb1bdc230da0a2b08ff106d52128200ff261f4)
+- [core: add tlbi_mva_range_asid (c1e0a8351ac)](https://github.com/OP-TEE/optee_os/commit/c1e0a8351acf2ef4b6f57ea98c64f2433da68074)
+- [core: clear user mappings from tables when removed (a5a72f28f04)](https://github.com/OP-TEE/optee_os/commit/a5a72f28f04536aac3465201369be4719ee25c37)
+
+| Reported by       | CVE ID | OP-TEE ID        | Affected versions   |
+| ----------------- | :----: | :--------------: | ------------------- |
+| STMicroelectonics | N/A    | OP-TEE-2021-0023 | v3.12.0 and earlier |
+
 # November 2020
 
 ## Replay Attack Vulnerabilities in RPMB Protocol Applications
