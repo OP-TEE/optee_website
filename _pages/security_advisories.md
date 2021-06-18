@@ -542,9 +542,9 @@ corruption might allow code execution in the context of the TEE kernel.
 
 - [svc: check for allocation overflow in crypto calls part 2 (70697bf3c5d)](https://github.com/OP-TEE/optee_os/commit/70697bf3c5dc3d201341b01a1a8e5bc6d2fb48f8)
 
-| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
-| ----------- | :-------: | :--------------: | ------------------ |
-| [Riscure]   | Not/Ready | OP-TEE-2018-0011 | v3.3.0 and earlier |
+| Reported by |  CVE ID                                                                         |    OP-TEE ID     | Affected versions  |
+| ----------- | :-----------------------------------------------------------------------------: | :--------------: | ------------------ |
+| [Riscure]   | [CVE-2019-1010298](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-1010298) | OP-TEE-2018-0011 | v3.3.0 and earlier |
 
 ### Integer overflow in crypto system calls (x2)
 
@@ -567,9 +567,9 @@ execution in the context of the TEE kernel.
 
 - [svc: check for allocation overflow in crypto calls (a637243270f)](https://github.com/OP-TEE/optee_os/commit/a637243270fc1faae16de059091795c32d86e65e)
 
-| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
-| ----------- | :-------: | :--------------: | ------------------ |
-| [Riscure]   | Not/Ready | OP-TEE-2018-0010 | v3.3.0 and earlier |
+| Reported by |  CVE ID                                                                         |    OP-TEE ID     | Affected versions  |
+| ----------- | :-----------------------------------------------------------------------------: | :--------------: | ------------------ |
+| [Riscure]   | [CVE-2019-1010297](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-1010297) | OP-TEE-2018-0010 | v3.3.0 and earlier |
 
 ### Integer overflow in crypto system calls
 
@@ -592,9 +592,9 @@ corruption might allow code execution in the context of the TEE kernel.
 
 - [svc: check for allocation overflow in syscall_cryp_obj_populate (b60e1cee406)](https://github.com/OP-TEE/optee_os/commit/b60e1cee406a1ff521145ab9534370dfb85dd592)
 
-| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
-| ----------- | :-------: | :--------------: | ------------------ |
-| [Riscure]   | Not/Ready | OP-TEE-2018-0009 | v3.3.0 and earlier |
+| Reported by |  CVE ID                                                                         |    OP-TEE ID     | Affected versions  |
+| ----------- | :-----------------------------------------------------------------------------: | :--------------: | ------------------ |
+| [Riscure]   | [CVE-2019-1010296](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-1010296) | OP-TEE-2018-0009 | v3.3.0 and earlier |
 
 ### Buffer checks missing when calling pseudo TAs
 
@@ -619,9 +619,9 @@ memory disclosure.
 
 - [core: svc: always check ta parameters (d5c5b0b77b2)](https://github.com/OP-TEE/optee_os/commit/d5c5b0b77b2b589666024d219a8007b3f5b6faeb)
 
-| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
-| ----------- | :-------: | :--------------: | ------------------ |
-| [Riscure]   | Not/Ready | OP-TEE-2018-0007 | v3.3.0 and earlier |
+| Reported by |  CVE ID                                                                         |    OP-TEE ID     | Affected versions  |
+| ----------- | :-----------------------------------------------------------------------------: | :--------------: | ------------------ |
+| [Riscure]   | [CVE-2019-1010295](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-1010295) | OP-TEE-2018-0007 | v3.3.0 and earlier |
 
 ### Potential disclosure of previously loaded TA code and data
 
@@ -644,9 +644,9 @@ TA prevented when the last session is closed due to
 
 - [core: clear the entire TA area (7e768f8a473)](https://github.com/OP-TEE/optee_os/commit/7e768f8a473409215fe3fff8f6e31f8a3a0103c6)
 
-| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
-| ----------- | :-------: | :--------------: | ------------------ |
-| [Riscure]   | Not/Ready | OP-TEE-2018-0006 | v3.3.0 and earlier |
+| Reported by |  CVE ID                                                                         |    OP-TEE ID     | Affected versions  |
+| ----------- | :-----------------------------------------------------------------------------: | :--------------: | ------------------ |
+| [Riscure]   | [CVE-2019-1010294](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-1010294) | OP-TEE-2018-0006 | v3.3.0 and earlier |
 
 ### tee_mmu_check_access_rights does not check final page of TA buffer
 
@@ -668,9 +668,9 @@ vulnerabilities can have serious impact such as allowing runtime control.
 
 - [core: tee_mmu_check_access_rights() check all pages (95f36d661f2)](https://github.com/OP-TEE/optee_os/commit/95f36d661f2b75887772ea28baaad904bde96970)
 
-| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
-| ----------- | :-------: | :--------------: | ------------------ |
-| [Riscure]   | Not/Ready | OP-TEE-2018-0005 | v3.3.0 and earlier |
+| Reported by |  CVE ID                                                                         |    OP-TEE ID     | Affected versions  |
+| ----------- | :-----------------------------------------------------------------------------: | :--------------: | ------------------ |
+| [Riscure]   | [CVE-2019-1010293](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-1010293) | OP-TEE-2018-0005 | v3.3.0 and earlier |
 
 ### Unchecked parameters are passed through from REE
 
@@ -690,9 +690,9 @@ corruption of any memory which the TA can access.
 
 - [core: ensure that supplied range matches MOBJ (e3adcf566cb)](https://github.com/OP-TEE/optee_os/commit/e3adcf566cb278444830e7badfdcc3983e334fd1)
 
-| Reported by |  CVE ID   |    OP-TEE ID     | Affected versions  |
-| ----------- | :-------: | :--------------: | ------------------ |
-| [Riscure]   | Not/Ready | OP-TEE-2018-0004 | v3.3.0 and earlier |
+| Reported by |  CVE ID                                                                         |    OP-TEE ID     | Affected versions  |
+| ----------- | :-----------------------------------------------------------------------------: | :--------------: | ------------------ |
+| [Riscure]   | [CVE-2019-1010292](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2019-1010292) | OP-TEE-2018-0004 | v3.3.0 and earlier |
 
 # May 2018
 
