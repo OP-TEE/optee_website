@@ -10,7 +10,7 @@ destination: production.op-tee.org
 production: true
 google_analytics:
   enabled: true
-  code: UA-16756069-20
+  code: GTM-TDJ7LGH
   cookies:
     necessary:
       - name: cookieControl
