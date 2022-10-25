@@ -27,7 +27,7 @@ flow:
       - format: text
         text_content:
           text: >
-            OP-TEE is an open source Trusted Execution Enviroment (TEE) implementing the
+            OP-TEE is an open source Trusted Execution Environment (TEE) implementing the
             [Arm TrustZone technology](https://developer.arm.com/ip-products/security-ip/trustzone).
             OP-TEE has been ported to many Arm [devices and
             platforms](https://optee.readthedocs.io/en/latest/general/platforms.html).
